@@ -1,0 +1,109 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Transaction;
+use App\Models\Wallet;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+class TransactionController extends Controller
+{
+    public function index(Request $request)
+    {
+        $request->validate([
+            'wallet_id' => 'nullable|exists:wallets,id',
+            'category_id' => 'nullable|exists:categories,id',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+        ]);
+
+        $transactions = Transaction::query()
+            ->whereHas('wallet', fn ($q) => $q->where('user_id', $request->user()->id))
+            ->with(['wallet:id,title', 'category:id,name,type'])
+            ->when($request->wallet_id, fn ($q) => $q->where('wallet_id', $request->wallet_id))
+            ->when($request->category_id, fn ($q) => $q->where('category_id', $request->category_id))
+            ->when($request->start_date, fn ($q) => $q->whereDate('transacted_at', '>=', $request->start_date))
+            ->when($request->end_date, fn ($q) => $q->whereDate('transacted_at', '<=', $request->end_date))
+            ->latest('transacted_at')
+            ->get();
+
+        $wallets = $request->user()->wallets()->get(['id', 'title']);
+        $categories = $request->user()->categories()->get(['id', 'name', 'type']);
+
+        return Inertia::render('transactions/index', [
+            'transactions' => $transactions,
+            'wallets' => $wallets,
+            'categories' => $categories,
+            'filters' => $request->only(['wallet_id', 'category_id', 'start_date', 'end_date']),
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'wallet_id' => 'required|exists:wallets,id',
+            'category_id' => 'required|exists:categories,id',
+            'amount' => 'required|numeric|min:0.01',
+            'description' => 'nullable|string',
+            'transacted_at' => 'required|date',
+        ]);
+
+        $wallet = Wallet::findOrFail($validated['wallet_id']);
+        $this->authorizeWallet($wallet, $request);
+
+        $category = $wallet->user->categories()->findOrFail($validated['category_id']);
+
+        $transaction = $wallet->transactions()->create($validated);
+
+        $this->adjustBalance($wallet, $category, $transaction->amount, 1);
+
+        return redirect()->route('transactions.index')->with('success', 'Transaksi berhasil dicatat.');
+    }
+
+    public function update(Request $request, Transaction $transaction)
+    {
+        $this->authorizeWallet($transaction->wallet, $request);
+
+        $validated = $request->validate([
+            'wallet_id' => 'required|exists:wallets,id',
+            'category_id' => 'required|exists:categories,id',
+            'amount' => 'required|numeric|min:0.01',
+            'description' => 'nullable|string',
+            'transacted_at' => 'required|date',
+        ]);
+
+        $this->adjustBalance($transaction->wallet, $transaction->category, $transaction->amount, -1);
+
+        $transaction->update($validated);
+        $transaction->refresh();
+
+        $this->adjustBalance($transaction->wallet, $transaction->category, $transaction->amount, 1);
+
+        return redirect()->route('transactions.index')->with('success', 'Transaksi berhasil diperbarui.');
+    }
+
+    public function destroy(Request $request, Transaction $transaction)
+    {
+        $this->authorizeWallet($transaction->wallet, $request);
+
+        $this->adjustBalance($transaction->wallet, $transaction->category, $transaction->amount, -1);
+
+        $transaction->delete();
+
+        return redirect()->route('transactions.index')->with('success', 'Transaksi berhasil dihapus.');
+    }
+
+    private function adjustBalance(Wallet $wallet, $category, $amount, int $direction)
+    {
+        $sign = $category->type === 'income' ? 1 : -1;
+        $wallet->increment('balance', $sign * $direction * $amount);
+    }
+
+    private function authorizeWallet(Wallet $wallet, Request $request)
+    {
+        if ($wallet->user_id !== $request->user()->id) {
+            abort(403);
+        }
+    }
+}
