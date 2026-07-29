@@ -41,9 +41,6 @@ class CategoryController extends Controller
             'type' => 'required|in:income,expense',
         ]);
 
-        $category->update($validated);
-
-        
         if ($category->type !== $validated['type']
             && ($category->transactions()->exists() || $category->budgets()->exists())) {
             return back()->withErrors([
@@ -51,7 +48,8 @@ class CategoryController extends Controller
             ]);
         }
 
-
+        $category->update($validated);
+        
         return redirect()->route('categories.index')->with('success', 'Kategori berhasil diperbarui.');
     }
 

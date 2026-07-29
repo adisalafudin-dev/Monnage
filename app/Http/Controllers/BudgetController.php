@@ -79,7 +79,7 @@ class BudgetController extends Controller
 
     public function destroy(Budget $budget)
     {
-        if ($budget->user_id !== auth()->id) {
+        if ($budget->user_id !== auth()->id()) {
             abort(403);
         }
 
