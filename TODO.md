@@ -27,7 +27,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 
 ## 🟠 P1 — Logic bug in the new code
 
-- [ ] **`CategoryController@update` runs its "can't change type if in use" check _after_ the update already happened.** Current order:
+- [x] **`CategoryController@update` runs its "can't change type if in use" check _after_ the update already happened.** Current order:
     ```php
     $category->update($validated);
 
@@ -49,12 +49,12 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 
 ## 🟡 P1 — Missing frontend (only piece left)
 
-- [ ] **Budgets still has no frontend page** (`resources/js/pages/budgets/index.tsx` doesn't exist), and there's no "Budgets" link in the sidebar nav (`app-sidebar.tsx` only has Dashboard / Dompet / Kategori / Transaksi). `BudgetController` already renders `Inertia::render('budgets/index', ...)` with computed spend/remaining/percentage per category — the backend is ready, only the page and nav entry are missing. Given the pattern already established by the other three pages, this should be the most straightforward remaining page to build.
+- [x] **Budgets still has no frontend page** (`resources/js/pages/budgets/index.tsx` doesn't exist), and there's no "Budgets" link in the sidebar nav (`app-sidebar.tsx` only has Dashboard / Dompet / Kategori / Transaksi). `BudgetController` already renders `Inertia::render('budgets/index', ...)` with computed spend/remaining/percentage per category — the backend is ready, only the page and nav entry are missing. Given the pattern already established by the other three pages, this should be the most straightforward remaining page to build.
 
 ## 🟡 P2 — Test coverage
 
-- [ ] Still no feature tests for `WalletController`, `CategoryController`, `TransactionController`, or `BudgetController` — the one new test (`tests/Unit/UserTest.php`) only checks that the `passkeys()` relation exists. The core money-moving logic (balance adjustment, budget spend calculation, the category-type-lock bug above) has zero automated coverage, which is exactly the kind of logic that regresses silently.
-- [ ] Add a regression test for the `BudgetController` auth bug and the `CategoryController` type-change-after-update bug specifically, so they can't reappear.
+- [x] Still no feature tests for `WalletController`, `CategoryController`, `TransactionController`, or `BudgetController` — the one new test (`tests/Unit/UserTest.php`) only checks that the `passkeys()` relation exists. The core money-moving logic (balance adjustment, budget spend calculation, the category-type-lock bug above) has zero automated coverage, which is exactly the kind of logic that regresses silently.
+- [x] Add a regression test for the `BudgetController` auth bug and the `CategoryController` type-change-after-update bug specifically, so they can't reappear.
 
 ## 🟢 P2 — Data model / domain gaps (unchanged from before)
 
