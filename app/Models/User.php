@@ -13,6 +13,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable, TwoFactorAuthenticatable;
 
     protected $fillable = [
+        'name',
         'username',
         'profile',
         'email',
@@ -47,5 +48,10 @@ class User extends Authenticatable
     public function budgets()
     {
         return $this->hasMany(Budget::class);
+    }
+
+    public function passkeys()
+    {
+        return $this->hasMany(Passkey::class);
     }
 }

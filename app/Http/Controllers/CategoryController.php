@@ -11,6 +11,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $categories = $request->user()->categories()
+            ->withCount(['transactions', 'budgets'])
             ->latest()
             ->get();
 
@@ -42,12 +43,27 @@ class CategoryController extends Controller
 
         $category->update($validated);
 
+        
+        if ($category->type !== $validated['type']
+            && ($category->transactions()->exists() || $category->budgets()->exists())) {
+            return back()->withErrors([
+                'type' => 'Jenis kategori tidak dapat diubah karena sudah digunakan.',
+            ]);
+        }
+
+
         return redirect()->route('categories.index')->with('success', 'Kategori berhasil diperbarui.');
     }
 
     public function destroy(Category $category)
     {
         $this->authorizeCategory($category);
+
+        if ($category->transactions()->exists() || $category->budgets()->exists()) {
+            return back()->withErrors([
+                'category' => 'Kategori yang sudah digunakan tidak dapat dihapus.',
+            ]);
+        }
 
         $category->delete();
 
@@ -56,7 +72,7 @@ class CategoryController extends Controller
 
     private function authorizeCategory(Category $category)
     {
-        if ($category->user_id !== auth()->id) {
+        if ($category->user_id !== auth()->id()) {
             abort(403);
         }
     }

@@ -60,7 +60,7 @@ class WalletController extends Controller
 
     private function authorizeWallet(Wallet $wallet)
     {
-        if ($wallet->user_id !== auth()->id) {
+        if ($wallet->user_id !== auth()->id()) {
             abort(403);
         }
     }

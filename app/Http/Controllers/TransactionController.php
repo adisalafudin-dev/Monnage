@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class TransactionController extends Controller
@@ -49,22 +50,24 @@ class TransactionController extends Controller
             'transacted_at' => 'required|date',
         ]);
 
-        $wallet = Wallet::findOrFail($validated['wallet_id']);
-        $this->authorizeWallet($wallet, $request);
+        DB::transaction(function () use ($request, $validated) {
+            $wallet = Wallet::query()
+                ->lockForUpdate()
+                ->findOrFail($validated['wallet_id']);
+            $this->authorizeWallet($wallet, $request);
 
-        $category = $wallet->user->categories()->findOrFail($validated['category_id']);
+            $category = $request->user()->categories()
+                ->findOrFail($validated['category_id']);
+            $transaction = $wallet->transactions()->create($validated);
 
-        $transaction = $wallet->transactions()->create($validated);
-
-        $this->adjustBalance($wallet, $category, $transaction->amount, 1);
+            $this->adjustBalance($wallet, $category, $transaction->amount, 1);
+        });
 
         return redirect()->route('transactions.index')->with('success', 'Transaksi berhasil dicatat.');
     }
 
     public function update(Request $request, Transaction $transaction)
     {
-        $this->authorizeWallet($transaction->wallet, $request);
-
         $validated = $request->validate([
             'wallet_id' => 'required|exists:wallets,id',
             'category_id' => 'required|exists:categories,id',
@@ -73,23 +76,51 @@ class TransactionController extends Controller
             'transacted_at' => 'required|date',
         ]);
 
-        $this->adjustBalance($transaction->wallet, $transaction->category, $transaction->amount, -1);
+        DB::transaction(function () use ($request, $transaction, $validated) {
+            $currentTransaction = Transaction::query()
+                ->with(['wallet', 'category'])
+                ->lockForUpdate()
+                ->findOrFail($transaction->id);
+            $this->authorizeWallet($currentTransaction->wallet, $request);
 
-        $transaction->update($validated);
-        $transaction->refresh();
+            $wallet = Wallet::query()
+                ->lockForUpdate()
+                ->findOrFail($validated['wallet_id']);
+            $this->authorizeWallet($wallet, $request);
+            $category = $request->user()->categories()
+                ->findOrFail($validated['category_id']);
 
-        $this->adjustBalance($transaction->wallet, $transaction->category, $transaction->amount, 1);
+            $this->adjustBalance(
+                $currentTransaction->wallet,
+                $currentTransaction->category,
+                $currentTransaction->amount,
+                -1,
+            );
+
+            $currentTransaction->update($validated);
+            $this->adjustBalance($wallet, $category, $validated['amount'], 1);
+        });
 
         return redirect()->route('transactions.index')->with('success', 'Transaksi berhasil diperbarui.');
     }
 
     public function destroy(Request $request, Transaction $transaction)
     {
-        $this->authorizeWallet($transaction->wallet, $request);
+        DB::transaction(function () use ($request, $transaction) {
+            $currentTransaction = Transaction::query()
+                ->with(['wallet', 'category'])
+                ->lockForUpdate()
+                ->findOrFail($transaction->id);
+            $this->authorizeWallet($currentTransaction->wallet, $request);
 
-        $this->adjustBalance($transaction->wallet, $transaction->category, $transaction->amount, -1);
-
-        $transaction->delete();
+            $this->adjustBalance(
+                $currentTransaction->wallet,
+                $currentTransaction->category,
+                $currentTransaction->amount,
+                -1,
+            );
+            $currentTransaction->delete();
+        });
 
         return redirect()->route('transactions.index')->with('success', 'Transaksi berhasil dihapus.');
     }
