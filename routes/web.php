@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\WalletTransferController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,6 +33,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('budgets', BudgetController::class)
         ->only(['index', 'store', 'destroy']);
+
+     Route::resource('transfers', WalletTransferController::class)
+        ->only(['index', 'store', 'update', 'destroy']);
 });
 
 require __DIR__.'/settings.php';

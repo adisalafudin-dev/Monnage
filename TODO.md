@@ -58,7 +58,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 
 ## 🟢 P2 — Data model / domain gaps (unchanged from before)
 
-- [ ] No wallet-to-wallet transfer type — moving money between your own wallets still has to be faked with two offsetting transactions.
+- [x] No wallet-to-wallet transfer type — moving money between your own wallets still has to be faked with two offsetting transactions.
 - [ ] No multi-currency support.
 - [ ] `Wallet.status` boolean still has no documented meaning and isn't obviously surfaced in the new wallets UI beyond a checkbox — worth confirming what it's meant to represent (active/archived?).
 - [ ] Budgets: no rollover, no total/overall monthly budget across categories, monthly cadence only.
@@ -72,6 +72,10 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 - [ ] Validation/success messages are in Indonesian, UI labels ("Dompet", "Kategori", "Transaksi") are in Indonesian too now — consistent, but confirm this is the intended single-language product (no i18n toggle currently).
 
 ---
+
+## P4 - Add Auth
+
+- [ ] Add Google Login Authentication
 
 ## Suggested order of work
 

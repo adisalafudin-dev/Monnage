@@ -7,6 +7,7 @@ import {
     Tags,
     WalletCards,
     PiggyBank,
+    ArrowRightLeft,
 } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
@@ -22,11 +23,12 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
-import { index as walletsIndex } from '@/routes/wallets';
+
+import { index as budgetsIndex } from '@/routes/budgets';
 import { index as categoriesIndex } from '@/routes/categories';
 import { index as transactionsIndex } from '@/routes/transactions';
-import { index as budgetsIndex } from '@/routes/budgets';
-
+import { index as transfersIndex } from '@/routes/transfers';
+import { index as walletsIndex } from '@/routes/wallets';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -51,6 +53,11 @@ const mainNavItems: NavItem[] = [
         icon: ReceiptText,
     },
 
+    {
+        title: 'Transfer',
+        href: transfersIndex(),
+        icon: ArrowRightLeft,
+    },
     {
         title: 'Budget',
         href: budgetsIndex(),

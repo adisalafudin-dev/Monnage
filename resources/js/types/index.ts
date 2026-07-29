@@ -59,3 +59,16 @@ export interface BudgetFilters {
     month: number;
     year: number;
 }
+
+export interface WalletTransfer {
+    id: number;
+    from_wallet_id: number;
+    to_wallet_id: number;
+    amount: number;
+    description: string | null;
+    transferred_at: string;
+    created_at: string;
+    updated_at: string;
+    from_wallet?: Pick<Wallet, 'id' | 'title'>;
+    to_wallet?: Pick<Wallet, 'id' | 'title'>;
+}
