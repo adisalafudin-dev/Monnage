@@ -1,5 +1,13 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid, ReceiptText, Tags, WalletCards } from 'lucide-react';
+import {
+    BookOpen,
+    FolderGit2,
+    LayoutGrid,
+    ReceiptText,
+    Tags,
+    WalletCards,
+    PiggyBank,
+} from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -17,6 +25,8 @@ import { dashboard } from '@/routes';
 import { index as walletsIndex } from '@/routes/wallets';
 import { index as categoriesIndex } from '@/routes/categories';
 import { index as transactionsIndex } from '@/routes/transactions';
+import { index as budgetsIndex } from '@/routes/budgets';
+
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -39,6 +49,12 @@ const mainNavItems: NavItem[] = [
         title: 'Transaksi',
         href: transactionsIndex(),
         icon: ReceiptText,
+    },
+
+    {
+        title: 'Budget',
+        href: budgetsIndex(),
+        icon: PiggyBank,
     },
 ];
 

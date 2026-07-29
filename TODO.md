@@ -75,6 +75,6 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 
 ## Suggested order of work
 
-1. Build `budgets/index.tsx` + add the sidebar nav link — this finishes the full core product loop end-to-end.
-2. Add feature tests for all four domain controllers, including regression tests for the two bugs above.
-3. Then move on to the P2/P3 domain and polish items (transfers, recurring transactions, budget rollover, pagination, soft-deletes on wallets).
+[X] Build `budgets/index.tsx` + add the sidebar nav link — this finishes the full core product loop end-to-end.
+[ ] Add feature tests for all four domain controllers, including regression tests for the two bugs above.
+[ ] Then move on to the P2/P3 domain and polish items (transfers, recurring transactions, budget rollover, pagination, soft-deletes on wallets).
