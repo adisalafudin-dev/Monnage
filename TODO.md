@@ -75,9 +75,11 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 
 ---
 
-## P4 - Add Auth
+## P4 - Next Feature
 
 - [ ] Add Google Login Authentication
+- [ ] Add Export Excel, CSV
+- [ ] Add Machine Learning Python With FASTAPI
 
 ## Suggested order of work
 
