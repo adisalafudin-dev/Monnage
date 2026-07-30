@@ -9,7 +9,10 @@ class Wallet extends Model
 {
     use HasFactory;
 
+    /** A wallet that can be selected for new transactions and transfers. */
     public const STATUS_ACTIVE = true;
+
+    /** A historical wallet; its records remain visible but new activity is blocked. */
     public const STATUS_ARCHIVED = false;
 
     protected $fillable = [
@@ -29,6 +32,9 @@ class Wallet extends Model
         ];
     }
 
+    /**
+     * Limit a wallet query to wallets available for new financial activity.
+     */
     public function scopeActive($query)
     {
         return $query->where('status', self::STATUS_ACTIVE);

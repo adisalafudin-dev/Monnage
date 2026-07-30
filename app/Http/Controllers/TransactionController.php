@@ -30,7 +30,7 @@ class TransactionController extends Controller
             ->latest('transacted_at')
             ->get();
 
-        $wallets = $request->user()->wallets()->get(['id', 'title', "currency"]);
+        $wallets = $request->user()->wallets()->get(['id', 'title', 'currency', 'status']);
         $categories = $request->user()->categories()->get(['id', 'name', 'type']);
 
         return Inertia::render('transactions/index', [
@@ -48,7 +48,7 @@ class TransactionController extends Controller
                 'required',
                 Rule::exists("wallets", 'id')
                 ->where("user_id", $request->user()->id)
-                ->where('status', true)
+                ->where('status', Wallet::STATUS_ACTIVE)
             ],
             'category_id' => 'required|exists:categories,id',
             'amount' => 'required|numeric|min:0.01',

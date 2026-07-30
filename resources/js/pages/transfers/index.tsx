@@ -35,7 +35,7 @@ import type { Wallet, WalletTransfer } from '@/types';
 
 type Props = {
     transfers: WalletTransfer[];
-    wallets: Pick<Wallet, 'id' | 'title' | 'balance' | 'currency'>[];
+    wallets: Pick<Wallet, 'id' | 'title' | 'balance' | 'currency' | 'status'>[];
 };
 
 type TransferForm = {
@@ -82,7 +82,8 @@ export default function Transfers({ transfers, wallets }: Props) {
     const { data, setData, post, processing, errors, reset, clearErrors } =
         useForm<TransferForm>(initialTransferForm());
 
-    const canCreateTransfer = wallets.length > 1;
+    const activeWallets = wallets.filter((wallet) => wallet.status);
+    const canCreateTransfer = activeWallets.length > 1;
 
     const walletsById = useMemo(
         () => new Map(wallets.map((w) => [String(w.id), w])),
@@ -376,7 +377,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                                     <SelectValue placeholder="Pilih dompet asal" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {wallets.map((wallet) => (
+                                    {activeWallets.map((wallet) => (
                                         <SelectItem
                                             key={wallet.id}
                                             value={String(wallet.id)}
@@ -413,7 +414,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                                     <SelectValue placeholder="Pilih dompet tujuan" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {wallets
+                                    {activeWallets
                                         .filter(
                                             (wallet) =>
                                                 String(wallet.id) !==

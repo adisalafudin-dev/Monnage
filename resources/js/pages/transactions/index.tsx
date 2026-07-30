@@ -50,7 +50,7 @@ import type {
 
 type Props = {
     transactions: Transaction[];
-    wallets: Pick<Wallet, 'id' | 'title' | 'currency'>[];
+    wallets: Pick<Wallet, 'id' | 'title' | 'currency' | 'status'>[];
     categories: Pick<Category, 'id' | 'name' | 'type'>[];
     filters: TransactionFilters;
 };
@@ -133,7 +133,14 @@ export default function Transactions({
     );
     const currencies = Object.keys(totalsByCurrency);
 
-    const canCreateTransaction = wallets.length > 0 && categories.length > 0;
+    const activeWallets = wallets.filter((wallet) => wallet.status);
+    const selectableWallets = editingTransaction
+        ? wallets.filter(
+              (wallet) =>
+                  wallet.status || wallet.id === editingTransaction.wallet_id,
+          )
+        : activeWallets;
+    const canCreateTransaction = activeWallets.length > 0 && categories.length > 0;
 
     function openCreateDialog() {
         if (!canCreateTransaction) return;
@@ -239,7 +246,7 @@ export default function Transactions({
                 {!canCreateTransaction && (
                     <Card className="border-dashed">
                         <CardContent className="py-5 text-sm text-muted-foreground">
-                            Buat minimal satu dompet dan satu kategori sebelum
+                            Buat minimal satu dompet aktif dan satu kategori sebelum
                             mencatat transaksi.
                         </CardContent>
                     </Card>
@@ -322,7 +329,9 @@ export default function Transactions({
                                 placeholder="Semua dompet"
                                 items={wallets.map((wallet) => ({
                                     value: String(wallet.id),
-                                    label: wallet.title,
+                                    label: wallet.status
+                                        ? wallet.title
+                                        : `${wallet.title} (diarsipkan)`,
                                 }))}
                                 onChange={(value) =>
                                     setFilterData((current) => ({
@@ -573,7 +582,7 @@ export default function Transactions({
                                     <SelectValue placeholder="Pilih dompet" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {wallets.map((wallet) => (
+                                    {selectableWallets.map((wallet) => (
                                         <SelectItem
                                             key={wallet.id}
                                             value={String(wallet.id)}

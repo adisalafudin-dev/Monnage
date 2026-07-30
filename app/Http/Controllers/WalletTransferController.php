@@ -16,11 +16,13 @@ class WalletTransferController extends Controller
     {
         $transfers = WalletTransfer::query()
             ->whereHas('fromWallet', fn ($q) => $q->where('user_id', $request->user()->id))
-            ->with(['fromWallet:id,title', 'toWallet:id,title'])
+            ->with(['fromWallet:id,title,currency', 'toWallet:id,title,currency'])
             ->latest('transferred_at')
             ->get();
  
-        $wallets = $request->user()->wallets()->get(['id', 'title', 'balance']);
+        $wallets = $request->user()->wallets()->get([
+            'id', 'title', 'balance', 'currency', 'status',
+        ]);
  
         return Inertia::render('transfers/index', [
             'transfers' => $transfers,

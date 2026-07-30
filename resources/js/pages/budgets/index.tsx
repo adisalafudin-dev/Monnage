@@ -90,6 +90,8 @@ export default function Budgets({
     const defaultCurrency = currencies[0] ?? 'IDR';
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingBudget, setEditingBudget] = useState<Budget | null>(null);
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+    const [deletingBudget, setDeletingBudget] = useState<Budget | null>(null);
     const [periodFilter, setPeriodFilter] = useState({
         month: filters.month,
         year: filters.year,
@@ -172,13 +174,21 @@ export default function Budgets({
     }
 
     function deleteBudget(budget: Budget) {
-        if (
-            !window.confirm(
-                `Hapus budget untuk “${budget.category.name}” (${budget.currency})?`,
-            )
-        )
-            return;
-        router.delete(destroy.url(budget));
+        setDeletingBudget(budget);
+        setIsDeleteDialogOpen(true);
+    }
+
+    function closeDeleteDialog() {
+        if (processing) return;
+        setIsDeleteDialogOpen(false);
+        setDeletingBudget(null);
+    }
+
+    function confirmDelete() {
+        if (!deletingBudget) return;
+        router.delete(destroy.url(deletingBudget), {
+            onSuccess: closeDeleteDialog,
+        });
     }
 
     return (
@@ -641,6 +651,38 @@ export default function Budgets({
                             </Button>
                         </DialogFooter>
                     </form>
+                </DialogContent>
+            </Dialog>
+            <Dialog
+                open={isDeleteDialogOpen}
+                onOpenChange={(open) => !open && closeDeleteDialog()}
+            >
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Hapus budget</DialogTitle>
+                        <DialogDescription>
+                            Hapus budget untuk “{deletingBudget?.category.name}”
+                            ({deletingBudget?.currency})?
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter className="mt-2">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={closeDeleteDialog}
+                            disabled={processing}
+                        >
+                            Batal
+                        </Button>
+                        <Button
+                            type="button"
+                            onClick={confirmDelete}
+                            disabled={processing}
+                            className="text-destructive"
+                        >
+                            Hapus
+                        </Button>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
         </>

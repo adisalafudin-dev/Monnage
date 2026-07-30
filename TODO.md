@@ -61,7 +61,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 - [x] No wallet-to-wallet transfer type — moving money between your own wallets still has to be faked with two offsetting transactions.
 - [x] Delete "update" feature wallet-to-wallet transfer feature
 - [x] No multi-currency support.
-- [ ] `Wallet.status` boolean still has no documented meaning and isn't obviously surfaced in the new wallets UI beyond a checkbox — worth confirming what it's meant to represent (active/archived?).
+- [x] `Wallet.status` boolean still has no documented meaning and isn't obviously surfaced in the new wallets UI beyond a checkbox — worth confirming what it's meant to represent (active/archived?).
 - [ ] Budgets: no rollover, no total/overall monthly budget across categories, monthly cadence only.
 - [ ] No recurring transactions.
 - [ ] Cascading hard-deletes on wallets still permanently remove transaction history (categories now have a use-guard against deletion, wallets don't).

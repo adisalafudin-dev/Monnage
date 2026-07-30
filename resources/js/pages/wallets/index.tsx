@@ -224,7 +224,7 @@ export default function Wallets({ wallets }: Props) {
                                 }
                             </div>
                             <CardDescription className="mt-1 text-xs">
-                                Siap digunakan untuk mencatat transaksi
+                                Bisa dipakai untuk transaksi dan transfer baru
                             </CardDescription>
                         </CardContent>
                     </Card>
@@ -234,7 +234,7 @@ export default function Wallets({ wallets }: Props) {
                     <CardHeader>
                         <CardTitle>Daftar dompet</CardTitle>
                         <CardDescription>
-                            Saldo akan berubah otomatis saat transaksi dicatat.
+                            Dompet diarsipkan tetap menyimpan riwayat, tetapi tidak dapat dipakai untuk transaksi atau transfer baru.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -298,7 +298,7 @@ export default function Wallets({ wallets }: Props) {
                                                     >
                                                         {wallet.status
                                                             ? 'Aktif'
-                                                            : 'Nonaktif'}
+                                                            : 'Diarsipkan'}
                                                     </Badge>
                                                 </td>
                                                 <td className="py-4 text-right font-medium tabular-nums">
@@ -432,15 +432,20 @@ export default function Wallets({ wallets }: Props) {
                             </Select>
                             <InputError message={errors.currency} />
                         </div>
-                        <label className="flex items-center gap-2 text-sm font-medium">
-                            <Checkbox
-                                checked={data.status}
-                                onCheckedChange={(checked) =>
-                                    setData('status', checked === true)
-                                }
-                            />
-                            Dompet aktif
-                        </label>
+                        <div className="grid gap-1.5">
+                            <label className="flex items-center gap-2 text-sm font-medium">
+                                <Checkbox
+                                    checked={data.status}
+                                    onCheckedChange={(checked) =>
+                                        setData('status', checked === true)
+                                    }
+                                />
+                                Dompet aktif
+                            </label>
+                            <p className="pl-6 text-xs leading-5 text-muted-foreground">
+                                Nonaktifkan untuk mengarsipkan dompet. Riwayat tetap tersedia, tetapi transaksi dan transfer baru tidak dapat dibuat.
+                            </p>
+                        </div>
 
                         <DialogFooter className="mt-2">
                             <Button
