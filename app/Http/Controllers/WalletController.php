@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wallet;
+use App\Support\Currency;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class WalletController extends Controller
@@ -25,6 +27,7 @@ class WalletController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'balance' => 'required|numeric|min:0',
+            'currency' => ['required', 'string', 'size:3', Rule::in(Currency::codes())],
             'status' => 'boolean',
         ]);
 
@@ -41,6 +44,7 @@ class WalletController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'balance' => 'required|numeric|min:0',
+            'currency' => ['required', 'string', 'size:3', Rule::in(Currency::codes())],
             'status' => 'boolean',
         ]);
 

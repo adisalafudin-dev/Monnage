@@ -14,8 +14,6 @@ Route::get('/', function () {
     return Inertia::render('welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
     ]);
 })->name('home');
 
@@ -35,7 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->only(['index', 'store', 'destroy']);
 
      Route::resource('transfers', WalletTransferController::class)
-        ->only(['index', 'store', 'update', 'destroy']);
+        ->only(['index', 'store', 'destroy']);
 });
 
 require __DIR__.'/settings.php';

@@ -1,6 +1,6 @@
 import { Head, router, useForm } from '@inertiajs/react';
 import { ArrowRightLeft, Pencil, Plus, Trash2 } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import {
@@ -28,28 +28,24 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { formatCurrency } from '@/lib/currency';
 import { dashboard } from '@/routes';
-import { destroy, index, store, update } from '@/routes/transfers';
+import { destroy, index, store } from '@/routes/transfers';
 import type { Wallet, WalletTransfer } from '@/types';
 
 type Props = {
     transfers: WalletTransfer[];
-    wallets: Pick<Wallet, 'id' | 'title' | 'balance'>[];
+    wallets: Pick<Wallet, 'id' | 'title' | 'balance' | 'currency'>[];
 };
 
 type TransferForm = {
     from_wallet_id: string;
     to_wallet_id: string;
     amount: string;
+    exchange_rate: string;
     description: string;
     transferred_at: string;
 };
-
-const rupiah = new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    maximumFractionDigits: 0,
-});
 
 const dateFormatter = new Intl.DateTimeFormat('id-ID', {
     day: 'numeric',
@@ -70,6 +66,7 @@ function initialTransferForm(): TransferForm {
         from_wallet_id: '',
         to_wallet_id: '',
         amount: '',
+        exchange_rate: '1',
         description: '',
         transferred_at: localDateTime(),
     };
@@ -79,10 +76,28 @@ export default function Transfers({ transfers, wallets }: Props) {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingTransfer, setEditingTransfer] =
         useState<WalletTransfer | null>(null);
-    const { data, setData, post, put, processing, errors, reset, clearErrors } =
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+    const [deletingTransfer, setDeletingTransfer] =
+        useState<WalletTransfer | null>(null);
+    const { data, setData, post, processing, errors, reset, clearErrors } =
         useForm<TransferForm>(initialTransferForm());
 
     const canCreateTransfer = wallets.length > 1;
+
+    const walletsById = useMemo(
+        () => new Map(wallets.map((w) => [String(w.id), w])),
+        [wallets],
+    );
+    const fromWallet = walletsById.get(data.from_wallet_id);
+    const toWallet = walletsById.get(data.to_wallet_id);
+    const isCrossCurrency =
+        !!fromWallet && !!toWallet && fromWallet.currency !== toWallet.currency;
+    const convertedPreview =
+        isCrossCurrency &&
+        Number(data.amount) > 0 &&
+        Number(data.exchange_rate) > 0
+            ? Number(data.amount) * Number(data.exchange_rate)
+            : null;
 
     function openCreateDialog() {
         if (!canCreateTransfer) return;
@@ -100,6 +115,7 @@ export default function Transfers({ transfers, wallets }: Props) {
             from_wallet_id: String(transfer.from_wallet_id),
             to_wallet_id: String(transfer.to_wallet_id),
             amount: String(transfer.amount),
+            exchange_rate: String(transfer.exchange_rate),
             description: transfer.description ?? '',
             transferred_at: transfer.transferred_at
                 .replace(' ', 'T')
@@ -119,22 +135,25 @@ export default function Transfers({ transfers, wallets }: Props) {
         event.preventDefault();
         const options = { onSuccess: closeDialog };
 
-        if (editingTransfer) {
-            put(update.url(editingTransfer), options);
-            return;
-        }
-
         post(store.url(), options);
     }
 
     function deleteTransfer(transfer: WalletTransfer) {
-        if (
-            !window.confirm(
-                'Hapus transfer ini? Saldo kedua dompet akan disesuaikan.',
-            )
-        )
-            return;
-        router.delete(destroy.url(transfer));
+        setDeletingTransfer(transfer);
+        setIsDeleteDialogOpen(true);
+    }
+
+    function closeDeleteDialog() {
+        if (processing) return;
+        setIsDeleteDialogOpen(false);
+        setDeletingTransfer(null);
+    }
+
+    function confirmDelete() {
+        if (!deletingTransfer) return;
+        router.delete(destroy.url(deletingTransfer), {
+            onSuccess: closeDeleteDialog,
+        });
     }
 
     return (
@@ -147,7 +166,8 @@ export default function Transfers({ transfers, wallets }: Props) {
                             Transfer
                         </h1>
                         <p className="text-sm text-muted-foreground">
-                            Pindahkan saldo antar dompet Anda sendiri.
+                            Pindahkan saldo antar dompet Anda sendiri, termasuk
+                            antar mata uang berbeda.
                         </p>
                     </div>
                     <Button
@@ -222,67 +242,94 @@ export default function Transfers({ transfers, wallets }: Props) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {transfers.map((transfer) => (
-                                            <tr
-                                                key={transfer.id}
-                                                className="border-b last:border-0"
-                                            >
-                                                <td className="py-4 whitespace-nowrap text-muted-foreground">
-                                                    {dateFormatter.format(
-                                                        new Date(
-                                                            transfer.transferred_at,
-                                                        ),
-                                                    )}
-                                                </td>
-                                                <td className="max-w-60 truncate py-4 font-medium">
-                                                    {transfer.description ||
-                                                        '—'}
-                                                </td>
-                                                <td className="py-4 text-muted-foreground">
-                                                    {
-                                                        transfer.from_wallet
-                                                            ?.title
-                                                    }
-                                                </td>
-                                                <td className="py-4 text-muted-foreground">
-                                                    {transfer.to_wallet?.title}
-                                                </td>
-                                                <td className="py-4 text-right font-medium tabular-nums">
-                                                    {rupiah.format(
-                                                        Number(transfer.amount),
-                                                    )}
-                                                </td>
-                                                <td className="py-4">
-                                                    <div className="flex justify-end gap-1">
-                                                        <Button
-                                                            variant="ghost"
-                                                            size="icon"
-                                                            onClick={() =>
-                                                                openEditDialog(
-                                                                    transfer,
-                                                                )
-                                                            }
-                                                            aria-label="Ubah transfer"
-                                                        >
-                                                            <Pencil />
-                                                        </Button>
-                                                        <Button
-                                                            variant="ghost"
-                                                            size="icon"
-                                                            className="text-destructive hover:text-destructive"
-                                                            onClick={() =>
-                                                                deleteTransfer(
-                                                                    transfer,
-                                                                )
-                                                            }
-                                                            aria-label="Hapus transfer"
-                                                        >
-                                                            <Trash2 />
-                                                        </Button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
+                                        {transfers.map((transfer) => {
+                                            const fromCurrency =
+                                                transfer.from_wallet
+                                                    ?.currency ?? 'IDR';
+                                            const toCurrency =
+                                                transfer.to_wallet?.currency ??
+                                                'IDR';
+                                            const crossCurrency =
+                                                fromCurrency !== toCurrency;
+                                            return (
+                                                <tr
+                                                    key={transfer.id}
+                                                    className="border-b last:border-0"
+                                                >
+                                                    <td className="py-4 whitespace-nowrap text-muted-foreground">
+                                                        {dateFormatter.format(
+                                                            new Date(
+                                                                transfer.transferred_at,
+                                                            ),
+                                                        )}
+                                                    </td>
+                                                    <td className="max-w-60 truncate py-4 font-medium">
+                                                        {transfer.description ||
+                                                            '—'}
+                                                    </td>
+                                                    <td className="py-4 text-muted-foreground">
+                                                        {
+                                                            transfer.from_wallet
+                                                                ?.title
+                                                        }
+                                                    </td>
+                                                    <td className="py-4 text-muted-foreground">
+                                                        {
+                                                            transfer.to_wallet
+                                                                ?.title
+                                                        }
+                                                    </td>
+                                                    <td className="py-4 text-right font-medium tabular-nums">
+                                                        {formatCurrency(
+                                                            Number(
+                                                                transfer.amount,
+                                                            ),
+                                                            fromCurrency,
+                                                        )}
+                                                        {crossCurrency && (
+                                                            <div className="text-xs font-normal text-muted-foreground">
+                                                                →{' '}
+                                                                {formatCurrency(
+                                                                    Number(
+                                                                        transfer.converted_amount,
+                                                                    ),
+                                                                    toCurrency,
+                                                                )}
+                                                            </div>
+                                                        )}
+                                                    </td>
+                                                    <td className="py-4">
+                                                        <div className="flex justify-end gap-1">
+                                                            <Button
+                                                                variant="ghost"
+                                                                size="icon"
+                                                                onClick={() =>
+                                                                    openEditDialog(
+                                                                        transfer,
+                                                                    )
+                                                                }
+                                                                aria-label="Ubah transfer"
+                                                            >
+                                                                <Pencil />
+                                                            </Button>
+                                                            <Button
+                                                                variant="ghost"
+                                                                size="icon"
+                                                                className="text-destructive hover:text-destructive"
+                                                                onClick={() =>
+                                                                    deleteTransfer(
+                                                                        transfer,
+                                                                    )
+                                                                }
+                                                                aria-label="Hapus transfer"
+                                                            >
+                                                                <Trash2 />
+                                                            </Button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
                                     </tbody>
                                 </table>
                             </div>
@@ -315,7 +362,11 @@ export default function Transfers({ transfers, wallets }: Props) {
                             <Select
                                 value={data.from_wallet_id}
                                 onValueChange={(value) =>
-                                    setData('from_wallet_id', value)
+                                    setData((prev) => ({
+                                        ...prev,
+                                        from_wallet_id: value,
+                                        exchange_rate: '1',
+                                    }))
                                 }
                             >
                                 <SelectTrigger
@@ -331,8 +382,9 @@ export default function Transfers({ transfers, wallets }: Props) {
                                             value={String(wallet.id)}
                                         >
                                             {wallet.title} ·{' '}
-                                            {rupiah.format(
+                                            {formatCurrency(
                                                 Number(wallet.balance),
+                                                wallet.currency,
                                             )}
                                         </SelectItem>
                                     ))}
@@ -347,7 +399,11 @@ export default function Transfers({ transfers, wallets }: Props) {
                             <Select
                                 value={data.to_wallet_id}
                                 onValueChange={(value) =>
-                                    setData('to_wallet_id', value)
+                                    setData((prev) => ({
+                                        ...prev,
+                                        to_wallet_id: value,
+                                        exchange_rate: '1',
+                                    }))
                                 }
                             >
                                 <SelectTrigger
@@ -369,8 +425,9 @@ export default function Transfers({ transfers, wallets }: Props) {
                                                 value={String(wallet.id)}
                                             >
                                                 {wallet.title} ·{' '}
-                                                {rupiah.format(
+                                                {formatCurrency(
                                                     Number(wallet.balance),
+                                                    wallet.currency,
                                                 )}
                                             </SelectItem>
                                         ))}
@@ -379,7 +436,14 @@ export default function Transfers({ transfers, wallets }: Props) {
                             <InputError message={errors.to_wallet_id} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="transfer-amount">Nominal</Label>
+                            <Label htmlFor="transfer-amount">
+                                Nominal{' '}
+                                {fromWallet && (
+                                    <span className="text-muted-foreground">
+                                        ({fromWallet.currency})
+                                    </span>
+                                )}
+                            </Label>
                             <Input
                                 id="transfer-amount"
                                 type="number"
@@ -393,6 +457,38 @@ export default function Transfers({ transfers, wallets }: Props) {
                             />
                             <InputError message={errors.amount} />
                         </div>
+                        {isCrossCurrency && (
+                            <div className="grid gap-2">
+                                <Label htmlFor="transfer-rate">
+                                    Kurs ({fromWallet!.currency} →{' '}
+                                    {toWallet!.currency})
+                                </Label>
+                                <Input
+                                    id="transfer-rate"
+                                    type="number"
+                                    min="0.000001"
+                                    step="0.000001"
+                                    value={data.exchange_rate}
+                                    onChange={(event) =>
+                                        setData(
+                                            'exchange_rate',
+                                            event.target.value,
+                                        )
+                                    }
+                                    placeholder="1"
+                                />
+                                {convertedPreview !== null && (
+                                    <p className="text-xs text-muted-foreground">
+                                        Dompet tujuan akan bertambah{' '}
+                                        {formatCurrency(
+                                            convertedPreview,
+                                            toWallet!.currency,
+                                        )}
+                                    </p>
+                                )}
+                                <InputError message={errors.exchange_rate} />
+                            </div>
+                        )}
                         <div className="grid gap-2">
                             <Label htmlFor="transfer-date">
                                 Tanggal transfer

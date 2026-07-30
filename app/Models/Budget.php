@@ -13,10 +13,11 @@ class Budget extends Model
         'user_id',
         'category_id',
         'amount',
+        'currency',
         'month',
         'year',
     ];
-
+    
     protected function casts(): array
     {
         return [

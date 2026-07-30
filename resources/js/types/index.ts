@@ -8,6 +8,7 @@ export interface Wallet {
     title: string;
     description: string | null;
     balance: number;
+    currency: string;
     status: boolean;
     created_at: string;
     updated_at: string;
@@ -31,7 +32,7 @@ export interface Transaction {
     transacted_at: string;
     created_at: string;
     updated_at: string;
-    wallet?: Pick<Wallet, 'id' | 'title'>;
+    wallet?: Pick<Wallet, 'id' | 'title' | 'currency'>;
     category?: Pick<Category, 'id' | 'name' | 'type'>;
 }
 
@@ -65,10 +66,12 @@ export interface WalletTransfer {
     from_wallet_id: number;
     to_wallet_id: number;
     amount: number;
+    exchange_rate: number;
+    converted_amount: number;
     description: string | null;
     transferred_at: string;
     created_at: string;
     updated_at: string;
-    from_wallet?: Pick<Wallet, 'id' | 'title'>;
-    to_wallet?: Pick<Wallet, 'id' | 'title'>;
+    from_wallet?: Pick<Wallet, 'id' | 'title' | 'currency'>;
+    to_wallet?: Pick<Wallet, 'id' | 'title' | 'currency'>;
 }

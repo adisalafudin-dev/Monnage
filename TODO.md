@@ -59,6 +59,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 ## 🟢 P2 — Data model / domain gaps (unchanged from before)
 
 - [x] No wallet-to-wallet transfer type — moving money between your own wallets still has to be faked with two offsetting transactions.
+- [x] Delete "update" feature wallet-to-wallet transfer feature
 - [ ] No multi-currency support.
 - [ ] `Wallet.status` boolean still has no documented meaning and isn't obviously surfaced in the new wallets UI beyond a checkbox — worth confirming what it's meant to represent (active/archived?).
 - [ ] Budgets: no rollover, no total/overall monthly budget across categories, monthly cadence only.
@@ -70,6 +71,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 - [ ] No pagination on `TransactionController@index` — still loads the full history in one response.
 - [ ] Repo still has no README/description.
 - [ ] Validation/success messages are in Indonesian, UI labels ("Dompet", "Kategori", "Transaksi") are in Indonesian too now — consistent, but confirm this is the intended single-language product (no i18n toggle currently).
+- [ ] Delete modal still using alert javascript use modal
 
 ---
 

@@ -9,11 +9,15 @@ class Wallet extends Model
 {
     use HasFactory;
 
+    public const STATUS_ACTIVE = true;
+    public const STATUS_ARCHIVED = false;
+
     protected $fillable = [
         'user_id',
         'title',
         'description',
         'balance',
+        'currency',
         'status',
     ];
 
@@ -25,6 +29,11 @@ class Wallet extends Model
         ];
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('status', self::STATUS_ACTIVE);
+    }
+    
     public function user()
     {
         return $this->belongsTo(User::class);

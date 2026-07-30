@@ -8,6 +8,7 @@ import {
     Trash2,
 } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import InputError from '@/components/input-error';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -62,6 +63,9 @@ export default function Categories({ categories }: Props) {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingCategory, setEditingCategory] =
         useState<CategoryWithUsage | null>(null);
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+    const [deletingCategory, setDeletingCategory] =
+        useState<CategoryWithUsage | null>(null);
     const { data, setData, post, put, processing, errors, reset, clearErrors } =
         useForm<CategoryForm>(initialForm);
 
@@ -102,7 +106,16 @@ export default function Categories({ categories }: Props) {
     function submit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        const options = { onSuccess: closeDialog };
+        const options = {
+            onSuccess() {
+                closeDialog();
+                toast.success(
+                    editingCategory
+                        ? 'Perubahan kategori disimpan.'
+                        : 'Kategori berhasil dibuat.',
+                );
+            },
+        };
 
         if (editingCategory) {
             put(update.url(editingCategory), options);
@@ -112,12 +125,23 @@ export default function Categories({ categories }: Props) {
         post(store.url(), options);
     }
 
-    function deleteCategory(category: CategoryWithUsage) {
+    function openDeleteDialog(category: CategoryWithUsage) {
         if (category.transactions_count > 0 || category.budgets_count > 0)
             return;
-        if (!window.confirm(`Hapus kategori “${category.name}”?`)) return;
+        setDeletingCategory(category);
+        setIsDeleteDialogOpen(true);
+    }
 
-        router.delete(destroy.url(category));
+    function closeDeleteDialog() {
+        if (processing) return;
+        setIsDeleteDialogOpen(false);
+        setDeletingCategory(null);
+    }
+
+    function confirmDelete() {
+        if (!deletingCategory) return;
+        const options = { onSuccess: closeDeleteDialog };
+        router.delete(destroy.url(deletingCategory), options);
     }
 
     return (
@@ -282,7 +306,7 @@ export default function Categories({ categories }: Props) {
                                                                 size="icon"
                                                                 className="text-destructive hover:text-destructive"
                                                                 onClick={() =>
-                                                                    deleteCategory(
+                                                                    openDeleteDialog(
                                                                         category,
                                                                     )
                                                                 }
@@ -389,6 +413,37 @@ export default function Categories({ categories }: Props) {
                             </Button>
                         </DialogFooter>
                     </form>
+                </DialogContent>
+            </Dialog>
+            <Dialog
+                open={isDeleteDialogOpen}
+                onOpenChange={(open) => !open && closeDeleteDialog()}
+            >
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Hapus kategori</DialogTitle>
+                        <DialogDescription>
+                            Hapus kategori “{deletingCategory?.name}”?
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter className="mt-2">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={closeDeleteDialog}
+                            disabled={processing}
+                        >
+                            Batal
+                        </Button>
+                        <Button
+                            type="button"
+                            onClick={confirmDelete}
+                            disabled={processing}
+                            className="text-destructive"
+                        >
+                            Hapus
+                        </Button>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
         </>

@@ -1,28 +1,37 @@
 import { Head } from '@inertiajs/react';
 import { ArrowDownRight, ArrowUpRight, Landmark } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
+import { formatCurrency } from '@/lib/currency';
 import { dashboard } from '@/routes';
 
-type MonthlySummary = {
+type MonthlyPoint = {
     month: string;
     income: number | string;
     expense: number | string;
 };
 
-type Props = {
-    summary: {
-        totalBalance: number;
-        totalIncome: number;
-        totalExpense: number;
-    };
-    monthlySummary: MonthlySummary[];
+type CurrencySummary = {
+    currency: string;
+    totalBalance: number | string;
+    totalIncome: number | string;
+    totalExpense: number | string;
 };
 
-const currencyFormatter = new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    maximumFractionDigits: 0,
-});
+type MonthlySummaryGroup = {
+    currency: string;
+    data: MonthlyPoint[];
+};
+
+type Props = {
+    summary: CurrencySummary[];
+    monthlySummary: MonthlySummaryGroup[];
+};
 
 const monthFormatter = new Intl.DateTimeFormat('id-ID', {
     month: 'short',
@@ -31,19 +40,20 @@ const monthFormatter = new Intl.DateTimeFormat('id-ID', {
 
 function formatMonth(month: string) {
     const [year, monthNumber] = month.split('-').map(Number);
-
     return monthFormatter.format(new Date(year, monthNumber - 1, 1));
 }
 
 function SummaryCard({
     title,
     amount,
+    currency,
     description,
     icon: Icon,
     iconClassName,
 }: {
     title: string;
     amount: number;
+    currency: string;
     description: string;
     icon: typeof Landmark;
     iconClassName: string;
@@ -56,7 +66,7 @@ function SummaryCard({
             </CardHeader>
             <CardContent>
                 <div className="text-2xl font-bold tracking-tight">
-                    {currencyFormatter.format(amount)}
+                    {formatCurrency(amount, currency)}
                 </div>
                 <CardDescription className="mt-1 text-xs">
                     {description}
@@ -66,8 +76,14 @@ function SummaryCard({
     );
 }
 
-export default function Dashboard({ summary, monthlySummary }: Props) {
-    const chartData = monthlySummary.map((item) => ({
+function CurrencyCashFlowChart({
+    currency,
+    data,
+}: {
+    currency: string;
+    data: MonthlyPoint[];
+}) {
+    const chartData = data.map((item) => ({
         ...item,
         income: Number(item.income),
         expense: Number(item.expense),
@@ -78,10 +94,72 @@ export default function Dashboard({ summary, monthlySummary }: Props) {
     );
 
     return (
+        <Card>
+            <CardHeader>
+                <CardTitle>Arus kas bulanan · {currency}</CardTitle>
+                <CardDescription>
+                    Perbandingan pemasukan dan pengeluaran dalam beberapa bulan
+                    terakhir untuk dompet {currency}.
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                {chartData.length === 0 ? (
+                    <div className="flex h-72 items-center justify-center rounded-lg border border-dashed text-sm text-muted-foreground">
+                        Belum ada transaksi untuk ditampilkan.
+                    </div>
+                ) : (
+                    <>
+                        <div className="mb-5 flex items-center gap-4 text-xs text-muted-foreground">
+                            <span className="flex items-center gap-1.5">
+                                <span className="size-2 rounded-sm bg-emerald-500" />
+                                Pemasukan
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                                <span className="size-2 rounded-sm bg-rose-500" />
+                                Pengeluaran
+                            </span>
+                        </div>
+                        <div className="grid h-72 grid-cols-1 gap-5 border-b border-l pl-3 sm:grid-cols-2 lg:grid-cols-6">
+                            {chartData.map((item) => (
+                                <div
+                                    key={item.month}
+                                    className="flex min-w-0 flex-col justify-end gap-2 pt-4"
+                                >
+                                    <div className="flex h-52 items-end justify-center gap-2">
+                                        <div
+                                            className="w-7 rounded-t-sm bg-emerald-500 transition-all"
+                                            style={{
+                                                height: `${Math.max((item.income / highestValue) * 100, item.income > 0 ? 2 : 0)}%`,
+                                            }}
+                                            title={`Pemasukan: ${formatCurrency(item.income, currency)}`}
+                                        />
+                                        <div
+                                            className="w-7 rounded-t-sm bg-rose-500 transition-all"
+                                            style={{
+                                                height: `${Math.max((item.expense / highestValue) * 100, item.expense > 0 ? 2 : 0)}%`,
+                                            }}
+                                            title={`Pengeluaran: ${formatCurrency(item.expense, currency)}`}
+                                        />
+                                    </div>
+                                    <div className="truncate text-center text-xs text-muted-foreground">
+                                        {formatMonth(item.month)}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </CardContent>
+        </Card>
+    );
+}
+
+export default function Dashboard({ summary, monthlySummary }: Props) {
+    return (
         <>
             <Head title="Dashboard" />
 
-            <div className="flex flex-1 flex-col gap-4 p-4 md:p-6">
+            <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
                 <div>
                     <h1 className="text-2xl font-semibold tracking-tight">
                         Dashboard
@@ -91,86 +169,59 @@ export default function Dashboard({ summary, monthlySummary }: Props) {
                     </p>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                    <SummaryCard
-                        title="Total saldo"
-                        amount={summary.totalBalance}
-                        description="Akumulasi saldo seluruh dompet"
-                        icon={Landmark}
-                        iconClassName="text-muted-foreground"
-                    />
-                    <SummaryCard
-                        title="Total pemasukan"
-                        amount={summary.totalIncome}
-                        description="Seluruh transaksi pemasukan"
-                        icon={ArrowUpRight}
-                        iconClassName="text-emerald-600 dark:text-emerald-400"
-                    />
-                    <SummaryCard
-                        title="Total pengeluaran"
-                        amount={summary.totalExpense}
-                        description="Seluruh transaksi pengeluaran"
-                        icon={ArrowDownRight}
-                        iconClassName="text-rose-600 dark:text-rose-400"
-                    />
-                </div>
+                {summary.length === 0 ? (
+                    <Card className="border-dashed">
+                        <CardContent className="py-8 text-center text-sm text-muted-foreground">
+                            Belum ada dompet atau transaksi untuk ditampilkan.
+                        </CardContent>
+                    </Card>
+                ) : (
+                    summary.map((currencySummary) => (
+                        <div
+                            key={currencySummary.currency}
+                            className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+                        >
+                            <SummaryCard
+                                title={`Total saldo (${currencySummary.currency})`}
+                                amount={Number(currencySummary.totalBalance)}
+                                currency={currencySummary.currency}
+                                description="Akumulasi saldo dompet mata uang ini"
+                                icon={Landmark}
+                                iconClassName="text-muted-foreground"
+                            />
+                            <SummaryCard
+                                title={`Total pemasukan (${currencySummary.currency})`}
+                                amount={Number(currencySummary.totalIncome)}
+                                currency={currencySummary.currency}
+                                description="Seluruh transaksi pemasukan"
+                                icon={ArrowUpRight}
+                                iconClassName="text-emerald-600 dark:text-emerald-400"
+                            />
+                            <SummaryCard
+                                title={`Total pengeluaran (${currencySummary.currency})`}
+                                amount={Number(currencySummary.totalExpense)}
+                                currency={currencySummary.currency}
+                                description="Seluruh transaksi pengeluaran"
+                                icon={ArrowDownRight}
+                                iconClassName="text-rose-600 dark:text-rose-400"
+                            />
+                        </div>
+                    ))
+                )}
 
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Arus kas bulanan</CardTitle>
-                        <CardDescription>
-                            Perbandingan pemasukan dan pengeluaran dalam enam bulan terakhir.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        {chartData.length === 0 ? (
-                            <div className="flex h-72 items-center justify-center rounded-lg border border-dashed text-sm text-muted-foreground">
-                                Belum ada transaksi untuk ditampilkan.
-                            </div>
-                        ) : (
-                            <>
-                                <div className="mb-5 flex items-center gap-4 text-xs text-muted-foreground">
-                                    <span className="flex items-center gap-1.5">
-                                        <span className="size-2 rounded-sm bg-emerald-500" />
-                                        Pemasukan
-                                    </span>
-                                    <span className="flex items-center gap-1.5">
-                                        <span className="size-2 rounded-sm bg-rose-500" />
-                                        Pengeluaran
-                                    </span>
-                                </div>
-                                <div className="grid h-72 grid-cols-1 gap-5 border-b border-l pl-3 sm:grid-cols-2 lg:grid-cols-6">
-                                    {chartData.map((item) => (
-                                        <div
-                                            key={item.month}
-                                            className="flex min-w-0 flex-col justify-end gap-2 pt-4"
-                                        >
-                                            <div className="flex h-52 items-end justify-center gap-2">
-                                                <div
-                                                    className="w-7 rounded-t-sm bg-emerald-500 transition-all"
-                                                    style={{
-                                                        height: `${Math.max((item.income / highestValue) * 100, item.income > 0 ? 2 : 0)}%`,
-                                                    }}
-                                                    title={`Pemasukan: ${currencyFormatter.format(item.income)}`}
-                                                />
-                                                <div
-                                                    className="w-7 rounded-t-sm bg-rose-500 transition-all"
-                                                    style={{
-                                                        height: `${Math.max((item.expense / highestValue) * 100, item.expense > 0 ? 2 : 0)}%`,
-                                                    }}
-                                                    title={`Pengeluaran: ${currencyFormatter.format(item.expense)}`}
-                                                />
-                                            </div>
-                                            <div className="truncate text-center text-xs text-muted-foreground">
-                                                {formatMonth(item.month)}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </>
-                        )}
-                    </CardContent>
-                </Card>
+                {monthlySummary.length > 0 ? (
+                    monthlySummary.map((group) => (
+                        <CurrencyCashFlowChart
+                            key={group.currency}
+                            currency={group.currency}
+                            data={group.data}
+                        />
+                    ))
+                ) : (
+                    <div className="flex h-72 items-center justify-center rounded-lg border border-dashed text-sm text-muted-foreground">
+                        Belum ada transaksi untuk ditampilkan.
+                    </div>
+                )}
             </div>
         </>
     );

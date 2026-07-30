@@ -13,6 +13,8 @@ class WalletTransfer extends Model
         'from_wallet_id',
         'to_wallet_id',
         'amount',
+        'exchange_rate',
+        'converted_amount',
         'description',
         'transferred_at',
     ];
@@ -21,7 +23,10 @@ class WalletTransfer extends Model
     {
         return [
             'amount' => 'decimal:2',
+            'exchange_rate' => 'decimal:6',
+            'converted_amount' => 'decimal:2',
             'transferred_at' => 'datetime',
+            
         ];
     }
 

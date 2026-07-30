@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class TransactionController extends Controller
@@ -21,7 +22,7 @@ class TransactionController extends Controller
 
         $transactions = Transaction::query()
             ->whereHas('wallet', fn ($q) => $q->where('user_id', $request->user()->id))
-            ->with(['wallet:id,title', 'category:id,name,type'])
+            ->with(['wallet:id,title,currency', 'category:id,name,type'])
             ->when($request->wallet_id, fn ($q) => $q->where('wallet_id', $request->wallet_id))
             ->when($request->category_id, fn ($q) => $q->where('category_id', $request->category_id))
             ->when($request->start_date, fn ($q) => $q->whereDate('transacted_at', '>=', $request->start_date))
@@ -29,7 +30,7 @@ class TransactionController extends Controller
             ->latest('transacted_at')
             ->get();
 
-        $wallets = $request->user()->wallets()->get(['id', 'title']);
+        $wallets = $request->user()->wallets()->get(['id', 'title', "currency"]);
         $categories = $request->user()->categories()->get(['id', 'name', 'type']);
 
         return Inertia::render('transactions/index', [
@@ -43,7 +44,12 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'wallet_id' => 'required|exists:wallets,id',
+            'wallet_id' => [
+                'required',
+                Rule::exists("wallets", 'id')
+                ->where("user_id", $request->user()->id)
+                ->where('status', true)
+            ],
             'category_id' => 'required|exists:categories,id',
             'amount' => 'required|numeric|min:0.01',
             'description' => 'nullable|string',
@@ -69,12 +75,18 @@ class TransactionController extends Controller
     public function update(Request $request, Transaction $transaction)
     {
         $validated = $request->validate([
-            'wallet_id' => 'required|exists:wallets,id',
+            'wallet_id' => [
+                'required',
+                Rule::exists("wallets", 'id')
+                ->where("user_id", $request->user()->id)
+            ],
             'category_id' => 'required|exists:categories,id',
             'amount' => 'required|numeric|min:0.01',
             'description' => 'nullable|string',
             'transacted_at' => 'required|date',
         ]);
+
+
 
         DB::transaction(function () use ($request, $transaction, $validated) {
             $currentTransaction = Transaction::query()
@@ -82,6 +94,13 @@ class TransactionController extends Controller
                 ->lockForUpdate()
                 ->findOrFail($transaction->id);
             $this->authorizeWallet($currentTransaction->wallet, $request);
+
+            $movingToDifferentWallet = (int) $validated['wallet_id'] !== $currentTransaction->wallet_id;
+            if ($movingToDifferentWallet) {
+                $newWallet = Wallet::query()->lockForUpdate()->findOrFail($validated['wallet_id']);
+                $this->authorizeWallet($newWallet, $request);
+                abort_if(! $newWallet->status, 422, 'Dompet tujuan sudah diarsipkan.');
+            }
 
             $wallet = Wallet::query()
                 ->lockForUpdate()

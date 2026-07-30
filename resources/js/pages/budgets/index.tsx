@@ -1,6 +1,7 @@
 import { Head, router, useForm } from '@inertiajs/react';
 import { PiggyBank, Plus, Trash2, TrendingDown, Wallet2 } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import InputError from '@/components/input-error';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -82,6 +83,8 @@ export default function Budgets({
 }: Props) {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingBudget, setEditingBudget] = useState<Budget | null>(null);
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+    const [deletingBudget, setDeletingBudget] = useState<Budget | null>(null);
     const [periodFilter, setPeriodFilter] = useState({
         month: filters.month,
         year: filters.year,
@@ -137,7 +140,16 @@ export default function Budgets({
     function submit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         // store() upserts by category + month + year, so create and edit both post here.
-        post(store.url(), { onSuccess: closeDialog });
+        post(store.url(), {
+            onSuccess() {
+                closeDialog();
+                toast.success(
+                    editingBudget
+                        ? 'Perubahan budget disimpan.'
+                        : 'Budget berhasil dibuat.',
+                );
+            },
+        });
     }
 
     function applyPeriodFilter(event: React.FormEvent<HTMLFormElement>) {
@@ -148,10 +160,21 @@ export default function Budgets({
         });
     }
 
-    function deleteBudget(budget: Budget) {
-        if (!window.confirm(`Hapus budget untuk “${budget.category.name}”?`))
-            return;
-        router.delete(destroy.url(budget));
+    function openDeleteDialog(budget: Budget) {
+        setDeletingBudget(budget);
+        setIsDeleteDialogOpen(true);
+    }
+
+    function closeDeleteDialog() {
+        if (processing) return;
+        setIsDeleteDialogOpen(false);
+        setDeletingBudget(null);
+    }
+
+    function confirmDelete() {
+        if (!deletingBudget) return;
+        const options = { onSuccess: closeDeleteDialog };
+        router.delete(destroy.url(deletingBudget), options);
     }
 
     return (
@@ -394,7 +417,9 @@ export default function Budgets({
                                                         size="icon"
                                                         className="text-destructive hover:text-destructive"
                                                         onClick={() =>
-                                                            deleteBudget(budget)
+                                                            openDeleteDialog(
+                                                                budget,
+                                                            )
                                                         }
                                                         aria-label={`Hapus budget ${budget.category.name}`}
                                                     >
@@ -517,6 +542,38 @@ export default function Budgets({
                             </Button>
                         </DialogFooter>
                     </form>
+                </DialogContent>
+            </Dialog>
+            <Dialog
+                open={isDeleteDialogOpen}
+                onOpenChange={(open) => !open && closeDeleteDialog()}
+            >
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Hapus budget</DialogTitle>
+                        <DialogDescription>
+                            Hapus budget untuk “{deletingBudget?.category.name}
+                            ”?
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter className="mt-2">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={closeDeleteDialog}
+                            disabled={processing}
+                        >
+                            Batal
+                        </Button>
+                        <Button
+                            type="button"
+                            onClick={confirmDelete}
+                            disabled={processing}
+                            className="text-destructive"
+                        >
+                            Hapus
+                        </Button>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
         </>
