@@ -1,7 +1,6 @@
 import { Head, router, useForm } from '@inertiajs/react';
 import { PiggyBank, Plus, Trash2, TrendingDown, Wallet2 } from 'lucide-react';
 import { useState } from 'react';
-import { toast } from 'sonner';
 import InputError from '@/components/input-error';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -29,6 +28,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { formatCurrency } from '@/lib/currency';
 import { dashboard } from '@/routes';
 import { destroy, index, store } from '@/routes/budgets';
 import type { Budget, BudgetFilters, Category } from '@/types';
@@ -36,21 +36,17 @@ import type { Budget, BudgetFilters, Category } from '@/types';
 type Props = {
     budgets: Budget[];
     expenseCategories: Pick<Category, 'id' | 'name'>[];
+    currencies: string[];
     filters: BudgetFilters;
 };
 
 type BudgetForm = {
     category_id: string;
     amount: string;
+    currency: string;
     month: number;
     year: number;
 };
-
-const rupiah = new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    maximumFractionDigits: 0,
-});
 
 const monthNames = [
     'Januari',
@@ -67,45 +63,68 @@ const monthNames = [
     'Desember',
 ];
 
-function initialBudgetForm(filters: BudgetFilters): BudgetForm {
+function initialBudgetForm(
+    filters: BudgetFilters,
+    defaultCurrency: string,
+): BudgetForm {
     return {
         category_id: '',
         amount: '',
+        currency: defaultCurrency,
         month: filters.month,
         year: filters.year,
     };
 }
 
+type CurrencyTotals = Record<
+    string,
+    { budgeted: number; spent: number; overCount: number; count: number }
+>;
+
 export default function Budgets({
     budgets,
     expenseCategories,
+    currencies,
     filters,
 }: Props) {
+    const defaultCurrency = currencies[0] ?? 'IDR';
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingBudget, setEditingBudget] = useState<Budget | null>(null);
-    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-    const [deletingBudget, setDeletingBudget] = useState<Budget | null>(null);
     const [periodFilter, setPeriodFilter] = useState({
         month: filters.month,
         year: filters.year,
     });
     const { data, setData, post, processing, errors, reset, clearErrors } =
-        useForm<BudgetForm>(initialBudgetForm(filters));
+        useForm<BudgetForm>(initialBudgetForm(filters, defaultCurrency));
 
-    const totalBudgeted = budgets.reduce(
-        (total, budget) => total + Number(budget.amount),
-        0,
+    // Totals grouped by currency — a budget's amount, spent, and remaining
+    // only make sense compared against other budgets in the same currency.
+    const totalsByCurrency = budgets.reduce<CurrencyTotals>(
+        (totals, budget) => {
+            const currency = budget.currency;
+            totals[currency] ??= {
+                budgeted: 0,
+                spent: 0,
+                overCount: 0,
+                count: 0,
+            };
+            totals[currency].budgeted += Number(budget.amount);
+            totals[currency].spent += Number(budget.spent);
+            totals[currency].count += 1;
+            if (budget.percentage > 100) totals[currency].overCount += 1;
+            return totals;
+        },
+        {},
     );
-    const totalSpent = budgets.reduce(
-        (total, budget) => total + Number(budget.spent),
-        0,
-    );
-    const totalRemaining = totalBudgeted - totalSpent;
+    const budgetCurrencies = Object.keys(totalsByCurrency);
     const overBudgetCount = budgets.filter(
         (budget) => budget.percentage > 100,
     ).length;
-    const budgetedCategoryIds = new Set(
-        budgets.map((budget) => budget.category_id),
+
+    // Keyed by "categoryId-currency" since a category can now have a
+    // separate budget per currency it's spent in.
+    const budgetedKeys = new Set(
+        budgets.map((budget) => `${budget.category_id}-${budget.currency}`),
     );
     const canCreateBudget = expenseCategories.length > 0;
 
@@ -114,7 +133,7 @@ export default function Budgets({
         setEditingBudget(null);
         clearErrors();
         reset();
-        setData(initialBudgetForm(filters));
+        setData(initialBudgetForm(filters, defaultCurrency));
         setIsDialogOpen(true);
     }
 
@@ -124,6 +143,7 @@ export default function Budgets({
         setData({
             category_id: String(budget.category_id),
             amount: String(budget.amount),
+            currency: budget.currency,
             month: budget.month,
             year: budget.year,
         });
@@ -139,17 +159,8 @@ export default function Budgets({
 
     function submit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        // store() upserts by category + month + year, so create and edit both post here.
-        post(store.url(), {
-            onSuccess() {
-                closeDialog();
-                toast.success(
-                    editingBudget
-                        ? 'Perubahan budget disimpan.'
-                        : 'Budget berhasil dibuat.',
-                );
-            },
-        });
+        // store() upserts by category + month + year + currency, so create and edit both post here.
+        post(store.url(), { onSuccess: closeDialog });
     }
 
     function applyPeriodFilter(event: React.FormEvent<HTMLFormElement>) {
@@ -160,21 +171,14 @@ export default function Budgets({
         });
     }
 
-    function openDeleteDialog(budget: Budget) {
-        setDeletingBudget(budget);
-        setIsDeleteDialogOpen(true);
-    }
-
-    function closeDeleteDialog() {
-        if (processing) return;
-        setIsDeleteDialogOpen(false);
-        setDeletingBudget(null);
-    }
-
-    function confirmDelete() {
-        if (!deletingBudget) return;
-        const options = { onSuccess: closeDeleteDialog };
-        router.delete(destroy.url(deletingBudget), options);
+    function deleteBudget(budget: Budget) {
+        if (
+            !window.confirm(
+                `Hapus budget untuk “${budget.category.name}” (${budget.currency})?`,
+            )
+        )
+            return;
+        router.delete(destroy.url(budget));
     }
 
     return (
@@ -277,57 +281,123 @@ export default function Budgets({
                     </CardContent>
                 </Card>
 
-                <div className="grid gap-4 md:grid-cols-3">
+                {budgetCurrencies.length <= 1 ? (
+                    <div className="grid gap-4 md:grid-cols-3">
+                        <Card>
+                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                <CardTitle className="text-sm font-medium">
+                                    Total budget
+                                </CardTitle>
+                                <PiggyBank className="size-4 text-muted-foreground" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-2xl font-bold tracking-tight">
+                                    {formatCurrency(
+                                        totalsByCurrency[budgetCurrencies[0]]
+                                            ?.budgeted ?? 0,
+                                        budgetCurrencies[0] ?? defaultCurrency,
+                                    )}
+                                </div>
+                                <CardDescription className="mt-1 text-xs">
+                                    {monthNames[filters.month - 1]}{' '}
+                                    {filters.year}
+                                </CardDescription>
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                <CardTitle className="text-sm font-medium">
+                                    Total terpakai
+                                </CardTitle>
+                                <Wallet2 className="size-4 text-muted-foreground" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-2xl font-bold tracking-tight">
+                                    {formatCurrency(
+                                        totalsByCurrency[budgetCurrencies[0]]
+                                            ?.spent ?? 0,
+                                        budgetCurrencies[0] ?? defaultCurrency,
+                                    )}
+                                </div>
+                                <CardDescription className="mt-1 text-xs">
+                                    Sisa{' '}
+                                    {formatCurrency(
+                                        Math.max(
+                                            (totalsByCurrency[
+                                                budgetCurrencies[0]
+                                            ]?.budgeted ?? 0) -
+                                                (totalsByCurrency[
+                                                    budgetCurrencies[0]
+                                                ]?.spent ?? 0),
+                                            0,
+                                        ),
+                                        budgetCurrencies[0] ?? defaultCurrency,
+                                    )}
+                                </CardDescription>
+                            </CardContent>
+                        </Card>
+                        <Card>
+                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                <CardTitle className="text-sm font-medium">
+                                    Melebihi budget
+                                </CardTitle>
+                                <TrendingDown className="size-4 text-rose-600 dark:text-rose-400" />
+                            </CardHeader>
+                            <CardContent>
+                                <div className="text-2xl font-bold tracking-tight">
+                                    {overBudgetCount}
+                                </div>
+                                <CardDescription className="mt-1 text-xs">
+                                    dari {budgets.length} kategori berbudget
+                                </CardDescription>
+                            </CardContent>
+                        </Card>
+                    </div>
+                ) : (
                     <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">
-                                Total budget
-                            </CardTitle>
-                            <PiggyBank className="size-4 text-muted-foreground" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold tracking-tight">
-                                {rupiah.format(totalBudgeted)}
-                            </div>
-                            <CardDescription className="mt-1 text-xs">
-                                {monthNames[filters.month - 1]} {filters.year}
+                        <CardHeader>
+                            <CardTitle>Ringkasan per mata uang</CardTitle>
+                            <CardDescription>
+                                Total budget dipisah per mata uang —{' '}
+                                {overBudgetCount} dari {budgets.length} kategori
+                                melebihi budget.
                             </CardDescription>
+                        </CardHeader>
+                        <CardContent className="grid gap-3 sm:grid-cols-2">
+                            {budgetCurrencies.map((currency) => {
+                                const totals = totalsByCurrency[currency];
+                                return (
+                                    <div
+                                        key={currency}
+                                        className="rounded-lg border p-4"
+                                    >
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium">
+                                                {currency}
+                                            </span>
+                                            {totals.overCount > 0 && (
+                                                <Badge variant="destructive">
+                                                    {totals.overCount} melebihi
+                                                </Badge>
+                                            )}
+                                        </div>
+                                        <p className="mt-1 text-sm text-muted-foreground">
+                                            {formatCurrency(
+                                                totals.spent,
+                                                currency,
+                                            )}{' '}
+                                            dari{' '}
+                                            {formatCurrency(
+                                                totals.budgeted,
+                                                currency,
+                                            )}
+                                        </p>
+                                    </div>
+                                );
+                            })}
                         </CardContent>
                     </Card>
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">
-                                Total terpakai
-                            </CardTitle>
-                            <Wallet2 className="size-4 text-muted-foreground" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold tracking-tight">
-                                {rupiah.format(totalSpent)}
-                            </div>
-                            <CardDescription className="mt-1 text-xs">
-                                Sisa{' '}
-                                {rupiah.format(Math.max(totalRemaining, 0))}
-                            </CardDescription>
-                        </CardContent>
-                    </Card>
-                    <Card>
-                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <CardTitle className="text-sm font-medium">
-                                Melebihi budget
-                            </CardTitle>
-                            <TrendingDown className="size-4 text-rose-600 dark:text-rose-400" />
-                        </CardHeader>
-                        <CardContent>
-                            <div className="text-2xl font-bold tracking-tight">
-                                {overBudgetCount}
-                            </div>
-                            <CardDescription className="mt-1 text-xs">
-                                dari {budgets.length} kategori berbudget
-                            </CardDescription>
-                        </CardContent>
-                    </Card>
-                </div>
+                )}
 
                 <Card>
                     <CardHeader>
@@ -377,6 +447,9 @@ export default function Budgets({
                                                 <div>
                                                     <div className="flex items-center gap-2 font-medium">
                                                         {budget.category.name}
+                                                        <Badge variant="outline">
+                                                            {budget.currency}
+                                                        </Badge>
                                                         {isOverBudget && (
                                                             <Badge variant="destructive">
                                                                 Melebihi budget
@@ -384,16 +457,18 @@ export default function Budgets({
                                                         )}
                                                     </div>
                                                     <p className="mt-1 text-sm text-muted-foreground">
-                                                        {rupiah.format(
+                                                        {formatCurrency(
                                                             Number(
                                                                 budget.spent,
                                                             ),
+                                                            budget.currency,
                                                         )}{' '}
                                                         dari{' '}
-                                                        {rupiah.format(
+                                                        {formatCurrency(
                                                             Number(
                                                                 budget.amount,
                                                             ),
+                                                            budget.currency,
                                                         )}
                                                         {' · '}
                                                         {budget.percentage}%
@@ -417,9 +492,7 @@ export default function Budgets({
                                                         size="icon"
                                                         className="text-destructive hover:text-destructive"
                                                         onClick={() =>
-                                                            openDeleteDialog(
-                                                                budget,
-                                                            )
+                                                            deleteBudget(budget)
                                                         }
                                                         aria-label={`Hapus budget ${budget.category.name}`}
                                                     >
@@ -443,13 +516,14 @@ export default function Budgets({
 
                                             <p className="mt-2 text-xs text-muted-foreground">
                                                 Sisa:{' '}
-                                                {rupiah.format(
+                                                {formatCurrency(
                                                     Math.max(
                                                         Number(
                                                             budget.remaining,
                                                         ),
                                                         0,
                                                     ),
+                                                    budget.currency,
                                                 )}
                                             </p>
                                         </div>
@@ -499,16 +573,41 @@ export default function Budgets({
                                             value={String(category.id)}
                                         >
                                             {category.name}
-                                            {budgetedCategoryIds.has(
-                                                category.id,
+                                            {budgetedKeys.has(
+                                                `${category.id}-${data.currency}`,
                                             ) && !editingBudget
-                                                ? ' (sudah ada budget)'
+                                                ? ` (sudah ada budget ${data.currency})`
                                                 : ''}
                                         </SelectItem>
                                     ))}
                                 </SelectContent>
                             </Select>
                             <InputError message={errors.category_id} />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="budget-currency">Mata uang</Label>
+                            <Select
+                                value={data.currency}
+                                onValueChange={(value) =>
+                                    setData('currency', value)
+                                }
+                                disabled={Boolean(editingBudget)}
+                            >
+                                <SelectTrigger
+                                    id="budget-currency"
+                                    className="w-full"
+                                >
+                                    <SelectValue placeholder="Pilih mata uang" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {currencies.map((code) => (
+                                        <SelectItem key={code} value={code}>
+                                            {code}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            <InputError message={errors.currency} />
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="budget-amount">Jumlah budget</Label>
@@ -542,38 +641,6 @@ export default function Budgets({
                             </Button>
                         </DialogFooter>
                     </form>
-                </DialogContent>
-            </Dialog>
-            <Dialog
-                open={isDeleteDialogOpen}
-                onOpenChange={(open) => !open && closeDeleteDialog()}
-            >
-                <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle>Hapus budget</DialogTitle>
-                        <DialogDescription>
-                            Hapus budget untuk “{deletingBudget?.category.name}
-                            ”?
-                        </DialogDescription>
-                    </DialogHeader>
-                    <DialogFooter className="mt-2">
-                        <Button
-                            type="button"
-                            variant="outline"
-                            onClick={closeDeleteDialog}
-                            disabled={processing}
-                        >
-                            Batal
-                        </Button>
-                        <Button
-                            type="button"
-                            onClick={confirmDelete}
-                            disabled={processing}
-                            className="text-destructive"
-                        >
-                            Hapus
-                        </Button>
-                    </DialogFooter>
                 </DialogContent>
             </Dialog>
         </>
