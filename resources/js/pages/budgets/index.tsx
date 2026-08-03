@@ -39,10 +39,7 @@ import {
 import { formatCurrency } from '@/lib/currency';
 import { dashboard } from '@/routes';
 import { destroy, index, store } from '@/routes/budgets';
-import {
-    destroy as destroyOverall,
-    store as storeOverall,
-} from '@/routes/budgets/overall';
+import storeOverall from '@/routes/budgets/overall';
 import type { Budget, BudgetFilters, Category, OverallBudget } from '@/types';
 
 type Props = {

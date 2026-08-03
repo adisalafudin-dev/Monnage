@@ -11,7 +11,7 @@ use Inertia\Inertia;
 
 class TransactionController extends Controller
 {
-    public function index(Request $request)
+  public function index(Request $request)
     {
         $request->validate([
             'wallet_id' => 'nullable|exists:wallets,id',
@@ -20,14 +20,29 @@ class TransactionController extends Controller
             'end_date' => 'nullable|date',
         ]);
 
-        $transactions = Transaction::query()
-            ->whereHas('wallet', fn ($q) => $q->where('user_id', $request->user()->id))
-            ->with(['wallet:id,title,currency', 'category:id,name,type'])
+        $userId = $request->user()->id;
+
+        $filteredQuery = fn () => Transaction::query()
+            ->whereHas('wallet', fn ($q) => $q->where('user_id', $userId))
             ->when($request->wallet_id, fn ($q) => $q->where('wallet_id', $request->wallet_id))
             ->when($request->category_id, fn ($q) => $q->where('category_id', $request->category_id))
             ->when($request->start_date, fn ($q) => $q->whereDate('transacted_at', '>=', $request->start_date))
-            ->when($request->end_date, fn ($q) => $q->whereDate('transacted_at', '<=', $request->end_date))
+            ->when($request->end_date, fn ($q) => $q->whereDate('transacted_at', '<=', $request->end_date));
+
+        $transactions = $filteredQuery()
+            ->with(['wallet:id,title,currency', 'category:id,name,type'])
             ->latest('transacted_at')
+            ->paginate(20)
+            ->withQueryString();
+
+        $totals = $filteredQuery()
+            ->join('wallets', 'wallets.id', '=', 'transactions.wallet_id')
+            ->join('categories', 'categories.id', '=', 'transactions.category_id')
+            ->groupBy('wallets.currency')
+            ->select('wallets.currency as currency')
+            ->selectRaw("SUM(CASE WHEN categories.type = 'income' THEN transactions.amount ELSE 0 END) as income")
+            ->selectRaw("SUM(CASE WHEN categories.type = 'expense' THEN transactions.amount ELSE 0 END) as expense")
+            ->selectRaw('COUNT(*) as count')
             ->get();
 
         $wallets = $request->user()->wallets()->get(['id', 'title', 'currency', 'status']);
@@ -35,6 +50,7 @@ class TransactionController extends Controller
 
         return Inertia::render('transactions/index', [
             'transactions' => $transactions,
+            'totals' => $totals,
             'wallets' => $wallets,
             'categories' => $categories,
             'filters' => $request->only(['wallet_id', 'category_id', 'start_date', 'end_date']),

@@ -6,6 +6,7 @@ import {
     WalletCards,
     PiggyBank,
     ArrowRightLeft,
+    Repeat,
 } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavMain } from '@/components/nav-main';
@@ -26,6 +27,7 @@ import { index as categoriesIndex } from '@/routes/categories';
 import { index as transactionsIndex } from '@/routes/transactions';
 import { index as transfersIndex } from '@/routes/transfers';
 import { index as walletsIndex } from '@/routes/wallets';
+import { index as recurringTransactionsIndex } from '@/routes/recurring-transactions';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -59,6 +61,17 @@ const mainNavItems: NavItem[] = [
         title: 'Budget',
         href: budgetsIndex(),
         icon: PiggyBank,
+    },
+
+    {
+        title: 'Transaksi',
+        href: transactionsIndex(),
+        icon: ReceiptText,
+    },
+    {
+        title: 'Planning',
+        href: recurringTransactionsIndex(),
+        icon: Repeat,
     },
 ];
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WalletTransferController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecurringTransactionController;
 use Inertia\Inertia;
 
 Route::get('/', function () {
@@ -33,8 +34,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('budgets/overall', [BudgetController::class, 'storeOverall'])->name('budgets.overall.store');
     Route::delete('budgets/overall/{monthlyBudget}', [BudgetController::class, 'destroyOverall'])->name('budgets.overall.destroy');
 
-     Route::resource('transfers', WalletTransferController::class)
+    Route::resource('transfers', WalletTransferController::class)
         ->only(['index', 'store', 'destroy']);
+
+
+    Route::resource('recurring-transactions', RecurringTransactionController::class)
+        ->only(['index', 'store', 'update', 'destroy']);
 });
 
 require __DIR__.'/settings.php';

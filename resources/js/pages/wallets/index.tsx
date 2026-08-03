@@ -62,6 +62,8 @@ export default function Wallets({ wallets }: Props) {
     const [editingWallet, setEditingWallet] = useState<Wallet | null>(null);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
     const [deletingWallet, setDeletingWallet] = useState<Wallet | null>(null);
+    const [deleteError, setDeleteError] = useState<string | null>(null);
+
     const { data, setData, post, put, processing, errors, reset, clearErrors } =
         useForm<WalletForm>(initialForm);
 
@@ -137,6 +139,7 @@ export default function Wallets({ wallets }: Props) {
     }
 
     function openDeleteDialog(wallet: Wallet) {
+        setDeleteError(null);
         setDeletingWallet(wallet);
         setIsDeleteDialogOpen(true);
     }
@@ -155,8 +158,13 @@ export default function Wallets({ wallets }: Props) {
             return;
         }
 
-        const options = { onSuccess: closeDeleteDialog };
-        router.delete(destroy.url(deletingWallet), options);
+        setDeleteError(null);
+
+        router.delete(destroy.url(deletingWallet), {
+            onSuccess: closeDeleteDialog,
+            onError: (errors) =>
+                setDeleteError(errors.wallet ?? 'Dompet tidak dapat dihapus.'),
+        });
     }
 
     return (
@@ -234,7 +242,9 @@ export default function Wallets({ wallets }: Props) {
                     <CardHeader>
                         <CardTitle>Daftar dompet</CardTitle>
                         <CardDescription>
-                            Dompet diarsipkan tetap menyimpan riwayat, tetapi tidak dapat dipakai untuk transaksi atau transfer baru.
+                            Dompet diarsipkan tetap menyimpan riwayat, tetapi
+                            tidak dapat dipakai untuk transaksi atau transfer
+                            baru.
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -443,10 +453,16 @@ export default function Wallets({ wallets }: Props) {
                                 Dompet aktif
                             </label>
                             <p className="pl-6 text-xs leading-5 text-muted-foreground">
-                                Nonaktifkan untuk mengarsipkan dompet. Riwayat tetap tersedia, tetapi transaksi dan transfer baru tidak dapat dibuat.
+                                Nonaktifkan untuk mengarsipkan dompet. Riwayat
+                                tetap tersedia, tetapi transaksi dan transfer
+                                baru tidak dapat dibuat.
                             </p>
                         </div>
-
+                        {deleteError && (
+                            <p className="text-sm text-destructive">
+                                {deleteError}
+                            </p>
+                        )}
                         <DialogFooter className="mt-2">
                             <Button
                                 type="button"

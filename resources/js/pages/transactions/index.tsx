@@ -43,16 +43,20 @@ import { dashboard } from '@/routes';
 import { destroy, index, store, update } from '@/routes/transactions';
 import type {
     Category,
+    Paginated,
     Transaction,
     TransactionFilters,
+    TransactionTotals,
     Wallet,
 } from '@/types';
+import Pagination from '@/components/pagination';
 
 type Props = {
-    transactions: Transaction[];
+    transactions: Paginated<Transaction>;
     wallets: Pick<Wallet, 'id' | 'title' | 'currency' | 'status'>[];
     categories: Pick<Category, 'id' | 'name' | 'type'>[];
     filters: TransactionFilters;
+    totals: TransactionTotals[];
 };
 
 type TransactionForm = {
@@ -76,6 +80,7 @@ const dateFormatter = new Intl.DateTimeFormat('id-ID', {
 function localDateTime() {
     const date = new Date();
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+
     return date.toISOString().slice(0, 16);
 }
 
@@ -99,6 +104,7 @@ export default function Transactions({
     wallets,
     categories,
     filters,
+    totals,
 }: Props) {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingTransaction, setEditingTransaction] =
@@ -117,21 +123,11 @@ export default function Transactions({
 
     // Totals grouped by currency — summing amounts across different
     // currencies directly would produce a meaningless number.
-    const totalsByCurrency = transactions.reduce<CurrencyTotals>(
-        (totals, transaction) => {
-            const currency = transaction.wallet?.currency ?? 'IDR';
-            totals[currency] ??= { income: 0, expense: 0, count: 0 };
-            totals[currency].count += 1;
-            if (transaction.category?.type === 'income') {
-                totals[currency].income += Number(transaction.amount);
-            } else if (transaction.category?.type === 'expense') {
-                totals[currency].expense += Number(transaction.amount);
-            }
-            return totals;
-        },
-        {},
+
+    const currencies = totals.map((t) => t.currency);
+    const totalsByCurrency = Object.fromEntries(
+        totals.map((t) => [t.currency, t]),
     );
-    const currencies = Object.keys(totalsByCurrency);
 
     const activeWallets = wallets.filter((wallet) => wallet.status);
     const selectableWallets = editingTransaction
@@ -140,10 +136,14 @@ export default function Transactions({
                   wallet.status || wallet.id === editingTransaction.wallet_id,
           )
         : activeWallets;
-    const canCreateTransaction = activeWallets.length > 0 && categories.length > 0;
+    const canCreateTransaction =
+        activeWallets.length > 0 && categories.length > 0;
 
     function openCreateDialog() {
-        if (!canCreateTransaction) return;
+        if (!canCreateTransaction) {
+            return;
+        }
+
         setEditingTransaction(null);
         clearErrors();
         reset();
@@ -246,8 +246,8 @@ export default function Transactions({
                 {!canCreateTransaction && (
                     <Card className="border-dashed">
                         <CardContent className="py-5 text-sm text-muted-foreground">
-                            Buat minimal satu dompet aktif dan satu kategori sebelum
-                            mencatat transaksi.
+                            Buat minimal satu dompet aktif dan satu kategori
+                            sebelum mencatat transaksi.
                         </CardContent>
                     </Card>
                 )}
@@ -544,6 +544,13 @@ export default function Transactions({
                                             );
                                         })}
                                     </tbody>
+                                    <Pagination
+                                        links={transactions.links}
+                                        from={transactions.from}
+                                        to={transactions.to}
+                                        total={transactions.total}
+                                        itemLabel="transaksi"
+                                    />
                                 </table>
                             </div>
                         )}

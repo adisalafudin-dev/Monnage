@@ -52,10 +52,20 @@ class WalletController extends Controller
 
         return redirect()->route('wallets.index')->with('success', 'Dompet berhasil diperbarui.');
     }
-
+    
     public function destroy(Wallet $wallet)
     {
         $this->authorizeWallet($wallet);
+
+        if (
+            $wallet->transactions()->exists()
+            || $wallet->transfersFrom()->exists()
+            || $wallet->transfersTo()->exists()
+        ) {
+            return back()->withErrors([
+                'wallet' => 'Dompet yang memiliki riwayat transaksi atau transfer tidak dapat dihapus. Arsipkan dompet ini sebagai gantinya.',
+            ]);
+        }
 
         $wallet->delete();
 

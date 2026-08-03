@@ -87,3 +87,38 @@ export interface WalletTransfer {
     from_wallet?: Pick<Wallet, 'id' | 'title' | 'currency'>;
     to_wallet?: Pick<Wallet, 'id' | 'title' | 'currency'>;
 }
+
+export interface Paginated<T> {
+    data: T[];
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+    from: number | null;
+    to: number | null;
+    links: { url: string | null; label: string; active: boolean }[];
+}
+
+export interface TransactionTotals {
+    currency: string;
+    income: number;
+    expense: number;
+    count: number;
+}
+
+export interface RecurringTransaction {
+    id: number;
+    wallet_id: number;
+    category_id: number;
+    amount: number;
+    description: string | null;
+    frequency: 'daily' | 'weekly' | 'monthly' | 'yearly';
+    interval: number;
+    start_date: string;
+    end_date: string | null;
+    next_due_date: string;
+    last_generated_at: string | null;
+    is_active: boolean;
+    wallet?: Pick<Wallet, 'id' | 'title' | 'currency'>;
+    category?: Pick<Category, 'id' | 'name' | 'type'>;
+}
