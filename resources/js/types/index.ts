@@ -41,12 +41,24 @@ export interface Budget {
     category_id: number;
     amount: number;
     currency: string;
+    rollover: boolean;
+    rolled_in: number;
+    available: number;
     month: number;
     year: number;
     spent: number;
     remaining: number;
     percentage: number;
     category: Pick<Category, 'id' | 'name' | 'type'>;
+}
+
+export interface OverallBudget {
+    id: number | null;
+    currency: string;
+    amount: number | null;
+    spent: number;
+    remaining: number | null;
+    percentage: number | null;
 }
 
 export interface TransactionFilters {

@@ -1,5 +1,12 @@
 import { Head, router, useForm } from '@inertiajs/react';
-import { PiggyBank, Plus, Trash2, TrendingDown, Wallet2 } from 'lucide-react';
+import {
+    PiggyBank,
+    Plus,
+    RotateCcw,
+    Trash2,
+    TrendingDown,
+    Wallet2,
+} from 'lucide-react';
 import { useState } from 'react';
 import InputError from '@/components/input-error';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +18,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
     Dialog,
     DialogContent,
@@ -31,10 +39,15 @@ import {
 import { formatCurrency } from '@/lib/currency';
 import { dashboard } from '@/routes';
 import { destroy, index, store } from '@/routes/budgets';
-import type { Budget, BudgetFilters, Category } from '@/types';
+import {
+    destroy as destroyOverall,
+    store as storeOverall,
+} from '@/routes/budgets/overall';
+import type { Budget, BudgetFilters, Category, OverallBudget } from '@/types';
 
 type Props = {
     budgets: Budget[];
+    overallBudgets: OverallBudget[];
     expenseCategories: Pick<Category, 'id' | 'name'>[];
     currencies: string[];
     filters: BudgetFilters;
@@ -42,6 +55,14 @@ type Props = {
 
 type BudgetForm = {
     category_id: string;
+    amount: string;
+    currency: string;
+    rollover: boolean;
+    month: number;
+    year: number;
+};
+
+type OverallForm = {
     amount: string;
     currency: string;
     month: number;
@@ -71,9 +92,17 @@ function initialBudgetForm(
         category_id: '',
         amount: '',
         currency: defaultCurrency,
+        rollover: false,
         month: filters.month,
         year: filters.year,
     };
+}
+
+function initialOverallForm(
+    filters: BudgetFilters,
+    currency: string,
+): OverallForm {
+    return { amount: '', currency, month: filters.month, year: filters.year };
 }
 
 type CurrencyTotals = Record<
@@ -83,6 +112,7 @@ type CurrencyTotals = Record<
 
 export default function Budgets({
     budgets,
+    overallBudgets,
     expenseCategories,
     currencies,
     filters,
@@ -92,12 +122,20 @@ export default function Budgets({
     const [editingBudget, setEditingBudget] = useState<Budget | null>(null);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
     const [deletingBudget, setDeletingBudget] = useState<Budget | null>(null);
+    const [isOverallDialogOpen, setIsOverallDialogOpen] = useState(false);
+    const [deletingOverall, setDeletingOverall] =
+        useState<OverallBudget | null>(null);
     const [periodFilter, setPeriodFilter] = useState({
         month: filters.month,
         year: filters.year,
     });
+
     const { data, setData, post, processing, errors, reset, clearErrors } =
         useForm<BudgetForm>(initialBudgetForm(filters, defaultCurrency));
+
+    const overallForm = useForm<OverallForm>(
+        initialOverallForm(filters, defaultCurrency),
+    );
 
     // Totals grouped by currency — a budget's amount, spent, and remaining
     // only make sense compared against other budgets in the same currency.
@@ -110,7 +148,7 @@ export default function Budgets({
                 overCount: 0,
                 count: 0,
             };
-            totals[currency].budgeted += Number(budget.amount);
+            totals[currency].budgeted += Number(budget.available);
             totals[currency].spent += Number(budget.spent);
             totals[currency].count += 1;
             if (budget.percentage > 100) totals[currency].overCount += 1;
@@ -123,8 +161,6 @@ export default function Budgets({
         (budget) => budget.percentage > 100,
     ).length;
 
-    // Keyed by "categoryId-currency" since a category can now have a
-    // separate budget per currency it's spent in.
     const budgetedKeys = new Set(
         budgets.map((budget) => `${budget.category_id}-${budget.currency}`),
     );
@@ -146,6 +182,7 @@ export default function Budgets({
             category_id: String(budget.category_id),
             amount: String(budget.amount),
             currency: budget.currency,
+            rollover: budget.rollover,
             month: budget.month,
             year: budget.year,
         });
@@ -161,7 +198,6 @@ export default function Budgets({
 
     function submit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        // store() upserts by category + month + year + currency, so create and edit both post here.
         post(store.url(), { onSuccess: closeDialog });
     }
 
@@ -191,6 +227,38 @@ export default function Budgets({
         });
     }
 
+    function openOverallDialog(currency: string) {
+        const existing = overallBudgets.find((o) => o.currency === currency);
+        overallForm.clearErrors();
+        overallForm.setData({
+            amount: existing?.amount ? String(existing.amount) : '',
+            currency,
+            month: filters.month,
+            year: filters.year,
+        });
+        setIsOverallDialogOpen(true);
+    }
+
+    function closeOverallDialog() {
+        if (overallForm.processing) return;
+        setIsOverallDialogOpen(false);
+    }
+
+    function submitOverall(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        overallForm.post(storeOverall.url(), { onSuccess: closeOverallDialog });
+    }
+
+    function confirmDeleteOverall() {
+        if (!deletingOverall?.id) return;
+        router.delete(
+            destroyOverall.url({ monthlyBudget: deletingOverall.id }),
+            {
+                onSuccess: () => setDeletingOverall(null),
+            },
+        );
+    }
+
     return (
         <>
             <Head title="Budget" />
@@ -209,8 +277,7 @@ export default function Budgets({
                         onClick={openCreateDialog}
                         disabled={!canCreateBudget}
                     >
-                        <Plus />
-                        Tambah budget
+                        <Plus /> Tambah budget
                     </Button>
                 </div>
 
@@ -240,8 +307,8 @@ export default function Budgets({
                                 <Select
                                     value={String(periodFilter.month)}
                                     onValueChange={(value) =>
-                                        setPeriodFilter((current) => ({
-                                            ...current,
+                                        setPeriodFilter((c) => ({
+                                            ...c,
                                             month: Number(value),
                                         }))
                                     }
@@ -253,10 +320,10 @@ export default function Budgets({
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {monthNames.map((name, monthIndex) => (
+                                        {monthNames.map((name, i) => (
                                             <SelectItem
                                                 key={name}
-                                                value={String(monthIndex + 1)}
+                                                value={String(i + 1)}
                                             >
                                                 {name}
                                             </SelectItem>
@@ -272,8 +339,8 @@ export default function Budgets({
                                     min="2000"
                                     value={periodFilter.year}
                                     onChange={(event) =>
-                                        setPeriodFilter((current) => ({
-                                            ...current,
+                                        setPeriodFilter((c) => ({
+                                            ...c,
                                             year: Number(event.target.value),
                                         }))
                                     }
@@ -288,6 +355,109 @@ export default function Budgets({
                                 </Button>
                             </div>
                         </form>
+                    </CardContent>
+                </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Total budget bulanan</CardTitle>
+                        <CardDescription>
+                            Batas keseluruhan lintas kategori, per mata uang,
+                            untuk {monthNames[filters.month - 1]} {filters.year}
+                            .
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="grid gap-3 sm:grid-cols-2">
+                        {overallBudgets.length === 0 ? (
+                            <p className="text-sm text-muted-foreground sm:col-span-2">
+                                Belum ada transaksi pengeluaran atau total
+                                budget untuk periode ini.
+                            </p>
+                        ) : (
+                            overallBudgets.map((overall) => {
+                                const isOver = (overall.percentage ?? 0) > 100;
+                                return (
+                                    <div
+                                        key={overall.currency}
+                                        className="rounded-lg border p-4"
+                                    >
+                                        <div className="flex items-center justify-between">
+                                            <span className="font-medium">
+                                                {overall.currency}
+                                            </span>
+                                            <div className="flex items-center gap-1">
+                                                {isOver && (
+                                                    <Badge variant="destructive">
+                                                        Melebihi
+                                                    </Badge>
+                                                )}
+                                                <Button
+                                                    variant="ghost"
+                                                    size="sm"
+                                                    onClick={() =>
+                                                        openOverallDialog(
+                                                            overall.currency,
+                                                        )
+                                                    }
+                                                >
+                                                    {overall.amount === null
+                                                        ? 'Atur'
+                                                        : 'Ubah'}
+                                                </Button>
+                                                {overall.id && (
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="icon"
+                                                        className="text-destructive hover:text-destructive"
+                                                        onClick={() =>
+                                                            setDeletingOverall(
+                                                                overall,
+                                                            )
+                                                        }
+                                                        aria-label={`Hapus total budget ${overall.currency}`}
+                                                    >
+                                                        <Trash2 />
+                                                    </Button>
+                                                )}
+                                            </div>
+                                        </div>
+                                        {overall.amount === null ? (
+                                            <p className="mt-1 text-sm text-muted-foreground">
+                                                Terpakai{' '}
+                                                {formatCurrency(
+                                                    overall.spent,
+                                                    overall.currency,
+                                                )}{' '}
+                                                · belum ada batas total
+                                            </p>
+                                        ) : (
+                                            <>
+                                                <p className="mt-1 text-sm text-muted-foreground">
+                                                    {formatCurrency(
+                                                        overall.spent,
+                                                        overall.currency,
+                                                    )}{' '}
+                                                    dari{' '}
+                                                    {formatCurrency(
+                                                        overall.amount,
+                                                        overall.currency,
+                                                    )}{' '}
+                                                    ({overall.percentage}%)
+                                                </p>
+                                                <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-muted">
+                                                    <div
+                                                        className={`h-full rounded-full transition-all ${isOver ? 'bg-rose-500' : 'bg-emerald-500'}`}
+                                                        style={{
+                                                            width: `${Math.min(overall.percentage ?? 0, 100)}%`,
+                                                        }}
+                                                    />
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+                                );
+                            })
+                        )}
                     </CardContent>
                 </Card>
 
@@ -332,15 +502,11 @@ export default function Budgets({
                                 <CardDescription className="mt-1 text-xs">
                                     Sisa{' '}
                                     {formatCurrency(
-                                        Math.max(
+                                        (totalsByCurrency[budgetCurrencies[0]]
+                                            ?.budgeted ?? 0) -
                                             (totalsByCurrency[
                                                 budgetCurrencies[0]
-                                            ]?.budgeted ?? 0) -
-                                                (totalsByCurrency[
-                                                    budgetCurrencies[0]
-                                                ]?.spent ?? 0),
-                                            0,
-                                        ),
+                                            ]?.spent ?? 0),
                                         budgetCurrencies[0] ?? defaultCurrency,
                                     )}
                                 </CardDescription>
@@ -460,6 +626,15 @@ export default function Budgets({
                                                         <Badge variant="outline">
                                                             {budget.currency}
                                                         </Badge>
+                                                        {budget.rollover && (
+                                                            <Badge
+                                                                variant="secondary"
+                                                                className="gap-1"
+                                                            >
+                                                                <RotateCcw className="size-3" />{' '}
+                                                                Rollover
+                                                            </Badge>
+                                                        )}
                                                         {isOverBudget && (
                                                             <Badge variant="destructive">
                                                                 Melebihi budget
@@ -476,7 +651,7 @@ export default function Budgets({
                                                         dari{' '}
                                                         {formatCurrency(
                                                             Number(
-                                                                budget.amount,
+                                                                budget.available,
                                                             ),
                                                             budget.currency,
                                                         )}
@@ -484,6 +659,26 @@ export default function Budgets({
                                                         {budget.percentage}%
                                                         terpakai
                                                     </p>
+                                                    {budget.rollover &&
+                                                        budget.rolled_in !==
+                                                            0 && (
+                                                            <p className="mt-0.5 text-xs text-muted-foreground">
+                                                                Termasuk{' '}
+                                                                {budget.rolled_in >
+                                                                0
+                                                                    ? 'sisa'
+                                                                    : 'defisit'}{' '}
+                                                                bulan lalu:{' '}
+                                                                {budget.rolled_in >
+                                                                0
+                                                                    ? '+'
+                                                                    : ''}
+                                                                {formatCurrency(
+                                                                    budget.rolled_in,
+                                                                    budget.currency,
+                                                                )}
+                                                            </p>
+                                                        )}
                                                 </div>
                                                 <div className="flex items-center gap-1">
                                                     <Button
@@ -513,11 +708,7 @@ export default function Budgets({
 
                                             <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-muted">
                                                 <div
-                                                    className={`h-full rounded-full transition-all ${
-                                                        isOverBudget
-                                                            ? 'bg-rose-500'
-                                                            : 'bg-emerald-500'
-                                                    }`}
+                                                    className={`h-full rounded-full transition-all ${isOverBudget ? 'bg-rose-500' : 'bg-emerald-500'}`}
                                                     style={{
                                                         width: `${barWidth}%`,
                                                     }}
@@ -527,12 +718,7 @@ export default function Budgets({
                                             <p className="mt-2 text-xs text-muted-foreground">
                                                 Sisa:{' '}
                                                 {formatCurrency(
-                                                    Math.max(
-                                                        Number(
-                                                            budget.remaining,
-                                                        ),
-                                                        0,
-                                                    ),
+                                                    Number(budget.remaining),
                                                     budget.currency,
                                                 )}
                                             </p>
@@ -635,6 +821,28 @@ export default function Budgets({
                             />
                             <InputError message={errors.amount} />
                         </div>
+                        <div className="flex items-start gap-2 rounded-lg border p-3">
+                            <Checkbox
+                                id="budget-rollover"
+                                checked={data.rollover}
+                                onCheckedChange={(checked) =>
+                                    setData('rollover', checked === true)
+                                }
+                            />
+                            <div className="grid gap-1">
+                                <Label
+                                    htmlFor="budget-rollover"
+                                    className="font-normal"
+                                >
+                                    Rollover ke bulan berikutnya
+                                </Label>
+                                <p className="text-xs text-muted-foreground">
+                                    Sisa (atau kelebihan) budget bulan ini akan
+                                    ikut memengaruhi budget bulan depan untuk
+                                    kategori yang sama.
+                                </p>
+                            </div>
+                        </div>
 
                         <DialogFooter className="mt-2">
                             <Button
@@ -653,6 +861,7 @@ export default function Budgets({
                     </form>
                 </DialogContent>
             </Dialog>
+
             <Dialog
                 open={isDeleteDialogOpen}
                 onOpenChange={(open) => !open && closeDeleteDialog()}
@@ -678,6 +887,90 @@ export default function Budgets({
                             type="button"
                             onClick={confirmDelete}
                             disabled={processing}
+                            className="text-destructive"
+                        >
+                            Hapus
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+
+            <Dialog
+                open={isOverallDialogOpen}
+                onOpenChange={(open) => !open && closeOverallDialog()}
+            >
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>
+                            Total budget bulanan · {overallForm.data.currency}
+                        </DialogTitle>
+                        <DialogDescription>
+                            Batas total lintas kategori untuk{' '}
+                            {monthNames[filters.month - 1]} {filters.year}.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <form className="grid gap-4" onSubmit={submitOverall}>
+                        <div className="grid gap-2">
+                            <Label htmlFor="overall-amount">Jumlah</Label>
+                            <Input
+                                id="overall-amount"
+                                type="number"
+                                min="0.01"
+                                step="0.01"
+                                value={overallForm.data.amount}
+                                onChange={(event) =>
+                                    overallForm.setData(
+                                        'amount',
+                                        event.target.value,
+                                    )
+                                }
+                                placeholder="0"
+                                autoFocus
+                            />
+                            <InputError message={overallForm.errors.amount} />
+                        </div>
+                        <DialogFooter className="mt-2">
+                            <Button
+                                type="button"
+                                variant="outline"
+                                onClick={closeOverallDialog}
+                            >
+                                Batal
+                            </Button>
+                            <Button
+                                type="submit"
+                                disabled={overallForm.processing}
+                            >
+                                Simpan
+                            </Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
+
+            <Dialog
+                open={!!deletingOverall}
+                onOpenChange={(open) => !open && setDeletingOverall(null)}
+            >
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Hapus total budget</DialogTitle>
+                        <DialogDescription>
+                            Hapus batas total bulanan untuk{' '}
+                            {deletingOverall?.currency}?
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter className="mt-2">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => setDeletingOverall(null)}
+                        >
+                            Batal
+                        </Button>
+                        <Button
+                            type="button"
+                            onClick={confirmDeleteOverall}
                             className="text-destructive"
                         >
                             Hapus

@@ -29,8 +29,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('transactions', TransactionController::class)
         ->only(['index', 'store', 'update', 'destroy']);
 
-    Route::resource('budgets', BudgetController::class)
-        ->only(['index', 'store', 'destroy']);
+    Route::resource('budgets', BudgetController::class)->only(['index', 'store', 'destroy']);
+    Route::post('budgets/overall', [BudgetController::class, 'storeOverall'])->name('budgets.overall.store');
+    Route::delete('budgets/overall/{monthlyBudget}', [BudgetController::class, 'destroyOverall'])->name('budgets.overall.destroy');
 
      Route::resource('transfers', WalletTransferController::class)
         ->only(['index', 'store', 'destroy']);

@@ -71,7 +71,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 - [ ] No pagination on `TransactionController@index` — still loads the full history in one response.
 - [ ] Repo still has no README/description.
 - [ ] Validation/success messages are in Indonesian, UI labels ("Dompet", "Kategori", "Transaksi") are in Indonesian too now — consistent, but confirm this is the intended single-language product (no i18n toggle currently).
-- [ ] Delete modal still using alert javascript use modal
+- [x] Delete modal still using alert javascript use modal
 
 ---
 

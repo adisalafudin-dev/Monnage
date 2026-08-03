@@ -14,6 +14,7 @@ class Budget extends Model
         'category_id',
         'amount',
         'currency',
+        'rollover',
         'month',
         'year',
     ];
@@ -22,6 +23,7 @@ class Budget extends Model
     {
         return [
             'amount' => 'decimal:2',
+            'rollover' => 'boolean',
         ];
     }
 
