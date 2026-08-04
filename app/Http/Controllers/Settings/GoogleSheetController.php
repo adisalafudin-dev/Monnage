@@ -106,8 +106,6 @@ class GoogleSheetController extends Controller
         return redirect()->route('integrations.edit')->with('success', 'Google Sheets berhasil diputuskan.');
     }
 
-
-
     public function sync(Request $request, GoogleSheetsSyncService $syncService): RedirectResponse
     {
         $connection = $request->user()->googleSheetConnection;

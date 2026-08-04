@@ -4,7 +4,6 @@ import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import SettingsLayout from '@/layouts/settings/layout';
 import {
     destroy,
     redirect as connectGoogle,
@@ -33,7 +32,7 @@ export default function Integrations({
     }
 
     return (
-        <SettingsLayout>
+        <>
             <Head title="Integrasi" />
 
             <div className="space-y-6">
@@ -144,6 +143,6 @@ export default function Integrations({
                     </div>
                 )}
             </div>
-        </SettingsLayout>
+        </>
     );
 }

@@ -41,6 +41,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { Spinner } from '@/components/ui/spinner';
 import { Textarea } from '@/components/ui/textarea';
 import { formatCurrency } from '@/lib/currency';
 import { dashboard } from '@/routes';
@@ -125,6 +126,7 @@ export default function Transactions({
         start_date: filters.start_date ?? '',
         end_date: filters.end_date ?? '',
     });
+    const [isExporting, setIsExporting] = useState(false);
     const { data, setData, post, put, processing, errors, reset, clearErrors } =
         useForm<TransactionForm>(initialTransactionForm());
 
@@ -259,21 +261,30 @@ export default function Transactions({
                         <Plus /> {t('Tambah transaksi')}
                     </Button> */}
 
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap items-center gap-2">
                         <Button variant="outline" asChild>
                             <a
                                 href={exportTransactions.url({
                                     query: filterData,
                                 })}
                             >
-                                <Download /> Export CSV
+                                {isExporting ? (
+                                    <div className="flex items-center gap-2">
+                                        <Spinner className="size-4" />
+                                        {t('Mengekspor...')}
+                                    </div>
+                                ) : (
+                                    <>
+                                        <Download /> {t('Ekspor transaksi')}
+                                    </>
+                                )}
                             </a>
                         </Button>
                         <Button
                             onClick={openCreateDialog}
                             disabled={!canCreateTransaction}
                         >
-                            <Plus /> Tambah transaksi
+                            <Plus /> {t('Tambah transaksi')}
                         </Button>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('google_id')->nullable()->unique()->after('email');
             $table->string('avatar')->nullable()->after('google_id');
-            $table->string('password')->nullable()->change();
+ 
         });
     }
 
@@ -19,7 +19,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn(['google_id', 'avatar']);
-            $table->string('password')->nullable(false)->change();
         });
     }
 };

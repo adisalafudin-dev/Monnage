@@ -20,14 +20,14 @@
     "semantic_hash": "9da65916eac719381c3ab04cb3a6320c"
   },
   "app/Http/Controllers/BudgetController.php": {
-    "mtime": 1785740339.2932868,
-    "ast_hash": "1445678603732d3c0b836b1cce77d066",
+    "mtime": 1785840020.8213322,
+    "ast_hash": "acfd8e60fd21e913bd466aad1654859a",
     "semantic_hash": ""
   },
   "app/Http/Controllers/CategoryController.php": {
-    "mtime": 1785299200.029617,
-    "ast_hash": "67a31c90210203c801e734efd333504c",
-    "semantic_hash": "67a31c90210203c801e734efd333504c"
+    "mtime": 1785839990.7419293,
+    "ast_hash": "787205ffbf0b8865c919d4c562fcd71c",
+    "semantic_hash": ""
   },
   "app/Http/Controllers/Controller.php": {
     "mtime": 1784052110.0,
@@ -50,19 +50,19 @@
     "semantic_hash": ""
   },
   "app/Http/Controllers/TransactionController.php": {
-    "mtime": 1785769358.9975576,
-    "ast_hash": "b7b377044fc8532f25a4fc364ea10a2d",
+    "mtime": 1785841973.3094957,
+    "ast_hash": "eb69b11b172b05a58da7aef07c158ec6",
     "semantic_hash": ""
   },
   "app/Http/Controllers/WalletController.php": {
-    "mtime": 1785743335.9444666,
-    "ast_hash": "05546be04c48b58c89e1292b6448e877",
+    "mtime": 1785839995.832185,
+    "ast_hash": "478817bf957db3e7b03a633d1c6401f3",
     "semantic_hash": ""
   },
   "app/Http/Controllers/WalletTransferController.php": {
-    "mtime": 1785425386.5666137,
-    "ast_hash": "fd01081ce5b97fb5c34a1c327328d9c0",
-    "semantic_hash": "fd01081ce5b97fb5c34a1c327328d9c0"
+    "mtime": 1785840001.6119752,
+    "ast_hash": "3a4a991e9cd61d4184e24737734c4484",
+    "semantic_hash": ""
   },
   "app/Http/Middleware/HandleAppearance.php": {
     "mtime": 1784052110.0,
@@ -130,8 +130,8 @@
     "semantic_hash": "acfba6e50e901075d6fb235370b6b3a8"
   },
   "app/Models/User.php": {
-    "mtime": 1785837269.3767292,
-    "ast_hash": "3cb88d5d7c342443601100b4df94706c",
+    "mtime": 1785850896.7701807,
+    "ast_hash": "2d23d0a80e83c1c0580922718d040e54",
     "semantic_hash": ""
   },
   "app/Models/Wallet.php": {
@@ -340,9 +340,9 @@
     "semantic_hash": "420eb4e524b6c6352d35a7d8697b0933"
   },
   "database/seeders/DatabaseSeeder.php": {
-    "mtime": 1784052110.0,
-    "ast_hash": "ab1e985d74209458e33e0f4eb89fb77e",
-    "semantic_hash": "ab1e985d74209458e33e0f4eb89fb77e"
+    "mtime": 1785843455.7491696,
+    "ast_hash": "c41bb4c0014a803d374f2c8a25d8e2e4",
+    "semantic_hash": ""
   },
   "database/seeders/WalletTransferSeeder.php": {
     "mtime": 1785313296.152841,
@@ -370,14 +370,14 @@
     "semantic_hash": "d8eda274115af5fd2aaa8230af329ef7"
   },
   "resources/js/app.tsx": {
-    "mtime": 1785837037.987842,
+    "mtime": 1785852598.001185,
     "ast_hash": "828134ad01064d7626f000749a5d7c38",
     "semantic_hash": ""
   },
   "resources/js/components/alert-error.tsx": {
-    "mtime": 1784052110.0,
-    "ast_hash": "396c8d1400aa30585d15da210a316c80",
-    "semantic_hash": "396c8d1400aa30585d15da210a316c80"
+    "mtime": 1785839970.0965183,
+    "ast_hash": "88a085f14265e62d25139fcaacffbd45",
+    "semantic_hash": ""
   },
   "resources/js/components/app-content.tsx": {
     "mtime": 1784052110.0,
@@ -420,9 +420,9 @@
     "semantic_hash": ""
   },
   "resources/js/components/breadcrumbs.tsx": {
-    "mtime": 1784052110.0,
-    "ast_hash": "b4bea168fb49a02e768a11a307a9ca21",
-    "semantic_hash": "b4bea168fb49a02e768a11a307a9ca21"
+    "mtime": 1785839981.1348045,
+    "ast_hash": "8035d13f5c3c8b814f0ef86d5aa75658",
+    "semantic_hash": ""
   },
   "resources/js/components/delete-user.tsx": {
     "mtime": 1785839096.7859051,
@@ -705,9 +705,9 @@
     "semantic_hash": "8ad4492ff3b9a4accb5f1b73201f4ce5"
   },
   "resources/js/layouts/auth/auth-card-layout.tsx": {
-    "mtime": 1784052110.0,
-    "ast_hash": "3a00a3735acac9e91e961eb1c901b44f",
-    "semantic_hash": "3a00a3735acac9e91e961eb1c901b44f"
+    "mtime": 1785839933.8559773,
+    "ast_hash": "208231d871fd7021ea16ec605b5a937c",
+    "semantic_hash": ""
   },
   "resources/js/layouts/auth/auth-simple-layout.tsx": {
     "mtime": 1785838746.5568671,
@@ -715,14 +715,14 @@
     "semantic_hash": ""
   },
   "resources/js/layouts/auth/auth-split-layout.tsx": {
-    "mtime": 1784052110.0,
-    "ast_hash": "f3ef07e8086a8feb1b8147e6b75d203a",
-    "semantic_hash": "f3ef07e8086a8feb1b8147e6b75d203a"
+    "mtime": 1785839937.6300516,
+    "ast_hash": "c5e5bb3e565629858f0b0e2d90832635",
+    "semantic_hash": ""
   },
   "resources/js/layouts/settings/layout.tsx": {
-    "mtime": 1784052110.0,
-    "ast_hash": "e8ed5ddcb94d222087bec3fd65b14899",
-    "semantic_hash": "e8ed5ddcb94d222087bec3fd65b14899"
+    "mtime": 1785855161.8427196,
+    "ast_hash": "867430b06d7f9b41b9fb304da4594b87",
+    "semantic_hash": ""
   },
   "resources/js/lib/currency.ts": {
     "mtime": 1785420351.8663247,
@@ -800,8 +800,8 @@
     "semantic_hash": ""
   },
   "resources/js/pages/transactions/index.tsx": {
-    "mtime": 1785839464.8305106,
-    "ast_hash": "658a9baa0bf745dac8c752a765356be4",
+    "mtime": 1785855062.7162325,
+    "ast_hash": "cf5afbe48aadbefaafca1de135b5691e",
     "semantic_hash": ""
   },
   "resources/js/pages/transfers/index.tsx": {
@@ -860,13 +860,13 @@
     "semantic_hash": ""
   },
   "routes/settings.php": {
-    "mtime": 1785828947.2303607,
-    "ast_hash": "d7ca5c4ecb7219d3444432b0dab5f7e4",
+    "mtime": 1785854742.9285598,
+    "ast_hash": "8b2eeb817c8b78e03aa9631c54b1a82f",
     "semantic_hash": ""
   },
   "routes/web.php": {
-    "mtime": 1785837294.6321466,
-    "ast_hash": "120e921a84aa0d106a64f05073386e67",
+    "mtime": 1785842001.0276234,
+    "ast_hash": "121569bedf822df3bd6977e565b0fd46",
     "semantic_hash": ""
   },
   "tests/Feature/Auth/AuthenticationTest.php": {
@@ -950,8 +950,8 @@
     "semantic_hash": "ef2a57adc7462b7f867b284f44ecd342"
   },
   "vite.config.ts": {
-    "mtime": 1785837306.1882658,
-    "ast_hash": "736e5982b468d40758dbd65a149edab6",
+    "mtime": 1785852718.4540727,
+    "ast_hash": "dbec39d946ee920ca2393ecff13a4a9b",
     "semantic_hash": ""
   },
   ".github/dependabot.yml": {
@@ -970,8 +970,8 @@
     "semantic_hash": "cec4657dab55388a1cb0d50124405ce5"
   },
   "TODO.md": {
-    "mtime": 1785834924.1573825,
-    "ast_hash": "7ab0be4b0181123439714de3a41fd1bb",
+    "mtime": 1785851809.112003,
+    "ast_hash": "7f68b4facd7a8524640f95b28062b25d",
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
@@ -1000,8 +1000,8 @@
     "semantic_hash": ""
   },
   "app/Http/Controllers/Auth/GoogleAuthController.php": {
-    "mtime": 1785770403.0303013,
-    "ast_hash": "54a3f2e1f7fb1d8d2010ea525e3b21af",
+    "mtime": 1785853944.4525185,
+    "ast_hash": "68faa08cf4068d2abafaaa18c44e925b",
     "semantic_hash": ""
   },
   "app/Http/Controllers/LocaleController.php": {
@@ -1010,8 +1010,8 @@
     "semantic_hash": ""
   },
   "app/Http/Controllers/RecurringTransactionController.php": {
-    "mtime": 1785767888.0249438,
-    "ast_hash": "33bc757741562bf87c1ecf42f8a68beb",
+    "mtime": 1785840015.2550359,
+    "ast_hash": "66771767d99738330871668cb936726e",
     "semantic_hash": ""
   },
   "app/Http/Controllers/Settings/GoogleLinkController.php": {
@@ -1055,8 +1055,8 @@
     "semantic_hash": ""
   },
   "lang/en.json": {
-    "mtime": 1785839795.2889214,
-    "ast_hash": "c94be4540da37fc5bf145764618802a6",
+    "mtime": 1785840028.075067,
+    "ast_hash": "14f5802b0f18604e5b4c7cf0cdf72cbb",
     "semantic_hash": ""
   },
   "resources/js/components/manage-google-account.tsx": {
@@ -1065,8 +1065,8 @@
     "semantic_hash": ""
   },
   "resources/js/components/pagination.tsx": {
-    "mtime": 1785764992.738515,
-    "ast_hash": "74989ec58d02c6561a240f0e0d473451",
+    "mtime": 1785839975.4216585,
+    "ast_hash": "19e7163e98ee60b8c4cb3c1dbae0a06f",
     "semantic_hash": ""
   },
   "resources/js/components/ui/switch.tsx": {
@@ -1102,6 +1102,31 @@
   "README.md": {
     "mtime": 1785829926.4212713,
     "ast_hash": "5fdff94f1c5187bdb1567eaea4cc6f09",
+    "semantic_hash": ""
+  },
+  "app/Http/Controllers/GoogleSheetController.php": {
+    "mtime": 1785851619.8283377,
+    "ast_hash": "9814a3a835ef9f1f5c81ba2f0c8b374d",
+    "semantic_hash": ""
+  },
+  "app/Models/GoogleSheetConnection.php": {
+    "mtime": 1785850884.1463501,
+    "ast_hash": "69ff409ded2a3b8fa4daeabf5c2a43cb",
+    "semantic_hash": ""
+  },
+  "app/Services/GoogleSheetsSyncService.php": {
+    "mtime": 1785851413.535765,
+    "ast_hash": "d2a6ea984bb76943b2c9ff3026a7c580",
+    "semantic_hash": ""
+  },
+  "database/migrations/2026_08_04_134010_create_google_sheet_connections_table.php": {
+    "mtime": 1785850821.5359638,
+    "ast_hash": "cf5e19c1cc39e5e98d073ed58461eaea",
+    "semantic_hash": ""
+  },
+  "resources/js/pages/settings/integrations.tsx": {
+    "mtime": 1785852406.6923058,
+    "ast_hash": "19d49398acd6a13e93465bc517caa734",
     "semantic_hash": ""
   }
 }

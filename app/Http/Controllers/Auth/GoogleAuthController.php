@@ -7,6 +7,7 @@
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Str;
     use Laravel\Fortify\Events\TwoFactorAuthenticationChallenged;
     use Laravel\Fortify\Fortify;
     use Laravel\Socialite\Facades\Socialite;
@@ -52,8 +53,11 @@
                     ]);
                 }
 
+                $name = $googleUser->getName() ?: $googleUser->getNickname() ?: 'Pengguna Google';
+
                 $user = User::create([
-                    'name' => $googleUser->getName() ?: $googleUser->getNickname() ?: 'Pengguna Google',
+                    'name' => $name,
+                    'username' => Str::slug($name).'-'.Str::lower(Str::random(6)),
                     'email' => $googleUser->getEmail(),
                     'google_id' => $googleUser->getId(),
                     'avatar' => $googleUser->getAvatar(),
