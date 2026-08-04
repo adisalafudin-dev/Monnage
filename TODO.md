@@ -76,7 +76,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 
 ### 🔴 High priority
 
-- [ ] **Add logging** — no `Log::info`/`Log::error` anywhere. Add start/success/failure logs with `user_id` so production syncs are debuggable.
+- [x] **Add logging** — done. `Log::info` (start/completed) only in non-production via `logInfo()` guard; `Log::error` (with `user_id` + message) always logged in all environments, then re-thrown.
 - [ ] **Validate refresh-token response** — `$data['access_token']` is accessed without checking the key exists. Guard with `isset()` and throw a clear `RuntimeException` if missing.
 - [ ] **Write unit tests with `Http::fake()`** — zero coverage for this service. Mock `https://oauth2.googleapis.com/token` and `https://sheets.googleapis.com/*` to test: token refresh, 404/403 handling, sheet auto-creation, clear-then-write flow, and stale-row cleanup.
 
@@ -96,3 +96,4 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 - [ ] **Dynamic range instead of `A1:Z10000`** — hardcoded 10k-row assumption. Compute range from `count($rows)`.
 - [ ] **Batch large writes** — a single `PUT` with thousands of rows can hit API quota. Batch per 500–1000 rows.
 - [ ] **Wallet hard-delete guard gap** — `WalletController@destroy` doesn't check `recurringTransactions()->exists()`; a wallet with an active recurring rule could still be deleted, leaving a dangling reference.
+- [ ] Telegram POST transactions with bot in my old phone

@@ -7,7 +7,7 @@ export default function LanguageTabs({
     className = '',
     ...props
 }: HTMLAttributes<HTMLDivElement>) {
-    const { currentLocale } = useLaravelReactI18n();
+    const { currentLocale, setLocale } = useLaravelReactI18n();
 
     const activeLocale = currentLocale();
 
@@ -19,10 +19,16 @@ export default function LanguageTabs({
     const handleSwitch = (newLocale: string) => {
         if (newLocale === activeLocale) return;
 
+        // 1. Instant client update (0ms latency, just like Theme switch)
+        setLocale(newLocale);
+        document.documentElement.lang = newLocale;
+        document.cookie = `locale=${newLocale};path=/;max-age=${365 * 24 * 60 * 60};SameSite=Lax`;
+
+        // 2. Sync to server in background without blocking UI
         router.patch(
             '/locale',
             { locale: newLocale },
-            { preserveScroll: true, preserveState: false },
+            { preserveScroll: true, preserveState: true },
         );
     };
 
@@ -40,7 +46,7 @@ export default function LanguageTabs({
                     type="button"
                     onClick={() => handleSwitch(value)}
                     className={cn(
-                        'flex items-center rounded-md px-3.5 py-1.5 transition-colors text-sm font-medium',
+                        'flex items-center rounded-md px-3.5 py-1.5 transition-colors text-sm font-medium cursor-pointer',
                         activeLocale === value
                             ? 'bg-white shadow-xs text-neutral-900 dark:bg-neutral-700 dark:text-neutral-100'
                             : 'text-neutral-500 hover:bg-neutral-200/60 hover:text-black dark:text-neutral-400 dark:hover:bg-neutral-700/60',

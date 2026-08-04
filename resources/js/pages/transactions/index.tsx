@@ -3,10 +3,12 @@ import { useLaravelReactI18n } from 'laravel-react-i18n';
 import {
     ArrowDownRight,
     ArrowUpRight,
+    ExternalLink,
     Filter,
     Pencil,
     Plus,
     ReceiptText,
+    RefreshCw,
     Trash2,
     X,
     Download,
@@ -45,6 +47,7 @@ import { Spinner } from '@/components/ui/spinner';
 import { Textarea } from '@/components/ui/textarea';
 import { formatCurrency } from '@/lib/currency';
 import { dashboard } from '@/routes';
+import { sync as syncGoogleSheets } from '@/routes/integrations/google-sheets';
 import transactionsRoutes from '@/routes/transactions';
 import type {
     Category,
@@ -69,6 +72,8 @@ type Props = {
     categories: Pick<Category, 'id' | 'name' | 'type'>[];
     filters: TransactionFilters;
     totals: TransactionTotals[];
+    googleSheetsConnected?: boolean;
+    googleSheetsUrl?: string | null;
 };
 
 type TransactionForm = {
@@ -112,6 +117,8 @@ export default function Transactions({
     categories,
     filters,
     totals,
+    googleSheetsConnected = false,
+    googleSheetsUrl = null,
 }: Props) {
     const { t } = useLaravelReactI18n();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -126,7 +133,7 @@ export default function Transactions({
         start_date: filters.start_date ?? '',
         end_date: filters.end_date ?? '',
     });
-    const [isExporting, setIsExporting] = useState(false);
+    const [isSyncing, setIsSyncing] = useState(false);
     const { data, setData, post, put, processing, errors, reset, clearErrors } =
         useForm<TransactionForm>(initialTransactionForm());
 
@@ -241,6 +248,23 @@ export default function Transactions({
         });
     }
 
+    function handleSyncGoogleSheets() {
+        if (isSyncing) {
+            return;
+        }
+
+        setIsSyncing(true);
+
+        router.post(
+            syncGoogleSheets.url(),
+            {},
+            {
+                preserveState: true,
+                onFinish: () => setIsSyncing(false),
+            },
+        );
+    }
+
     return (
         <>
             <Head title={t('Transaksi')} />
@@ -262,22 +286,44 @@ export default function Transactions({
                     </Button> */}
 
                     <div className="flex flex-wrap items-center gap-2">
+                        {googleSheetsConnected && googleSheetsUrl && (
+                            <Button variant="outline" asChild>
+                                <a
+                                    href={googleSheetsUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <ExternalLink className="size-4" />
+                                    {t('Lihat di Google Sheets')}
+                                </a>
+                            </Button>
+                        )}
+                        {googleSheetsConnected && (
+                            <Button
+                                variant="outline"
+                                onClick={handleSyncGoogleSheets}
+                                disabled={isSyncing}
+                            >
+                                {isSyncing ? (
+                                    <>
+                                        <Spinner className="size-4" />
+                                        {t('Menyinkron...')}
+                                    </>
+                                ) : (
+                                    <>
+                                        <RefreshCw className="size-4" />
+                                        {t('Sync ke Google Sheets')}
+                                    </>
+                                )}
+                            </Button>
+                        )}
                         <Button variant="outline" asChild>
                             <a
                                 href={exportTransactions.url({
                                     query: filterData,
                                 })}
                             >
-                                {isExporting ? (
-                                    <div className="flex items-center gap-2">
-                                        <Spinner className="size-4" />
-                                        {t('Mengekspor...')}
-                                    </div>
-                                ) : (
-                                    <>
-                                        <Download /> {t('Ekspor transaksi')}
-                                    </>
-                                )}
+                                <Download /> {t('Ekspor transaksi')}
                             </a>
                         </Button>
                         <Button

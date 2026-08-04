@@ -42,6 +42,7 @@ class TransactionController extends Controller
 
         $wallets = $request->user()->wallets()->get(['id', 'title', 'currency', 'status']);
         $categories = $request->user()->categories()->get(['id', 'name', 'type']);
+        $googleSheetsConnection = $request->user()->googleSheetConnection;
 
         return Inertia::render('transactions/index', [
             'transactions' => $transactions,
@@ -49,6 +50,8 @@ class TransactionController extends Controller
             'wallets' => $wallets,
             'categories' => $categories,
             'filters' => $request->only(['wallet_id', 'category_id', 'start_date', 'end_date']),
+            'googleSheetsConnected' => (bool) $googleSheetsConnection?->access_token,
+            'googleSheetsUrl' => $googleSheetsConnection?->spreadsheet_url,
         ]);
     }
 

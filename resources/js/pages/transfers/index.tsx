@@ -169,8 +169,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                             {t('Transfer')}
                         </h1>
                         <p className="text-sm text-muted-foreground">
-                            Pindahkan saldo antar dompet Anda sendiri, termasuk
-                            antar mata uang berbeda.
+                            {t('Pindahkan saldo antar dompet Anda sendiri, termasuk antar mata uang berbeda.')}
                         </p>
                     </div>
                     <Button
@@ -184,8 +183,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                 {!canCreateTransfer && (
                     <Card className="border-dashed">
                         <CardContent className="py-5 text-sm text-muted-foreground">
-                            Buat minimal dua dompet untuk bisa melakukan
-                            transfer antar dompet.
+                            {t('Buat minimal dua dompet untuk bisa melakukan transfer antar dompet.')}
                         </CardContent>
                     </Card>
                 )}
@@ -194,8 +192,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                     <CardHeader>
                         <CardTitle>{t('Riwayat transfer')}</CardTitle>
                         <CardDescription>
-                            Saldo dompet asal dan tujuan diperbarui otomatis
-                            untuk setiap transfer.
+                            {t('Saldo dompet asal dan tujuan diperbarui otomatis untuk setiap transfer.')}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -206,8 +203,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                                     {t('Belum ada transfer')}
                                 </p>
                                 <p className="mt-1 text-sm text-muted-foreground">
-                                    Catat transfer pertama Anda untuk
-                                    memindahkan saldo antar dompet.
+                                    {t('Catat transfer pertama Anda untuk memindahkan saldo antar dompet.')}
                                 </p>
                                 {canCreateTransfer && (
                                     <Button
@@ -353,8 +349,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                                 : t('Tambah transfer')}
                         </DialogTitle>
                         <DialogDescription>
-                            Pilih dompet asal dan tujuan untuk memindahkan
-                            saldo.
+                            {t('Pilih dompet asal dan tujuan untuk memindahkan saldo.')}
                         </DialogDescription>
                     </DialogHeader>
                     <form className="grid gap-4" onSubmit={submit}>
@@ -463,7 +458,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                         {isCrossCurrency && (
                             <div className="grid gap-2">
                                 <Label htmlFor="transfer-rate">
-                                    Kurs ({fromWallet!.currency} →{' '}
+                                    {t('Kurs')} ({fromWallet!.currency} →{' '}
                                     {toWallet!.currency})
                                 </Label>
                                 <Input
@@ -482,11 +477,12 @@ export default function Transfers({ transfers, wallets }: Props) {
                                 />
                                 {convertedPreview !== null && (
                                     <p className="text-xs text-muted-foreground">
-                                        Dompet tujuan akan bertambah{' '}
-                                        {formatCurrency(
-                                            convertedPreview,
-                                            toWallet!.currency,
-                                        )}
+                                        {t('Dompet tujuan akan bertambah :amount', {
+                                            amount: formatCurrency(
+                                                convertedPreview,
+                                                toWallet!.currency,
+                                            ),
+                                        })}
                                     </p>
                                 )}
                                 <InputError message={errors.exchange_rate} />

@@ -7,25 +7,52 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use RuntimeException;
 
 class GoogleSheetsSyncService
 {
     public function sync(User $user): void
     {
-        $connection = $user->googleSheetConnection;
+        $this->logInfo('Google Sheets sync started', $user);
 
-        if (! $connection || ! $connection->hasSpreadsheet()) {
-            throw new RuntimeException('Google Sheets belum terhubung atau belum ada spreadsheet yang dipilih.');
+        try {
+            $connection = $user->googleSheetConnection;
+
+            if (! $connection || ! $connection->hasSpreadsheet()) {
+                throw new RuntimeException('Google Sheets belum terhubung atau belum ada spreadsheet yang dipilih.');
+            }
+
+            $accessToken = $this->getValidAccessToken($connection);
+
+            $this->ensureSheetsExist($connection->spreadsheet_id, $accessToken, ['Transactions', 'Wallets']);
+            $this->writeTransactions($user, $connection->spreadsheet_id, $accessToken);
+            $this->writeWallets($user, $connection->spreadsheet_id, $accessToken);
+
+            $connection->update(['last_synced_at' => now()]);
+
+            $this->logInfo('Google Sheets sync completed', $user);
+        } catch (\Throwable $e) {
+            Log::error('Google Sheets sync failed', [
+                'user_id' => $user->id,
+                'error' => $e->getMessage(),
+            ]);
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Log informational messages only in non-production environments so
+     * production logs stay clean, while errors are always logged above.
+     */
+    private function logInfo(string $message, User $user): void
+    {
+        if (app()->environment('production')) {
+            return;
         }
 
-        $accessToken = $this->getValidAccessToken($connection);
-
-        $this->ensureSheetsExist($connection->spreadsheet_id, $accessToken, ['Transactions', 'Wallets']);
-        $this->writeTransactions($user, $connection->spreadsheet_id, $accessToken);
-        $this->writeWallets($user, $connection->spreadsheet_id, $accessToken);
-
-        $connection->update(['last_synced_at' => now()]);
+        Log::info($message, ['user_id' => $user->id]);
     }
 
     private function getValidAccessToken(GoogleSheetConnection $connection): string
@@ -141,13 +168,15 @@ class GoogleSheetsSyncService
     private function overwriteRange(string $spreadsheetId, string $accessToken, string $sheetTitle, array $rows): void
     {
         Http::withToken($accessToken)
-            ->post("https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/{$sheetTitle}!A1:Z10000:clear", (object) [])
+            ->withBody('{}', 'application/json')
+            ->post("https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/{$sheetTitle}!A1:Z10000:clear")
             ->throw();
 
         $url = "https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/{$sheetTitle}!A1"
             .'?valueInputOption=USER_ENTERED';
 
         Http::withToken($accessToken)
+            ->asJson()
             ->put($url, ['values' => $rows])
             ->throw();
     }

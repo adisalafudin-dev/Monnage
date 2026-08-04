@@ -58,7 +58,7 @@ export default function ForgotPassword({ status }: { status?: string }) {
 
                 <div className="space-x-1 text-center text-sm text-muted-foreground">
                     <span>{t('Atau, kembali ke')} </span>
-                    <TextLink href={login()}>{t('masuk')}</TextLink>
+                    <TextLink href={login()}>{t('Masuk')}</TextLink>
                 </div>
             </div>
         </>
