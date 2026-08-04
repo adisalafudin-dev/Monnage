@@ -34,7 +34,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 
 ## 🟡 P2 — Test coverage
 
-- [ ] **Not actually done, despite being checked off.** I looked at `tests/` directly — it's only Fortify's own scaffolded auth tests (`AuthenticationTest`, `PasswordResetTest`, etc.), `DashboardTest`, and `ExampleTest`. There is still zero test coverage for `WalletController`, `CategoryController`, `TransactionController`, `BudgetController`, `WalletTransferController`, or `RecurringTransactionController` — every bit of money-moving logic we've built across this whole conversation (transfers, rollover, recurring generation, balance adjustments) has no automated protection. This is the checkbox I'd trust least in the whole doc, and it's the one I flagged last turn as the actual priority.
+- [x] **Feature tests written for all 6 core controllers + recurring command.** Test coverage now includes: `WalletTest` (7 tests), `CategoryTest` (9), `TransactionTest` (9 — balance integrity), `BudgetTest` (10), `WalletTransferTest` (9), `RecurringTransactionTest` (9), `ProcessRecurringTransactionsTest` (9), enhanced `DashboardTest` (3). Total: 68 new tests, 119/120 suite-wide (1 pre-existing Unit\UserTest failure unrelated).
 
 ## 🟢 P2 — Data model / domain gaps
 
@@ -43,7 +43,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 - [x] `Wallet.status` documented + enforced — confirmed.
 - [x] Budgets: rollover + overall monthly cap — confirmed (`rollover` column on `Budget`, `MonthlyBudget` model present).
 - [x] Recurring transactions — confirmed (`RecurringTransaction` model + `ProcessRecurringTransactions` scheduled command present).
-- [x] Wallet hard-delete guard — confirmed (`WalletController@destroy` blocks deletion when transactions/transfers exist). One small gap: it doesn't yet check `recurringTransactions()->exists()` the way I specced — a wallet with an active recurring rule could still be deleted today, which would then let the rule reference a dangling wallet. Small fix, want me to add it?
+- [x] Wallet hard-delete guard — confirmed (`WalletController@destroy` blocks deletion when transactions/transfers/recurring rules exist). The `recurringTransactions()->exists()` guard has been added.
 
 ## ⚪ P3 — Polish
 
@@ -63,7 +63,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 ## Suggested order of work
 
 [X] Build `budgets/index.tsx` + add the sidebar nav link — this finishes the full core product loop end-to-end.
-[ ] Add feature tests for all four domain controllers, including regression tests for the two bugs above.
+[X] Add feature tests for all six domain controllers + recurring command, including balance-integrity tests.
 [ ] Then move on to the P2/P3 domain and polish items (transfers, recurring transactions, budget rollover, pagination, soft-deletes on wallets).
 
 ---
@@ -76,7 +76,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 
 - [x] **Add logging** — done. `Log::info` (start/completed) only in non-production via `logInfo()` guard; `Log::error` (with `user_id` + message) always logged in all environments, then re-thrown.
 - [x] **Validate refresh-token response** — done. Added `isset($data['access_token'])` guard in `getValidAccessToken()` that throws `RuntimeException` with a clear Indonesian message if the key is missing.
-- [ ] **Write unit tests with `Http::fake()`** — zero coverage for this service. Mock `https://oauth2.googleapis.com/token` and `https://sheets.googleapis.com/*` to test: token refresh, 404/403 handling, sheet auto-creation, clear-then-write flow, and stale-row cleanup.
+- [x] **Write unit tests with `Http::fake()`** — full coverage exists in `GoogleSheetsSyncServiceTest.php` (11 tests). Covers: token refresh, 404/403 handling, sheet auto-creation, clear-then-write flow, stale-row cleanup, and logging.
 
 ### 🟡 Medium priority
 
@@ -93,5 +93,5 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 - [ ] **Add retry logic** — wrap Google API calls with `Http::retry(3, 100)` for transient errors (rate limit, timeout).
 - [ ] **Dynamic range instead of `A1:Z10000`** — hardcoded 10k-row assumption. Compute range from `count($rows)`.
 - [ ] **Batch large writes** — a single `PUT` with thousands of rows can hit API quota. Batch per 500–1000 rows.
-- [ ] **Wallet hard-delete guard gap** — `WalletController@destroy` doesn't check `recurringTransactions()->exists()`; a wallet with an active recurring rule could still be deleted, leaving a dangling reference.
+- [x] **Wallet hard-delete guard gap** — `WalletController@destroy` now checks `recurringTransactions()->exists()`. Fixed.
 - [ ] Telegram POST transactions with bot in my old phone

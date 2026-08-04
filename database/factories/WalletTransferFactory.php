@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Wallet;
 use App\Models\WalletTransfer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -10,15 +11,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class WalletTransferFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            //
+            'from_wallet_id' => Wallet::factory(),
+            'to_wallet_id' => Wallet::factory(),
+            'amount' => fake()->randomFloat(2, 10, 1000),
+            'exchange_rate' => 1,
+            'converted_amount' => fn (array $attrs) => $attrs['amount'],
+            'description' => fake()->sentence(),
+            'transferred_at' => now(),
         ];
     }
 }

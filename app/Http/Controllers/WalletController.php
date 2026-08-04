@@ -61,9 +61,10 @@ class WalletController extends Controller
             $wallet->transactions()->exists()
             || $wallet->transfersFrom()->exists()
             || $wallet->transfersTo()->exists()
+            || $wallet->recurringTransactions()->exists()
         ) {
             return back()->withErrors([
-                'wallet' => __('Dompet yang memiliki riwayat transaksi atau transfer tidak dapat dihapus. Arsipkan dompet ini sebagai gantinya.'),
+                'wallet' => __('Dompet yang memiliki riwayat transaksi, transfer, atau aturan transaksi berulang tidak dapat dihapus. Arsipkan dompet ini sebagai gantinya.'),
             ]);
         }
 

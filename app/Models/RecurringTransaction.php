@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -55,7 +55,7 @@ class RecurringTransaction extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function scopeDue($query, ?Carbon $asOf = null)
+    public function scopeDue($query, ?CarbonInterface $asOf = null)
     {
         return $query->where('is_active', true)
             ->where('next_due_date', '<=', ($asOf ?? now())->toDateString());
@@ -66,7 +66,7 @@ class RecurringTransaction extends Model
      * Uses addMonthsNoOverflow so a rule starting on Jan 31 clamps to Feb 28/29
      * instead of rolling over into March.
      */
-    public function computeNextDueDate(Carbon $from): Carbon
+    public function computeNextDueDate(CarbonInterface $from): CarbonInterface
     {
         return match ($this->frequency) {
             'daily' => $from->copy()->addDays($this->interval),
