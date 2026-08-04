@@ -1,30 +1,30 @@
 # Graph Report - wallet-tracker  (2026-08-04)
 
 ## Corpus Check
-- 219 files · ~51,694 words
+- 218 files · ~52,265 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1117 nodes · 2209 edges · 141 communities (85 shown, 56 thin omitted)
+- 1119 nodes · 2215 edges · 145 communities (86 shown, 59 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.71)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f2be4a7d`
+- Built from commit: `081d8600`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - User
-- security.tsx
+- two-factor-setup-modal.tsx
 - PasswordValidationRules.php
 - utils.ts
 - scripts
-- sidebar.tsx
-- auth.ts
+- cn
+- layout.tsx
 - app-header.tsx
 - index.ts
-- cn
+- toggle-group.tsx
 - transactions/index.tsx
 - PRD — Multi-language (i18n) Support for Monnage
 - dropdown-menu.tsx
@@ -33,7 +33,7 @@
 - compilerOptions
 - components.json
 - User.php
-- two-factor-setup-modal.tsx
+- budgets/index.tsx
 - devDependencies
 - inertia.php
 - Illuminate\Http\RedirectResponse
@@ -50,7 +50,7 @@
 - composer.json
 - require
 - config
-- dashboard.tsx
+- card.tsx
 - Transaction
 - Wallet
 - TestCase
@@ -68,7 +68,7 @@
 - concurrently
 - eslint-import-resolver-typescript
 - eslint-plugin-import
-- babel-plugin-react-compiler
+- recurring-transactions/index.tsx
 - UserFactory
 - @inertiajs/react
 - input-otp
@@ -83,9 +83,9 @@
 - @radix-ui/react-navigation-menu
 - @radix-ui/react-select
 - @radix-ui/react-separator
-- transfers/index.tsx
+- categories/index.tsx
 - @radix-ui/react-toggle
-- class-variance-authority
+- TransactionController
 - @radix-ui/react-tooltip
 - react
 - react-dom
@@ -108,19 +108,23 @@
 - Laravel Logo
 - Wallet Favicon Icon
 - Crawler Access Policy
+- GoogleSheetsSyncService
 - AGENTS.md
 - rules/graphify.md
 - workflows/graphify.md
 - @base-ui/react
+- useIsMobile
 - cmd.sh
 - @inertiajs/vite
 - laravel-react-i18n
 - laravel-vite-plugin
 - radix-ui
+- globals
+- typescript-eslint
 
 ## God Nodes (most connected - your core abstractions)
-1. `cn()` - 130 edges
-2. `User` - 32 edges
+1. `cn()` - 132 edges
+2. `User` - 33 edges
 3. `Button()` - 31 edges
 4. `Wallet` - 27 edges
 5. `InputError()` - 20 edges
@@ -131,15 +135,15 @@
 10. `formatCurrency()` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `NavFooter()` --calls--> `toUrl()`  [EXTRACTED]
+  resources/js/components/nav-footer.tsx → resources/js/lib/utils.ts
 - `BreadcrumbEllipsis()` --calls--> `cn()`  [EXTRACTED]
   resources/js/components/ui/breadcrumb.tsx → resources/js/lib/utils.ts
-- `CardFooter()` --calls--> `cn()`  [EXTRACTED]
-  resources/js/components/ui/card.tsx → resources/js/lib/utils.ts
-- `DialogOverlay()` --calls--> `cn()`  [EXTRACTED]
-  resources/js/components/ui/dialog.tsx → resources/js/lib/utils.ts
 - `DropdownMenuCheckboxItem()` --calls--> `cn()`  [EXTRACTED]
   resources/js/components/ui/dropdown-menu.tsx → resources/js/lib/utils.ts
 - `DropdownMenuRadioItem()` --calls--> `cn()`  [EXTRACTED]
+  resources/js/components/ui/dropdown-menu.tsx → resources/js/lib/utils.ts
+- `DropdownMenuShortcut()` --calls--> `cn()`  [EXTRACTED]
   resources/js/components/ui/dropdown-menu.tsx → resources/js/lib/utils.ts
 
 ## Import Cycles
@@ -148,51 +152,51 @@
 ## Hyperedges (group relationships)
 - **Repository Automation** — github_dependabot_dependency_update_policy, github_workflows_lint_ci_lint_workflow, github_workflows_tests_ci_test_workflow [INFERRED 0.85]
 
-## Communities (141 total, 56 thin omitted)
+## Communities (145 total, 59 thin omitted)
 
 ### Community 0 - "User"
 Cohesion: 0.13
 Nodes (4): User, WalletTransfer, WalletTransferPolicy, Illuminate\Foundation\Auth\User
 
-### Community 1 - "security.tsx"
-Cohesion: 0.12
-Nodes (15): Heading(), ManageGoogleAccount(), Props, ManagePasskeys(), Props, ManageTwoFactor(), Props, PasskeyItem() (+7 more)
+### Community 1 - "two-factor-setup-modal.tsx"
+Cohesion: 0.05
+Nodes (40): AlertError(), Heading(), LanguageTabs(), ManageGoogleAccount(), Props, ManagePasskeys(), Props, ManageTwoFactor() (+32 more)
 
 ### Community 2 - "PasswordValidationRules.php"
 Cohesion: 0.06
 Nodes (17): CreateNewUser, ResetUserPassword, emailRules(), nameRules(), profileRules(), PasswordUpdateRequest, ProfileDeleteRequest, ProfileUpdateRequest (+9 more)
 
 ### Community 3 - "utils.ts"
-Cohesion: 0.16
-Nodes (16): InputError(), Props, PasskeyVerify(), Props, PasswordInput(), Props, TextLink(), Button() (+8 more)
+Cohesion: 0.14
+Nodes (18): InputError(), Props, PasskeyVerify(), Props, PasswordInput(), Props, TextLink(), Button() (+10 more)
 
 ### Community 4 - "scripts"
 Cohesion: 0.05
 Nodes (39): scripts, ci:check, dev, lint, lint:check, post-autoload-dump, post-create-project-cmd, post-root-package-install (+31 more)
 
-### Community 5 - "sidebar.tsx"
-Cohesion: 0.11
-Nodes (23): NavUser(), Separator(), Sidebar(), SidebarContext, SidebarGroupAction(), SidebarInput(), SidebarInset(), SidebarMenuAction() (+15 more)
+### Community 5 - "cn"
+Cohesion: 0.09
+Nodes (34): NavUser(), Pagination(), PaginationLink, Props, CardFooter(), DialogOverlay(), SelectLabel(), SelectScrollDownButton() (+26 more)
 
-### Community 6 - "auth.ts"
-Cohesion: 0.22
-Nodes (9): Auth, Passkey, TwoFactorSecretKey, TwoFactorSetupData, User, InertiaConfig, @inertiajs/core, InputHTMLAttributes (+1 more)
+### Community 6 - "layout.tsx"
+Cohesion: 0.24
+Nodes (10): AppHeader(), Separator(), IsCurrentOrParentUrlFn, IsCurrentUrlFn, useCurrentUrl(), UseCurrentUrlReturn, WhenCurrentUrlFn, SettingsLayout() (+2 more)
 
 ### Community 7 - "app-header.tsx"
 Cohesion: 0.12
-Nodes (16): mainNavItems, Props, rightNavItems, AppLogo(), AppLogoIcon(), Sheet(), SheetContent(), SheetDescription() (+8 more)
+Nodes (18): mainNavItems, Props, rightNavItems, AppLogo(), AppLogoIcon(), NavigationMenu(), NavigationMenuContent(), NavigationMenuIndicator() (+10 more)
 
 ### Community 8 - "index.ts"
 Cohesion: 0.05
-Nodes (49): AppContent(), Props, AppShell(), Props, AppSidebar(), AppSidebarHeader(), AppearanceToggleTab(), Breadcrumbs() (+41 more)
+Nodes (51): AppContent(), Props, AppShell(), Props, AppSidebar(), AppSidebarHeader(), AppearanceToggleTab(), Breadcrumbs() (+43 more)
 
-### Community 9 - "cn"
-Cohesion: 0.16
-Nodes (18): Pagination(), PaginationLink, Props, NavigationMenu(), NavigationMenuContent(), NavigationMenuIndicator(), NavigationMenuItem(), NavigationMenuLink() (+10 more)
+### Community 9 - "toggle-group.tsx"
+Cohesion: 0.43
+Nodes (5): ToggleGroup(), ToggleGroupContext, ToggleGroupItem(), Toggle(), toggleVariants
 
 ### Community 10 - "transactions/index.tsx"
-Cohesion: 0.08
-Nodes (44): Props, Badge(), badgeVariants, Card(), CardContent(), CardDescription(), CardFooter(), CardHeader() (+36 more)
+Cohesion: 0.10
+Nodes (31): Select(), SelectContent(), SelectItem(), SelectTrigger(), SelectValue(), Textarea(), CURRENCIES, CURRENCY_CODES (+23 more)
 
 ### Community 11 - "PRD — Multi-language (i18n) Support for Monnage"
 Cohesion: 0.10
@@ -218,16 +222,16 @@ Nodes (19): resources/js/**/*.d.ts, resources/js/**/*.ts, resources/js/**/*.tsx,
 Cohesion: 0.11
 Nodes (17): aliases, components, hooks, lib, ui, utils, iconLibrary, rsc (+9 more)
 
-### Community 18 - "two-factor-setup-modal.tsx"
-Cohesion: 0.16
-Nodes (12): Props, TwoFactorSetupStep(), InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot, CopiedValue, CopyFn (+4 more)
+### Community 18 - "budgets/index.tsx"
+Cohesion: 0.21
+Nodes (11): Badge(), badgeVariants, BudgetForm, Budgets(), CurrencyTotals, initialBudgetForm(), initialOverallForm(), monthNames (+3 more)
 
 ### Community 19 - "devDependencies"
 Cohesion: 0.12
-Nodes (17): eslint, eslint-config-prettier, @eslint/js, eslint-plugin-react, eslint-plugin-react-hooks, @laravel/vite-plugin-wayfinder, devDependencies, eslint (+9 more)
+Nodes (17): babel-plugin-react-compiler, eslint, eslint-config-prettier, @eslint/js, eslint-plugin-react, eslint-plugin-react-hooks, @laravel/vite-plugin-wayfinder, devDependencies (+9 more)
 
 ### Community 21 - "Illuminate\Http\RedirectResponse"
-Cohesion: 0.14
+Cohesion: 0.13
 Nodes (9): GoogleAuthController, Controller, LocaleController, GoogleLinkController, GoogleSheetController, ProfileController, SecurityController, Illuminate\Http\RedirectResponse (+1 more)
 
 ### Community 22 - "optionalDependencies"
@@ -235,8 +239,8 @@ Cohesion: 0.15
 Nodes (13): lightningcss-linux-x64-gnu, lightningcss-win32-x64-msvc, optionalDependencies, lightningcss-linux-x64-gnu, lightningcss-win32-x64-msvc, @rollup/rollup-linux-x64-gnu, @rollup/rollup-win32-x64-msvc, @tailwindcss/oxide-linux-x64-gnu (+5 more)
 
 ### Community 23 - "app-sidebar.tsx"
-Cohesion: 0.13
-Nodes (22): AppHeader(), mainNavItems, NavFooter(), NavMain(), SidebarContent(), SidebarFooter(), SidebarGroup(), SidebarGroupContent() (+14 more)
+Cohesion: 0.18
+Nodes (13): NavFooter(), NavMain(), SidebarContent(), SidebarFooter(), SidebarGroup(), SidebarGroupContent(), SidebarGroupLabel(), SidebarHeader() (+5 more)
 
 ### Community 24 - "SetLocale.php"
 Cohesion: 0.33
@@ -250,17 +254,13 @@ Nodes (6): RecurringTransactionController, HandleInertiaRequests, WalletTransfer
 Cohesion: 0.18
 Nodes (11): require-dev, fakerphp/faker, larastan/larastan, laravel/pail, laravel/pao, laravel/pint, laravel/sail, mockery/mockery (+3 more)
 
-### Community 28 - "BudgetController"
-Cohesion: 0.17
-Nodes (3): BudgetController, WalletController, Currency
-
 ### Community 29 - "user-info.tsx"
 Cohesion: 0.33
 Nodes (7): Avatar(), AvatarFallback(), AvatarImage(), UserInfo(), getInitial(), GetInitialsFn, useInitials()
 
 ### Community 30 - "dependencies"
 Cohesion: 0.18
-Nodes (11): clsx, globals, dependencies, clsx, globals, @radix-ui/react-slot, @radix-ui/react-toggle-group, vite (+3 more)
+Nodes (11): class-variance-authority, clsx, dependencies, class-variance-authority, clsx, @radix-ui/react-slot, @radix-ui/react-toggle-group, vite (+3 more)
 
 ### Community 31 - "scripts"
 Cohesion: 0.22
@@ -278,17 +278,13 @@ Nodes (9): require, inertiajs/inertia-laravel, laravel/chisel, laravel/fortify, 
 Cohesion: 0.29
 Nodes (7): pestphp/pest-plugin, php-http/discovery, config, allow-plugins, optimize-autoloader, preferred-install, sort-packages
 
-### Community 35 - "dashboard.tsx"
-Cohesion: 0.07
-Nodes (30): AlertError(), Alert(), AlertDescription(), AlertTitle(), alertVariants, CURRENCIES, CURRENCY_CODES, CurrencyCode (+22 more)
-
-### Community 36 - "Transaction"
-Cohesion: 0.18
-Nodes (3): GoogleSheetConnection, Transaction, GoogleSheetsSyncService
+### Community 35 - "card.tsx"
+Cohesion: 0.22
+Nodes (12): Props, Card(), CardContent(), CardDescription(), CardHeader(), CardTitle(), CurrencyCashFlowChart(), CurrencySummary (+4 more)
 
 ### Community 37 - "Wallet"
-Cohesion: 0.14
-Nodes (6): Closure, TransactionController, WalletTransfer, WalletTransferController, Wallet, Symfony\Component\HttpFoundation\StreamedResponse
+Cohesion: 0.16
+Nodes (4): WalletController, WalletTransfer, WalletTransferController, Wallet
 
 ### Community 40 - "psr-4"
 Cohesion: 0.40
@@ -318,13 +314,21 @@ Nodes (3): autoload-dev, psr-4, Tests\\
 Cohesion: 0.67
 Nodes (3): keywords, framework, laravel
 
+### Community 72 - "recurring-transactions/index.tsx"
+Cohesion: 0.26
+Nodes (10): Switch(), CreateForm, dateFormatter, describeSchedule(), EditForm, getFrequencyLabel(), initialCreateForm(), Props (+2 more)
+
 ### Community 73 - "UserFactory"
 Cohesion: 0.29
 Nodes (4): UserFactory, WalletTransferFactory, Illuminate\Database\Eloquent\Factories\Factory, static
 
-### Community 87 - "transfers/index.tsx"
-Cohesion: 0.17
-Nodes (18): DeleteUser(), Props, Dialog(), DialogClose(), DialogContent(), DialogDescription(), DialogFooter(), DialogHeader() (+10 more)
+### Community 87 - "categories/index.tsx"
+Cohesion: 0.21
+Nodes (14): DeleteUser(), Props, Dialog(), DialogClose(), DialogContent(), DialogDescription(), DialogFooter(), DialogHeader() (+6 more)
+
+### Community 89 - "TransactionController"
+Cohesion: 0.33
+Nodes (3): Closure, TransactionController, Symfony\Component\HttpFoundation\StreamedResponse
 
 ### Community 101 - "DatabaseSeeder.php"
 Cohesion: 0.39
@@ -334,25 +338,29 @@ Nodes (4): DatabaseSeeder, WalletTransferSeeder, Illuminate\Database\Console\See
 Cohesion: 0.29
 Nodes (6): Features, Google login (optional), Monnage, Prerequisites, Setup, Tech stack
 
+### Community 137 - "useIsMobile"
+Cohesion: 0.53
+Nodes (5): SidebarProvider(), getServerSnapshot(), isSmallerThanBreakpoint(), mediaQueryListener(), useIsMobile()
+
 ## Knowledge Gaps
-- **274 isolated node(s):** `cmd.sh script`, `$schema`, `style`, `rsc`, `tsx` (+269 more)
+- **273 isolated node(s):** `cmd.sh script`, `$schema`, `style`, `rsc`, `tsx` (+268 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **56 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **59 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `cn` to `security.tsx`, `dashboard.tsx`, `utils.ts`, `sidebar.tsx`, `app-header.tsx`, `index.ts`, `transactions/index.tsx`, `dropdown-menu.tsx`, `two-factor-setup-modal.tsx`, `transfers/index.tsx`, `app-sidebar.tsx`, `user-info.tsx`?**
-  _High betweenness centrality (0.057) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `@base-ui/react`, `@inertiajs/vite`, `laravel-react-i18n`, `laravel-vite-plugin`, `radix-ui`, `package.json`, `concurrently`, `@inertiajs/react`, `input-otp`, `@laravel/passkeys`, `lucide-react`, `@radix-ui/react-avatar`, `@radix-ui/react-checkbox`, `@radix-ui/react-collapsible`, `@radix-ui/react-dialog`, `@radix-ui/react-dropdown-menu`, `@radix-ui/react-label`, `@radix-ui/react-navigation-menu`, `@radix-ui/react-select`, `@radix-ui/react-separator`, `@radix-ui/react-toggle`, `class-variance-authority`, `@radix-ui/react-tooltip`, `react`, `react-dom`, `sonner`, `tailwind-merge`, `tailwindcss`, `@tailwindcss/vite`, `tw-animate-css`, `@types/react`, `@types/react-dom`, `typescript`, `@vitejs/plugin-react`?**
+- **Why does `cn()` connect `cn` to `two-factor-setup-modal.tsx`, `utils.ts`, `card.tsx`, `layout.tsx`, `app-header.tsx`, `index.ts`, `useIsMobile`, `transactions/index.tsx`, `recurring-transactions/index.tsx`, `dropdown-menu.tsx`, `toggle-group.tsx`, `budgets/index.tsx`, `app-sidebar.tsx`, `categories/index.tsx`, `user-info.tsx`?**
+  _High betweenness centrality (0.053) - this node is a cross-community bridge._
+- **Why does `dependencies` connect `dependencies` to `@base-ui/react`, `@inertiajs/vite`, `laravel-react-i18n`, `laravel-vite-plugin`, `radix-ui`, `globals`, `package.json`, `concurrently`, `@inertiajs/react`, `input-otp`, `@laravel/passkeys`, `lucide-react`, `@radix-ui/react-avatar`, `@radix-ui/react-checkbox`, `@radix-ui/react-collapsible`, `@radix-ui/react-dialog`, `@radix-ui/react-dropdown-menu`, `@radix-ui/react-label`, `@radix-ui/react-navigation-menu`, `@radix-ui/react-select`, `@radix-ui/react-separator`, `@radix-ui/react-toggle`, `@radix-ui/react-tooltip`, `react`, `react-dom`, `sonner`, `tailwind-merge`, `tailwindcss`, `@tailwindcss/vite`, `tw-animate-css`, `@types/react`, `@types/react-dom`, `typescript`, `@vitejs/plugin-react`?**
   _High betweenness centrality (0.018) - this node is a cross-community bridge._
-- **Why does `Wallet` connect `Wallet` to `Illuminate\Database\Eloquent\Factories\HasFactory`, `RecurringTransaction`, `inertia.php`, `Illuminate\Http\Request`, `BudgetController`?**
+- **Why does `User` connect `User` to `GoogleSheetsSyncService`, `PasswordValidationRules.php`, `Transaction`, `DatabaseSeeder.php`, `Illuminate\Database\Eloquent\Factories\HasFactory`, `User.php`, `Illuminate\Http\RedirectResponse`?**
   _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `User` (e.g. with `.callback()` and `.callback()`) actually correct?**
   _`User` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `cmd.sh script`, `$schema`, `style` to the rest of the system?**
-  _274 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _273 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `User` be split into smaller, more focused modules?**
   _Cohesion score 0.13438735177865613 - nodes in this community are weakly interconnected._
-- **Should `security.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.11904761904761904 - nodes in this community are weakly interconnected._
+- **Should `two-factor-setup-modal.tsx` be split into smaller, more focused modules?**
+  _Cohesion score 0.051203277009728626 - nodes in this community are weakly interconnected._

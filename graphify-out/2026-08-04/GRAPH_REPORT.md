@@ -5,8 +5,8 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1117 nodes · 2228 edges · 141 communities (83 shown, 58 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 35 edges (avg confidence: 0.76)
+- 1117 nodes · 2209 edges · 141 communities (85 shown, 56 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.71)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
@@ -35,15 +35,15 @@
 - User.php
 - two-factor-setup-modal.tsx
 - devDependencies
-- BudgetController
-- .redirect
+- inertia.php
+- Illuminate\Http\RedirectResponse
 - optionalDependencies
 - app-sidebar.tsx
 - SetLocale.php
 - Category
 - Illuminate\Http\Request
 - require-dev
-- Currency
+- BudgetController
 - user-info.tsx
 - dependencies
 - scripts
@@ -51,7 +51,7 @@
 - require
 - config
 - dashboard.tsx
-- GoogleSheetsSyncService
+- Transaction
 - Wallet
 - TestCase
 - welcome.tsx
@@ -68,6 +68,7 @@
 - concurrently
 - eslint-import-resolver-typescript
 - eslint-plugin-import
+- babel-plugin-react-compiler
 - UserFactory
 - @inertiajs/react
 - input-otp
@@ -84,6 +85,7 @@
 - @radix-ui/react-separator
 - transfers/index.tsx
 - @radix-ui/react-toggle
+- class-variance-authority
 - @radix-ui/react-tooltip
 - react
 - react-dom
@@ -110,13 +112,11 @@
 - rules/graphify.md
 - workflows/graphify.md
 - @base-ui/react
-- globals
 - cmd.sh
 - @inertiajs/vite
 - laravel-react-i18n
 - laravel-vite-plugin
 - radix-ui
-- typescript-eslint
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 130 edges
@@ -148,7 +148,7 @@
 ## Hyperedges (group relationships)
 - **Repository Automation** — github_dependabot_dependency_update_policy, github_workflows_lint_ci_lint_workflow, github_workflows_tests_ci_test_workflow [INFERRED 0.85]
 
-## Communities (141 total, 58 thin omitted)
+## Communities (141 total, 56 thin omitted)
 
 ### Community 0 - "User"
 Cohesion: 0.13
@@ -203,12 +203,12 @@ Cohesion: 0.13
 Nodes (16): DropdownMenu(), DropdownMenuCheckboxItem(), DropdownMenuContent(), DropdownMenuGroup(), DropdownMenuItem(), DropdownMenuLabel(), DropdownMenuRadioItem(), DropdownMenuSeparator() (+8 more)
 
 ### Community 13 - "Illuminate\Database\Eloquent\Factories\HasFactory"
-Cohesion: 0.13
-Nodes (6): GoogleSheetConnection, MonthlyBudget, Passkey, Transaction, Illuminate\Database\Eloquent\Factories\HasFactory, Illuminate\Database\Eloquent\Model
+Cohesion: 0.14
+Nodes (5): Budget, MonthlyBudget, Passkey, Illuminate\Database\Eloquent\Factories\HasFactory, Illuminate\Database\Eloquent\Model
 
 ### Community 14 - "RecurringTransaction"
-Cohesion: 0.16
-Nodes (5): ProcessRecurringTransactions, RecurringTransactionController, RecurringTransaction, Carbon\Carbon, Illuminate\Console\Command
+Cohesion: 0.21
+Nodes (4): ProcessRecurringTransactions, RecurringTransaction, Carbon\Carbon, Illuminate\Console\Command
 
 ### Community 15 - "compilerOptions"
 Cohesion: 0.10
@@ -224,11 +224,11 @@ Nodes (12): Props, TwoFactorSetupStep(), InputOTP, InputOTPGroup, InputOTPSepara
 
 ### Community 19 - "devDependencies"
 Cohesion: 0.12
-Nodes (17): babel-plugin-react-compiler, eslint, eslint-config-prettier, @eslint/js, eslint-plugin-react, eslint-plugin-react-hooks, @laravel/vite-plugin-wayfinder, devDependencies (+9 more)
+Nodes (17): eslint, eslint-config-prettier, @eslint/js, eslint-plugin-react, eslint-plugin-react-hooks, @laravel/vite-plugin-wayfinder, devDependencies, eslint (+9 more)
 
-### Community 21 - ".redirect"
-Cohesion: 0.15
-Nodes (8): GoogleAuthController, Controller, GoogleSheetController, GoogleLinkController, ProfileController, SecurityController, Illuminate\Http\RedirectResponse, Inertia\Response
+### Community 21 - "Illuminate\Http\RedirectResponse"
+Cohesion: 0.14
+Nodes (9): GoogleAuthController, Controller, LocaleController, GoogleLinkController, GoogleSheetController, ProfileController, SecurityController, Illuminate\Http\RedirectResponse (+1 more)
 
 ### Community 22 - "optionalDependencies"
 Cohesion: 0.15
@@ -239,16 +239,20 @@ Cohesion: 0.13
 Nodes (22): AppHeader(), mainNavItems, NavFooter(), NavMain(), SidebarContent(), SidebarFooter(), SidebarGroup(), SidebarGroupContent() (+14 more)
 
 ### Community 24 - "SetLocale.php"
-Cohesion: 0.23
-Nodes (6): LocaleController, HandleAppearance, SetLocale, Closure, Illuminate\Foundation\Configuration\Middleware, Symfony\Component\HttpFoundation\Response
+Cohesion: 0.33
+Nodes (5): HandleAppearance, SetLocale, Closure, Illuminate\Foundation\Configuration\Middleware, Symfony\Component\HttpFoundation\Response
 
 ### Community 26 - "Illuminate\Http\Request"
-Cohesion: 0.19
-Nodes (8): Closure, TransactionController, HandleInertiaRequests, WalletTransfer, Illuminate\Http\Request, Illuminate\Http\Resources\Json\JsonResource, Inertia\Middleware, Symfony\Component\HttpFoundation\StreamedResponse
+Cohesion: 0.21
+Nodes (6): RecurringTransactionController, HandleInertiaRequests, WalletTransfer, Illuminate\Http\Request, Illuminate\Http\Resources\Json\JsonResource, Inertia\Middleware
 
 ### Community 27 - "require-dev"
 Cohesion: 0.18
 Nodes (11): require-dev, fakerphp/faker, larastan/larastan, laravel/pail, laravel/pao, laravel/pint, laravel/sail, mockery/mockery (+3 more)
+
+### Community 28 - "BudgetController"
+Cohesion: 0.17
+Nodes (3): BudgetController, WalletController, Currency
 
 ### Community 29 - "user-info.tsx"
 Cohesion: 0.33
@@ -256,7 +260,7 @@ Nodes (7): Avatar(), AvatarFallback(), AvatarImage(), UserInfo(), getInitial(), 
 
 ### Community 30 - "dependencies"
 Cohesion: 0.18
-Nodes (11): class-variance-authority, clsx, dependencies, class-variance-authority, clsx, @radix-ui/react-slot, @radix-ui/react-toggle-group, vite (+3 more)
+Nodes (11): clsx, globals, dependencies, clsx, globals, @radix-ui/react-slot, @radix-ui/react-toggle-group, vite (+3 more)
 
 ### Community 31 - "scripts"
 Cohesion: 0.22
@@ -278,9 +282,13 @@ Nodes (7): pestphp/pest-plugin, php-http/discovery, config, allow-plugins, optim
 Cohesion: 0.07
 Nodes (30): AlertError(), Alert(), AlertDescription(), AlertTitle(), alertVariants, CURRENCIES, CURRENCY_CODES, CurrencyCode (+22 more)
 
+### Community 36 - "Transaction"
+Cohesion: 0.18
+Nodes (3): GoogleSheetConnection, Transaction, GoogleSheetsSyncService
+
 ### Community 37 - "Wallet"
 Cohesion: 0.14
-Nodes (4): DashboardController, WalletTransfer, WalletTransferController, Wallet
+Nodes (6): Closure, TransactionController, WalletTransfer, WalletTransferController, Wallet, Symfony\Component\HttpFoundation\StreamedResponse
 
 ### Community 40 - "psr-4"
 Cohesion: 0.40
@@ -329,22 +337,22 @@ Nodes (6): Features, Google login (optional), Monnage, Prerequisites, Setup, Tec
 ## Knowledge Gaps
 - **274 isolated node(s):** `cmd.sh script`, `$schema`, `style`, `rsc`, `tsx` (+269 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **58 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **56 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `cn()` connect `cn` to `security.tsx`, `dashboard.tsx`, `utils.ts`, `sidebar.tsx`, `app-header.tsx`, `index.ts`, `transactions/index.tsx`, `dropdown-menu.tsx`, `two-factor-setup-modal.tsx`, `transfers/index.tsx`, `app-sidebar.tsx`, `user-info.tsx`?**
   _High betweenness centrality (0.057) - this node is a cross-community bridge._
-- **Why does `dependencies` connect `dependencies` to `@base-ui/react`, `globals`, `@inertiajs/vite`, `laravel-react-i18n`, `laravel-vite-plugin`, `radix-ui`, `package.json`, `concurrently`, `@inertiajs/react`, `input-otp`, `@laravel/passkeys`, `lucide-react`, `@radix-ui/react-avatar`, `@radix-ui/react-checkbox`, `@radix-ui/react-collapsible`, `@radix-ui/react-dialog`, `@radix-ui/react-dropdown-menu`, `@radix-ui/react-label`, `@radix-ui/react-navigation-menu`, `@radix-ui/react-select`, `@radix-ui/react-separator`, `@radix-ui/react-toggle`, `@radix-ui/react-tooltip`, `react`, `react-dom`, `sonner`, `tailwind-merge`, `tailwindcss`, `@tailwindcss/vite`, `tw-animate-css`, `@types/react`, `@types/react-dom`, `typescript`, `@vitejs/plugin-react`?**
+- **Why does `dependencies` connect `dependencies` to `@base-ui/react`, `@inertiajs/vite`, `laravel-react-i18n`, `laravel-vite-plugin`, `radix-ui`, `package.json`, `concurrently`, `@inertiajs/react`, `input-otp`, `@laravel/passkeys`, `lucide-react`, `@radix-ui/react-avatar`, `@radix-ui/react-checkbox`, `@radix-ui/react-collapsible`, `@radix-ui/react-dialog`, `@radix-ui/react-dropdown-menu`, `@radix-ui/react-label`, `@radix-ui/react-navigation-menu`, `@radix-ui/react-select`, `@radix-ui/react-separator`, `@radix-ui/react-toggle`, `class-variance-authority`, `@radix-ui/react-tooltip`, `react`, `react-dom`, `sonner`, `tailwind-merge`, `tailwindcss`, `@tailwindcss/vite`, `tw-animate-css`, `@types/react`, `@types/react-dom`, `typescript`, `@vitejs/plugin-react`?**
   _High betweenness centrality (0.018) - this node is a cross-community bridge._
-- **Why does `Wallet` connect `Wallet` to `Illuminate\Http\Request`, `Currency`, `Illuminate\Database\Eloquent\Factories\HasFactory`, `RecurringTransaction`?**
+- **Why does `Wallet` connect `Wallet` to `Illuminate\Database\Eloquent\Factories\HasFactory`, `RecurringTransaction`, `inertia.php`, `Illuminate\Http\Request`, `BudgetController`?**
   _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `User` (e.g. with `.callback()` and `.callback()`) actually correct?**
   _`User` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `cmd.sh script`, `$schema`, `style` to the rest of the system?**
   _274 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `User` be split into smaller, more focused modules?**
-  _Cohesion score 0.12681159420289856 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.13438735177865613 - nodes in this community are weakly interconnected._
 - **Should `security.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.11904761904761904 - nodes in this community are weakly interconnected._

@@ -78,6 +78,10 @@ class GoogleSheetsSyncService
 
         $data = $response->json();
 
+        if (! isset($data['access_token'])) {
+            throw new RuntimeException('Respons token Google tidak valid. Hubungkan ulang Google Sheets dari Pengaturan.');
+        }
+
         $connection->update([
             'access_token' => $data['access_token'],
             'token_expires_at' => now()->addSeconds($data['expires_in'] ?? 3600),

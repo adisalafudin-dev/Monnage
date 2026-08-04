@@ -661,7 +661,7 @@
       "label": ".callback()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L20",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller_callback",
       "community": 21,
@@ -672,7 +672,7 @@
       "label": ".destroy()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L64",
+      "source_location": "L68",
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller_destroy",
       "community": 21,
@@ -727,7 +727,7 @@
       "label": ".callback()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L44",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_callback",
       "community": 21,
@@ -738,7 +738,7 @@
       "label": ".update()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L68",
+      "source_location": "L73",
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_update",
       "community": 21,
@@ -749,7 +749,7 @@
       "label": ".destroy()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L90",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_destroy",
       "community": 21,
@@ -760,7 +760,7 @@
       "label": ".sync()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L109",
+      "source_location": "L114",
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_sync",
       "community": 21,
@@ -807,8 +807,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_http_controllers_settings_profilecontroller_profilecontroller_update",
-      "community": 2,
-      "community_name": "PasswordValidationRules.php",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".update()"
     },
     {
@@ -862,8 +862,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "app_http_controllers_settings_securitycontroller_securitycontroller_update",
-      "community": 2,
-      "community_name": "PasswordValidationRules.php",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".update()"
     },
     {
@@ -884,8 +884,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": "transactioncontroller"
     },
     {
@@ -895,63 +895,63 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_index",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": ".index()"
     },
     {
       "label": ".store()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L55",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_store",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": ".store()"
     },
     {
       "label": ".update()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L86",
+      "source_location": "L89",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_update",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": ".update()"
     },
     {
       "label": ".destroy()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L137",
+      "source_location": "L140",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_destroy",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": ".destroy()"
     },
     {
       "label": ".export()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L158",
+      "source_location": "L161",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_export",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": ".export()"
     },
     {
       "label": ".filteredTransactionsQuery()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L205",
+      "source_location": "L208",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_filteredtransactionsquery",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": ".filteredtransactionsquery()"
     },
     {
@@ -961,30 +961,30 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_php_closure",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": "closure"
     },
     {
       "label": ".adjustBalance()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L217",
+      "source_location": "L220",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_adjustbalance",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": ".adjustbalance()"
     },
     {
       "label": ".authorizeWallet()",
       "file_type": "code",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L223",
+      "source_location": "L226",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_authorizewallet",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": ".authorizewallet()"
     },
     {
@@ -1005,8 +1005,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller",
-      "community": 28,
-      "community_name": "BudgetController",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": "walletcontroller"
     },
     {
@@ -1016,8 +1016,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller_index",
-      "community": 28,
-      "community_name": "BudgetController",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".index()"
     },
     {
@@ -1038,8 +1038,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller_update",
-      "community": 28,
-      "community_name": "BudgetController",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".update()"
     },
     {
@@ -1049,8 +1049,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller_destroy",
-      "community": 28,
-      "community_name": "BudgetController",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".destroy()"
     },
     {
@@ -1060,8 +1060,8 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller_authorizewallet",
-      "community": 28,
-      "community_name": "BudgetController",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".authorizewallet()"
     },
     {
@@ -2377,77 +2377,88 @@
       "label": "GoogleSheetsSyncService",
       "file_type": "code",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L12",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice",
-      "community": 36,
-      "community_name": "Transaction",
+      "community": 128,
+      "community_name": "GoogleSheetsSyncService",
       "norm_label": "googlesheetssyncservice"
     },
     {
       "label": ".sync()",
       "file_type": "code",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L14",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_sync",
-      "community": 36,
-      "community_name": "Transaction",
+      "community": 128,
+      "community_name": "GoogleSheetsSyncService",
       "norm_label": ".sync()"
+    },
+    {
+      "label": ".logInfo()",
+      "file_type": "code",
+      "source_file": "app/Services/GoogleSheetsSyncService.php",
+      "source_location": "L49",
+      "_origin": "ast",
+      "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_loginfo",
+      "community": 128,
+      "community_name": "GoogleSheetsSyncService",
+      "norm_label": ".loginfo()"
     },
     {
       "label": ".getValidAccessToken()",
       "file_type": "code",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L31",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_getvalidaccesstoken",
-      "community": 36,
-      "community_name": "Transaction",
+      "community": 128,
+      "community_name": "GoogleSheetsSyncService",
       "norm_label": ".getvalidaccesstoken()"
     },
     {
       "label": ".ensureSheetsExist()",
       "file_type": "code",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L62",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_ensuresheetsexist",
-      "community": 36,
-      "community_name": "Transaction",
+      "community": 128,
+      "community_name": "GoogleSheetsSyncService",
       "norm_label": ".ensuresheetsexist()"
     },
     {
       "label": ".writeTransactions()",
       "file_type": "code",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L96",
+      "source_location": "L127",
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_writetransactions",
-      "community": 36,
-      "community_name": "Transaction",
+      "community": 128,
+      "community_name": "GoogleSheetsSyncService",
       "norm_label": ".writetransactions()"
     },
     {
       "label": ".writeWallets()",
       "file_type": "code",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L120",
+      "source_location": "L151",
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_writewallets",
-      "community": 36,
-      "community_name": "Transaction",
+      "community": 128,
+      "community_name": "GoogleSheetsSyncService",
       "norm_label": ".writewallets()"
     },
     {
       "label": ".overwriteRange()",
       "file_type": "code",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L141",
+      "source_location": "L172",
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_overwriterange",
-      "community": 36,
-      "community_name": "Transaction",
+      "community": 128,
+      "community_name": "GoogleSheetsSyncService",
       "norm_label": ".overwriterange()"
     },
     {
@@ -5017,8 +5028,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "package_devdependencies_babel_plugin_react_compiler",
-      "community": 72,
-      "community_name": "babel-plugin-react-compiler",
+      "community": 19,
+      "community_name": "devDependencies",
       "norm_label": "babel-plugin-react-compiler"
     },
     {
@@ -5028,8 +5039,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "babel_plugin_react_compiler",
-      "community": 72,
-      "community_name": "babel-plugin-react-compiler",
+      "community": 19,
+      "community_name": "devDependencies",
       "norm_label": "babel-plugin-react-compiler"
     },
     {
@@ -5215,8 +5226,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "package_devdependencies_typescript_eslint",
-      "community": 19,
-      "community_name": "devDependencies",
+      "community": 144,
+      "community_name": "typescript-eslint",
       "norm_label": "typescript-eslint"
     },
     {
@@ -5226,8 +5237,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "typescript_eslint",
-      "community": 19,
-      "community_name": "devDependencies",
+      "community": 144,
+      "community_name": "typescript-eslint",
       "norm_label": "typescript-eslint"
     },
     {
@@ -5710,8 +5721,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "package_dependencies_class_variance_authority",
-      "community": 89,
-      "community_name": "class-variance-authority",
+      "community": 30,
+      "community_name": "dependencies",
       "norm_label": "class-variance-authority"
     },
     {
@@ -5721,8 +5732,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "class_variance_authority",
-      "community": 89,
-      "community_name": "class-variance-authority",
+      "community": 30,
+      "community_name": "dependencies",
       "norm_label": "class-variance-authority"
     },
     {
@@ -5776,8 +5787,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "package_dependencies_globals",
-      "community": 30,
-      "community_name": "dependencies",
+      "community": 143,
+      "community_name": "globals",
       "norm_label": "globals"
     },
     {
@@ -5787,8 +5798,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "globals",
-      "community": 30,
-      "community_name": "dependencies",
+      "community": 143,
+      "community_name": "globals",
       "norm_label": "globals"
     },
     {
@@ -6293,8 +6304,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_alert_error",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "alert-error.tsx"
     },
     {
@@ -6304,8 +6315,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "resources_js_components_alert_error_alerterror",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "alerterror()"
     },
     {
@@ -6392,8 +6403,8 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "resources_js_components_app_header_appheader",
-      "community": 23,
-      "community_name": "app-sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "appheader()"
     },
     {
@@ -6507,21 +6518,10 @@
       "norm_label": "app-sidebar.tsx"
     },
     {
-      "label": "mainNavItems",
-      "file_type": "code",
-      "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L33",
-      "_origin": "ast",
-      "id": "resources_js_components_app_sidebar_mainnavitems",
-      "community": 23,
-      "community_name": "app-sidebar.tsx",
-      "norm_label": "mainnavitems"
-    },
-    {
       "label": "AppSidebar()",
       "file_type": "code",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L73",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "resources_js_components_app_sidebar_appsidebar",
       "community": 8,
@@ -6580,7 +6580,7 @@
       "_origin": "ast",
       "id": "resources_js_components_delete_user",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "delete-user.tsx"
     },
     {
@@ -6591,7 +6591,7 @@
       "_origin": "ast",
       "id": "resources_js_components_delete_user_deleteuser",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "deleteuser()"
     },
     {
@@ -6602,7 +6602,7 @@
       "_origin": "ast",
       "id": "resources_js_components_heading",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "heading.tsx"
     },
     {
@@ -6613,7 +6613,7 @@
       "_origin": "ast",
       "id": "resources_js_components_heading_heading",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "heading()"
     },
     {
@@ -6639,6 +6639,28 @@
       "norm_label": "inputerror()"
     },
     {
+      "label": "language-tabs.tsx",
+      "file_type": "code",
+      "source_file": "resources/js/components/language-tabs.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "resources_js_components_language_tabs",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
+      "norm_label": "language-tabs.tsx"
+    },
+    {
+      "label": "LanguageTabs()",
+      "file_type": "code",
+      "source_file": "resources/js/components/language-tabs.tsx",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "resources_js_components_language_tabs_languagetabs",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
+      "norm_label": "languagetabs()"
+    },
+    {
       "label": "manage-google-account.tsx",
       "file_type": "code",
       "source_file": "resources/js/components/manage-google-account.tsx",
@@ -6646,7 +6668,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_google_account",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "manage-google-account.tsx"
     },
     {
@@ -6657,7 +6679,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_google_account_googlelogo",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "googlelogo()"
     },
     {
@@ -6668,7 +6690,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_google_account_props",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "props"
     },
     {
@@ -6679,7 +6701,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_google_account_managegoogleaccount",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "managegoogleaccount()"
     },
     {
@@ -6690,7 +6712,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_passkeys",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "manage-passkeys.tsx"
     },
     {
@@ -6701,7 +6723,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_passkeys_props",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "props"
     },
     {
@@ -6712,7 +6734,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_passkeys_emptystate",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "emptystate()"
     },
     {
@@ -6723,7 +6745,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_passkeys_managepasskeys",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "managepasskeys()"
     },
     {
@@ -6734,7 +6756,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_two_factor",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "manage-two-factor.tsx"
     },
     {
@@ -6745,7 +6767,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_two_factor_props",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "props"
     },
     {
@@ -6756,7 +6778,7 @@
       "_origin": "ast",
       "id": "resources_js_components_manage_two_factor_managetwofactor",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "managetwofactor()"
     },
     {
@@ -6822,7 +6844,7 @@
       "_origin": "ast",
       "id": "resources_js_components_nav_user_navuser",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "navuser()"
     },
     {
@@ -6832,7 +6854,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_pagination",
-      "community": 9,
+      "community": 5,
       "community_name": "cn",
       "norm_label": "pagination.tsx"
     },
@@ -6843,7 +6865,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "resources_js_components_pagination_paginationlink",
-      "community": 9,
+      "community": 5,
       "community_name": "cn",
       "norm_label": "paginationlink"
     },
@@ -6854,7 +6876,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "resources_js_components_pagination_props",
-      "community": 9,
+      "community": 5,
       "community_name": "cn",
       "norm_label": "props"
     },
@@ -6865,7 +6887,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "resources_js_components_pagination_pagination",
-      "community": 9,
+      "community": 5,
       "community_name": "cn",
       "norm_label": "pagination()"
     },
@@ -6877,7 +6899,7 @@
       "_origin": "ast",
       "id": "resources_js_components_passkey_item",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "passkey-item.tsx"
     },
     {
@@ -6888,7 +6910,7 @@
       "_origin": "ast",
       "id": "resources_js_components_passkey_item_props",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "props"
     },
     {
@@ -6899,7 +6921,7 @@
       "_origin": "ast",
       "id": "resources_js_components_passkey_item_passkeyitem",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "passkeyitem()"
     },
     {
@@ -6932,7 +6954,7 @@
       "_origin": "ast",
       "id": "resources_js_components_passkey_register_passkeyregistration",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "passkeyregistration()"
     },
     {
@@ -7030,8 +7052,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_two_factor_recovery_codes",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 35,
+      "community_name": "card.tsx",
       "norm_label": "two-factor-recovery-codes.tsx"
     },
     {
@@ -7041,8 +7063,8 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "resources_js_components_two_factor_recovery_codes_props",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 35,
+      "community_name": "card.tsx",
       "norm_label": "props"
     },
     {
@@ -7053,7 +7075,7 @@
       "_origin": "ast",
       "id": "resources_js_components_two_factor_recovery_codes_twofactorrecoverycodes",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "twofactorrecoverycodes()"
     },
     {
@@ -7063,7 +7085,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_two_factor_setup_modal",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "two-factor-setup-modal.tsx"
     },
@@ -7074,7 +7096,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "resources_js_components_two_factor_setup_modal_gridscanicon",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "gridscanicon()"
     },
@@ -7085,7 +7107,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "resources_js_components_two_factor_setup_modal_twofactorsetupstep",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "twofactorsetupstep()"
     },
@@ -7096,7 +7118,7 @@
       "source_location": "L141",
       "_origin": "ast",
       "id": "resources_js_components_two_factor_setup_modal_twofactorverificationstep",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "twofactorverificationstep()"
     },
@@ -7107,7 +7129,7 @@
       "source_location": "L232",
       "_origin": "ast",
       "id": "resources_js_components_two_factor_setup_modal_props",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "props"
     },
@@ -7119,7 +7141,7 @@
       "_origin": "ast",
       "id": "resources_js_components_two_factor_setup_modal_twofactorsetupmodal",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "twofactorsetupmodal()"
     },
     {
@@ -7129,8 +7151,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_ui_alert",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "alert.tsx"
     },
     {
@@ -7140,8 +7162,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "resources_js_components_ui_alert_alertvariants",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "alertvariants"
     },
     {
@@ -7151,8 +7173,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "resources_js_components_ui_alert_alert",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "alert()"
     },
     {
@@ -7162,8 +7184,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "resources_js_components_ui_alert_alerttitle",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "alerttitle()"
     },
     {
@@ -7173,8 +7195,8 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "resources_js_components_ui_alert_alertdescription",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "alertdescription()"
     },
     {
@@ -7228,8 +7250,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_ui_badge",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "badge.tsx"
     },
     {
@@ -7239,8 +7261,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "resources_js_components_ui_badge_badgevariants",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "badgevariants"
     },
     {
@@ -7250,8 +7272,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "resources_js_components_ui_badge_badge",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "badge()"
     },
     {
@@ -7382,8 +7404,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_ui_card",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 35,
+      "community_name": "card.tsx",
       "norm_label": "card.tsx"
     },
     {
@@ -7393,8 +7415,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "resources_js_components_ui_card_card",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 35,
+      "community_name": "card.tsx",
       "norm_label": "card()"
     },
     {
@@ -7404,8 +7426,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "resources_js_components_ui_card_cardheader",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 35,
+      "community_name": "card.tsx",
       "norm_label": "cardheader()"
     },
     {
@@ -7415,8 +7437,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "resources_js_components_ui_card_cardtitle",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 35,
+      "community_name": "card.tsx",
       "norm_label": "cardtitle()"
     },
     {
@@ -7426,8 +7448,8 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "resources_js_components_ui_card_carddescription",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 35,
+      "community_name": "card.tsx",
       "norm_label": "carddescription()"
     },
     {
@@ -7437,8 +7459,8 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "resources_js_components_ui_card_cardcontent",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 35,
+      "community_name": "card.tsx",
       "norm_label": "cardcontent()"
     },
     {
@@ -7448,8 +7470,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "resources_js_components_ui_card_cardfooter",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "cardfooter()"
     },
     {
@@ -7459,8 +7481,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_ui_checkbox",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 3,
+      "community_name": "utils.ts",
       "norm_label": "checkbox.tsx"
     },
     {
@@ -7470,8 +7492,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "resources_js_components_ui_checkbox_checkbox",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 3,
+      "community_name": "utils.ts",
       "norm_label": "checkbox()"
     },
     {
@@ -7526,7 +7548,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "dialog.tsx"
     },
     {
@@ -7537,7 +7559,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog_dialog",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "dialog()"
     },
     {
@@ -7548,7 +7570,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog_dialogtrigger",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "dialogtrigger()"
     },
     {
@@ -7559,7 +7581,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog_dialogportal",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "dialogportal()"
     },
     {
@@ -7570,7 +7592,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog_dialogclose",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "dialogclose()"
     },
     {
@@ -7580,8 +7602,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog_dialogoverlay",
-      "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "dialogoverlay()"
     },
     {
@@ -7592,7 +7614,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog_dialogcontent",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "dialogcontent()"
     },
     {
@@ -7603,7 +7625,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog_dialogheader",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "dialogheader()"
     },
     {
@@ -7614,7 +7636,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog_dialogfooter",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "dialogfooter()"
     },
     {
@@ -7625,7 +7647,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog_dialogtitle",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "dialogtitle()"
     },
     {
@@ -7636,7 +7658,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_dialog_dialogdescription",
       "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community_name": "categories/index.tsx",
       "norm_label": "dialogdescription()"
     },
     {
@@ -7855,7 +7877,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_ui_input_otp",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "input-otp.tsx"
     },
@@ -7866,7 +7888,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "resources_js_components_ui_input_otp_inputotp",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "inputotp"
     },
@@ -7877,7 +7899,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "resources_js_components_ui_input_otp_inputotpgroup",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "inputotpgroup"
     },
@@ -7888,7 +7910,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "resources_js_components_ui_input_otp_inputotpslot",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "inputotpslot"
     },
@@ -7899,7 +7921,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "resources_js_components_ui_input_otp_inputotpseparator",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "inputotpseparator"
     },
@@ -7954,8 +7976,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_ui_navigation_menu",
-      "community": 9,
-      "community_name": "cn",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "navigation-menu.tsx"
     },
     {
@@ -7965,8 +7987,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "resources_js_components_ui_navigation_menu_navigationmenu",
-      "community": 9,
-      "community_name": "cn",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "navigationmenu()"
     },
     {
@@ -7976,8 +7998,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "resources_js_components_ui_navigation_menu_navigationmenulist",
-      "community": 9,
-      "community_name": "cn",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "navigationmenulist()"
     },
     {
@@ -7987,8 +8009,8 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "resources_js_components_ui_navigation_menu_navigationmenuitem",
-      "community": 9,
-      "community_name": "cn",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "navigationmenuitem()"
     },
     {
@@ -7998,8 +8020,8 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "resources_js_components_ui_navigation_menu_navigationmenutriggerstyle",
-      "community": 9,
-      "community_name": "cn",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "navigationmenutriggerstyle"
     },
     {
@@ -8009,8 +8031,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "resources_js_components_ui_navigation_menu_navigationmenutrigger",
-      "community": 9,
-      "community_name": "cn",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "navigationmenutrigger()"
     },
     {
@@ -8020,8 +8042,8 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "resources_js_components_ui_navigation_menu_navigationmenucontent",
-      "community": 9,
-      "community_name": "cn",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "navigationmenucontent()"
     },
     {
@@ -8031,8 +8053,8 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "resources_js_components_ui_navigation_menu_navigationmenuviewport",
-      "community": 9,
-      "community_name": "cn",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "navigationmenuviewport()"
     },
     {
@@ -8042,8 +8064,8 @@
       "source_location": "L124",
       "_origin": "ast",
       "id": "resources_js_components_ui_navigation_menu_navigationmenulink",
-      "community": 9,
-      "community_name": "cn",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "navigationmenulink()"
     },
     {
@@ -8053,8 +8075,8 @@
       "source_location": "L140",
       "_origin": "ast",
       "id": "resources_js_components_ui_navigation_menu_navigationmenuindicator",
-      "community": 9,
-      "community_name": "cn",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "navigationmenuindicator()"
     },
     {
@@ -8163,8 +8185,8 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "resources_js_components_ui_select_selectlabel",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "selectlabel()"
     },
     {
@@ -8185,8 +8207,8 @@
       "source_location": "L133",
       "_origin": "ast",
       "id": "resources_js_components_ui_select_selectseparator",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "selectseparator()"
     },
     {
@@ -8196,8 +8218,8 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "resources_js_components_ui_select_selectscrollupbutton",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "selectscrollupbutton()"
     },
     {
@@ -8207,8 +8229,8 @@
       "source_location": "L164",
       "_origin": "ast",
       "id": "resources_js_components_ui_select_selectscrolldownbutton",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "selectscrolldownbutton()"
     },
     {
@@ -8218,8 +8240,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_ui_separator",
-      "community": 5,
-      "community_name": "sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "separator.tsx"
     },
     {
@@ -8229,8 +8251,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "resources_js_components_ui_separator_separator",
-      "community": 5,
-      "community_name": "sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "separator()"
     },
     {
@@ -8240,8 +8262,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheet.tsx"
     },
     {
@@ -8251,8 +8273,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet_sheet",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheet()"
     },
     {
@@ -8262,8 +8284,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet_sheettrigger",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheettrigger()"
     },
     {
@@ -8273,8 +8295,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet_sheetclose",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheetclose()"
     },
     {
@@ -8284,8 +8306,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet_sheetportal",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheetportal()"
     },
     {
@@ -8295,8 +8317,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet_sheetoverlay",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheetoverlay()"
     },
     {
@@ -8306,8 +8328,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet_sheetcontent",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheetcontent()"
     },
     {
@@ -8317,8 +8339,8 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet_sheetheader",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheetheader()"
     },
     {
@@ -8328,8 +8350,8 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet_sheetfooter",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheetfooter()"
     },
     {
@@ -8339,8 +8361,8 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet_sheettitle",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheettitle()"
     },
     {
@@ -8350,8 +8372,8 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "resources_js_components_ui_sheet_sheetdescription",
-      "community": 7,
-      "community_name": "app-header.tsx",
+      "community": 5,
+      "community_name": "cn",
       "norm_label": "sheetdescription()"
     },
     {
@@ -8362,7 +8384,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebar.tsx"
     },
     {
@@ -8373,7 +8395,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarcontext",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebarcontext"
     },
     {
@@ -8384,7 +8406,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_usesidebar",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "usesidebar()"
     },
     {
@@ -8394,8 +8416,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarprovider",
-      "community": 5,
-      "community_name": "sidebar.tsx",
+      "community": 137,
+      "community_name": "useIsMobile",
       "norm_label": "sidebarprovider()"
     },
     {
@@ -8406,7 +8428,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebar",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebar()"
     },
     {
@@ -8417,7 +8439,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebartrigger",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebartrigger()"
     },
     {
@@ -8428,7 +8450,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarrail",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebarrail()"
     },
     {
@@ -8438,8 +8460,8 @@
       "source_location": "L299",
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarinset",
-      "community": 5,
-      "community_name": "sidebar.tsx",
+      "community": 8,
+      "community_name": "index.ts",
       "norm_label": "sidebarinset()"
     },
     {
@@ -8450,7 +8472,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarinput",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebarinput()"
     },
     {
@@ -8483,7 +8505,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarseparator",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebarseparator()"
     },
     {
@@ -8527,7 +8549,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebargroupaction",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebargroupaction()"
     },
     {
@@ -8593,7 +8615,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarmenuaction",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebarmenuaction()"
     },
     {
@@ -8604,7 +8626,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarmenubadge",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebarmenubadge()"
     },
     {
@@ -8615,7 +8637,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarmenuskeleton",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebarmenuskeleton()"
     },
     {
@@ -8626,7 +8648,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarmenusub",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebarmenusub()"
     },
     {
@@ -8637,7 +8659,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarmenusubitem",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebarmenusubitem()"
     },
     {
@@ -8648,7 +8670,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_sidebar_sidebarmenusubbutton",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "sidebarmenusubbutton()"
     },
     {
@@ -8659,7 +8681,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_skeleton",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "skeleton.tsx"
     },
     {
@@ -8670,7 +8692,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_skeleton_skeleton",
       "community": 5,
-      "community_name": "sidebar.tsx",
+      "community_name": "cn",
       "norm_label": "skeleton()"
     },
     {
@@ -8724,8 +8746,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_components_ui_switch",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "switch.tsx"
     },
     {
@@ -8735,8 +8757,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "resources_js_components_ui_switch_switch",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "switch()"
     },
     {
@@ -8769,7 +8791,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_toggle_group",
       "community": 9,
-      "community_name": "cn",
+      "community_name": "toggle-group.tsx",
       "norm_label": "toggle-group.tsx"
     },
     {
@@ -8780,7 +8802,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_toggle_group_togglegroupcontext",
       "community": 9,
-      "community_name": "cn",
+      "community_name": "toggle-group.tsx",
       "norm_label": "togglegroupcontext"
     },
     {
@@ -8791,7 +8813,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_toggle_group_togglegroup",
       "community": 9,
-      "community_name": "cn",
+      "community_name": "toggle-group.tsx",
       "norm_label": "togglegroup()"
     },
     {
@@ -8802,7 +8824,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_toggle_group_togglegroupitem",
       "community": 9,
-      "community_name": "cn",
+      "community_name": "toggle-group.tsx",
       "norm_label": "togglegroupitem()"
     },
     {
@@ -8813,7 +8835,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_toggle",
       "community": 9,
-      "community_name": "cn",
+      "community_name": "toggle-group.tsx",
       "norm_label": "toggle.tsx"
     },
     {
@@ -8824,7 +8846,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_toggle_togglevariants",
       "community": 9,
-      "community_name": "cn",
+      "community_name": "toggle-group.tsx",
       "norm_label": "togglevariants"
     },
     {
@@ -8835,7 +8857,7 @@
       "_origin": "ast",
       "id": "resources_js_components_ui_toggle_toggle",
       "community": 9,
-      "community_name": "cn",
+      "community_name": "toggle-group.tsx",
       "norm_label": "toggle()"
     },
     {
@@ -8856,8 +8878,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "resources_js_components_ui_tooltip_tooltipprovider",
-      "community": 8,
-      "community_name": "index.ts",
+      "community": 7,
+      "community_name": "app-header.tsx",
       "norm_label": "tooltipprovider()"
     },
     {
@@ -9131,7 +9153,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_hooks_use_clipboard",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "use-clipboard.ts"
     },
@@ -9142,7 +9164,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "resources_js_hooks_use_clipboard_copiedvalue",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "copiedvalue"
     },
@@ -9153,7 +9175,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "resources_js_hooks_use_clipboard_copyfn",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "copyfn"
     },
@@ -9164,7 +9186,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "resources_js_hooks_use_clipboard_useclipboardreturn",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "useclipboardreturn"
     },
@@ -9175,7 +9197,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "resources_js_hooks_use_clipboard_useclipboard",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "useclipboard()"
     },
@@ -9186,8 +9208,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_hooks_use_current_url",
-      "community": 23,
-      "community_name": "app-sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "use-current-url.ts"
     },
     {
@@ -9197,8 +9219,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "resources_js_hooks_use_current_url_iscurrenturlfn",
-      "community": 23,
-      "community_name": "app-sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "iscurrenturlfn"
     },
     {
@@ -9208,8 +9230,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "resources_js_hooks_use_current_url_iscurrentorparenturlfn",
-      "community": 23,
-      "community_name": "app-sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "iscurrentorparenturlfn"
     },
     {
@@ -9219,8 +9241,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "resources_js_hooks_use_current_url_whencurrenturlfn",
-      "community": 23,
-      "community_name": "app-sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "whencurrenturlfn"
     },
     {
@@ -9230,8 +9252,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "resources_js_hooks_use_current_url_usecurrenturlreturn",
-      "community": 23,
-      "community_name": "app-sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "usecurrenturlreturn"
     },
     {
@@ -9241,8 +9263,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "resources_js_hooks_use_current_url_usecurrenturl",
-      "community": 23,
-      "community_name": "app-sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "usecurrenturl()"
     },
     {
@@ -9351,8 +9373,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_hooks_use_mobile",
-      "community": 5,
-      "community_name": "sidebar.tsx",
+      "community": 137,
+      "community_name": "useIsMobile",
       "norm_label": "use-mobile.tsx"
     },
     {
@@ -9362,8 +9384,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "resources_js_hooks_use_mobile_mediaquerylistener",
-      "community": 5,
-      "community_name": "sidebar.tsx",
+      "community": 137,
+      "community_name": "useIsMobile",
       "norm_label": "mediaquerylistener()"
     },
     {
@@ -9373,8 +9395,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "resources_js_hooks_use_mobile_issmallerthanbreakpoint",
-      "community": 5,
-      "community_name": "sidebar.tsx",
+      "community": 137,
+      "community_name": "useIsMobile",
       "norm_label": "issmallerthanbreakpoint()"
     },
     {
@@ -9384,8 +9406,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "resources_js_hooks_use_mobile_getserversnapshot",
-      "community": 5,
-      "community_name": "sidebar.tsx",
+      "community": 137,
+      "community_name": "useIsMobile",
       "norm_label": "getserversnapshot()"
     },
     {
@@ -9395,8 +9417,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "resources_js_hooks_use_mobile_useismobile",
-      "community": 5,
-      "community_name": "sidebar.tsx",
+      "community": 137,
+      "community_name": "useIsMobile",
       "norm_label": "useismobile()"
     },
     {
@@ -9406,7 +9428,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_hooks_use_two_factor_auth",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "use-two-factor-auth.ts"
     },
@@ -9417,7 +9439,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "resources_js_hooks_use_two_factor_auth_usetwofactorauthreturn",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "usetwofactorauthreturn"
     },
@@ -9428,7 +9450,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "resources_js_hooks_use_two_factor_auth_otp_max_length",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "otp_max_length"
     },
@@ -9440,7 +9462,7 @@
       "_origin": "ast",
       "id": "resources_js_hooks_use_two_factor_auth_usetwofactorauth",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "usetwofactorauth()"
     },
     {
@@ -9538,8 +9560,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_layouts_auth_auth_card_layout",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 35,
+      "community_name": "card.tsx",
       "norm_label": "auth-card-layout.tsx"
     },
     {
@@ -9549,8 +9571,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "resources_js_layouts_auth_auth_card_layout_authcardlayout",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 35,
+      "community_name": "card.tsx",
       "norm_label": "authcardlayout()"
     },
     {
@@ -9604,8 +9626,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_layouts_settings_layout",
-      "community": 1,
-      "community_name": "security.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "layout.tsx"
     },
     {
@@ -9615,8 +9637,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "resources_js_layouts_settings_layout_sidebarnavitems",
-      "community": 1,
-      "community_name": "security.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "sidebarnavitems"
     },
     {
@@ -9626,8 +9648,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "resources_js_layouts_settings_layout_settingslayout",
-      "community": 23,
-      "community_name": "app-sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "settingslayout()"
     },
     {
@@ -9637,8 +9659,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_lib_currency",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "currency.ts"
     },
     {
@@ -9648,8 +9670,8 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "resources_js_lib_currency_currencies",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "currencies"
     },
     {
@@ -9659,8 +9681,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "resources_js_lib_currency_currencycode",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "currencycode"
     },
     {
@@ -9670,8 +9692,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "resources_js_lib_currency_currency_codes",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "currency_codes"
     },
     {
@@ -9681,8 +9703,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "resources_js_lib_currency_formattercache",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "formattercache"
     },
     {
@@ -9692,8 +9714,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "resources_js_lib_currency_getformatter",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "getformatter()"
     },
     {
@@ -9703,8 +9725,8 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "resources_js_lib_currency_formatcurrency",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "formatcurrency()"
     },
     {
@@ -9725,7 +9747,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "resources_js_lib_utils_cn",
-      "community": 9,
+      "community": 5,
       "community_name": "cn",
       "norm_label": "cn()"
     },
@@ -9736,8 +9758,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "resources_js_lib_utils_tourl",
-      "community": 23,
-      "community_name": "app-sidebar.tsx",
+      "community": 6,
+      "community_name": "layout.tsx",
       "norm_label": "tourl()"
     },
     {
@@ -9890,7 +9912,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_pages_auth_two_factor_challenge",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "two-factor-challenge.tsx"
     },
@@ -9901,7 +9923,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "resources_js_pages_auth_two_factor_challenge_twofactorchallenge",
-      "community": 18,
+      "community": 1,
       "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "twofactorchallenge()"
     },
@@ -9934,8 +9956,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_pages_budgets_index",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "budgets/index.tsx"
     },
     {
@@ -9945,8 +9967,8 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "resources_js_pages_budgets_index_props",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "props"
     },
     {
@@ -9956,8 +9978,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "resources_js_pages_budgets_index_budgetform",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "budgetform"
     },
     {
@@ -9967,8 +9989,8 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "resources_js_pages_budgets_index_overallform",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "overallform"
     },
     {
@@ -9978,8 +10000,8 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "resources_js_pages_budgets_index_monthnames",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "monthnames"
     },
     {
@@ -9989,8 +10011,8 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "resources_js_pages_budgets_index_initialbudgetform",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "initialbudgetform()"
     },
     {
@@ -10000,8 +10022,8 @@
       "source_location": "L99",
       "_origin": "ast",
       "id": "resources_js_pages_budgets_index_initialoverallform",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "initialoverallform()"
     },
     {
@@ -10011,8 +10033,8 @@
       "source_location": "L106",
       "_origin": "ast",
       "id": "resources_js_pages_budgets_index_currencytotals",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "currencytotals"
     },
     {
@@ -10022,8 +10044,8 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "resources_js_pages_budgets_index_budgets",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "budgets()"
     },
     {
@@ -10033,8 +10055,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_pages_categories_index",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 87,
+      "community_name": "categories/index.tsx",
       "norm_label": "categories/index.tsx"
     },
     {
@@ -10044,8 +10066,8 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "resources_js_pages_categories_index_categorywithusage",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 87,
+      "community_name": "categories/index.tsx",
       "norm_label": "categorywithusage"
     },
     {
@@ -10055,8 +10077,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "resources_js_pages_categories_index_props",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 87,
+      "community_name": "categories/index.tsx",
       "norm_label": "props"
     },
     {
@@ -10066,8 +10088,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "resources_js_pages_categories_index_categoryform",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 87,
+      "community_name": "categories/index.tsx",
       "norm_label": "categoryform"
     },
     {
@@ -10077,8 +10099,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "resources_js_pages_categories_index_initialform",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 87,
+      "community_name": "categories/index.tsx",
       "norm_label": "initialform"
     },
     {
@@ -10088,8 +10110,8 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "resources_js_pages_categories_index_categories",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 87,
+      "community_name": "categories/index.tsx",
       "norm_label": "categories()"
     },
     {
@@ -10100,7 +10122,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_dashboard",
       "community": 35,
-      "community_name": "dashboard.tsx",
+      "community_name": "card.tsx",
       "norm_label": "dashboard.tsx"
     },
     {
@@ -10111,7 +10133,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_dashboard_monthlypoint",
       "community": 35,
-      "community_name": "dashboard.tsx",
+      "community_name": "card.tsx",
       "norm_label": "monthlypoint"
     },
     {
@@ -10122,7 +10144,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_dashboard_currencysummary",
       "community": 35,
-      "community_name": "dashboard.tsx",
+      "community_name": "card.tsx",
       "norm_label": "currencysummary"
     },
     {
@@ -10133,7 +10155,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_dashboard_monthlysummarygroup",
       "community": 35,
-      "community_name": "dashboard.tsx",
+      "community_name": "card.tsx",
       "norm_label": "monthlysummarygroup"
     },
     {
@@ -10144,7 +10166,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_dashboard_props",
       "community": 35,
-      "community_name": "dashboard.tsx",
+      "community_name": "card.tsx",
       "norm_label": "props"
     },
     {
@@ -10155,7 +10177,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_dashboard_formatmonth",
       "community": 35,
-      "community_name": "dashboard.tsx",
+      "community_name": "card.tsx",
       "norm_label": "formatmonth()"
     },
     {
@@ -10165,8 +10187,8 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "resources_js_pages_dashboard_summarycard",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "summarycard()"
     },
     {
@@ -10177,7 +10199,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_dashboard_currencycashflowchart",
       "community": 35,
-      "community_name": "dashboard.tsx",
+      "community_name": "card.tsx",
       "norm_label": "currencycashflowchart()"
     },
     {
@@ -10188,7 +10210,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_dashboard_dashboard",
       "community": 35,
-      "community_name": "dashboard.tsx",
+      "community_name": "card.tsx",
       "norm_label": "dashboard()"
     },
     {
@@ -10198,8 +10220,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_pages_recurring_transactions_index",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "recurring-transactions/index.tsx"
     },
     {
@@ -10209,8 +10231,8 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "resources_js_pages_recurring_transactions_index_props",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "props"
     },
     {
@@ -10220,8 +10242,8 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "resources_js_pages_recurring_transactions_index_createform",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "createform"
     },
     {
@@ -10231,8 +10253,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "resources_js_pages_recurring_transactions_index_editform",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "editform"
     },
     {
@@ -10242,8 +10264,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "resources_js_pages_recurring_transactions_index_dateformatter",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "dateformatter"
     },
     {
@@ -10253,8 +10275,8 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "resources_js_pages_recurring_transactions_index_getfrequencylabel",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "getfrequencylabel()"
     },
     {
@@ -10264,8 +10286,8 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "resources_js_pages_recurring_transactions_index_today",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "today()"
     },
     {
@@ -10275,8 +10297,8 @@
       "source_location": "L86",
       "_origin": "ast",
       "id": "resources_js_pages_recurring_transactions_index_initialcreateform",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "initialcreateform()"
     },
     {
@@ -10286,8 +10308,8 @@
       "source_location": "L99",
       "_origin": "ast",
       "id": "resources_js_pages_recurring_transactions_index_describeschedule",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "describeschedule()"
     },
     {
@@ -10297,8 +10319,8 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "resources_js_pages_recurring_transactions_index_recurringtransactions",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 72,
+      "community_name": "recurring-transactions/index.tsx",
       "norm_label": "recurringtransactions()"
     },
     {
@@ -10309,18 +10331,18 @@
       "_origin": "ast",
       "id": "resources_js_pages_settings_appearance",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "appearance.tsx"
     },
     {
       "label": "Appearance()",
       "file_type": "code",
       "source_file": "resources/js/pages/settings/appearance.tsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "_origin": "ast",
       "id": "resources_js_pages_settings_appearance_appearance",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "appearance()"
     },
     {
@@ -10330,30 +10352,30 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_pages_settings_integrations",
-      "community": 1,
-      "community_name": "security.tsx",
+      "community": 3,
+      "community_name": "utils.ts",
       "norm_label": "integrations.tsx"
     },
     {
       "label": "Props",
       "file_type": "code",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "resources_js_pages_settings_integrations_props",
-      "community": 1,
-      "community_name": "security.tsx",
+      "community": 3,
+      "community_name": "utils.ts",
       "norm_label": "props"
     },
     {
       "label": "Integrations()",
       "file_type": "code",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L21",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "resources_js_pages_settings_integrations_integrations",
-      "community": 1,
-      "community_name": "security.tsx",
+      "community": 3,
+      "community_name": "utils.ts",
       "norm_label": "integrations()"
     },
     {
@@ -10397,7 +10419,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_settings_security",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "security.tsx"
     },
     {
@@ -10408,7 +10430,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_settings_security_props",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "props"
     },
     {
@@ -10419,7 +10441,7 @@
       "_origin": "ast",
       "id": "resources_js_pages_settings_security_security",
       "community": 1,
-      "community_name": "security.tsx",
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "security()"
     },
     {
@@ -10437,7 +10459,7 @@
       "label": "Props",
       "file_type": "code",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L66",
+      "source_location": "L69",
       "_origin": "ast",
       "id": "resources_js_pages_transactions_index_props",
       "community": 10,
@@ -10448,7 +10470,7 @@
       "label": "TransactionForm",
       "file_type": "code",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L74",
+      "source_location": "L79",
       "_origin": "ast",
       "id": "resources_js_pages_transactions_index_transactionform",
       "community": 10,
@@ -10459,7 +10481,7 @@
       "label": "FilterForm",
       "file_type": "code",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L82",
+      "source_location": "L87",
       "_origin": "ast",
       "id": "resources_js_pages_transactions_index_filterform",
       "community": 10,
@@ -10470,7 +10492,7 @@
       "label": "dateFormatter",
       "file_type": "code",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L84",
+      "source_location": "L89",
       "_origin": "ast",
       "id": "resources_js_pages_transactions_index_dateformatter",
       "community": 10,
@@ -10481,40 +10503,40 @@
       "label": "localDateTime()",
       "file_type": "code",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L92",
+      "source_location": "L97",
       "_origin": "ast",
       "id": "resources_js_pages_transactions_index_localdatetime",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "localdatetime()"
     },
     {
       "label": "initialTransactionForm()",
       "file_type": "code",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L99",
+      "source_location": "L104",
       "_origin": "ast",
       "id": "resources_js_pages_transactions_index_initialtransactionform",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "initialtransactionform()"
     },
     {
       "label": "Transactions()",
       "file_type": "code",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L109",
+      "source_location": "L114",
       "_origin": "ast",
       "id": "resources_js_pages_transactions_index_transactions",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "transactions()"
     },
     {
       "label": "SummaryCard()",
       "file_type": "code",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L816",
+      "source_location": "L862",
       "_origin": "ast",
       "id": "resources_js_pages_transactions_index_summarycard",
       "community": 10,
@@ -10525,7 +10547,7 @@
       "label": "FilterSelect()",
       "file_type": "code",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L842",
+      "source_location": "L888",
       "_origin": "ast",
       "id": "resources_js_pages_transactions_index_filterselect",
       "community": 10,
@@ -10539,8 +10561,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_pages_transfers_index",
-      "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "transfers/index.tsx"
     },
     {
@@ -10550,8 +10572,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "resources_js_pages_transfers_index_props",
-      "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "props"
     },
     {
@@ -10561,8 +10583,8 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "resources_js_pages_transfers_index_transferform",
-      "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "transferform"
     },
     {
@@ -10572,8 +10594,8 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "resources_js_pages_transfers_index_dateformatter",
-      "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "dateformatter"
     },
     {
@@ -10583,8 +10605,8 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "resources_js_pages_transfers_index_localdatetime",
-      "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "localdatetime()"
     },
     {
@@ -10594,8 +10616,8 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "resources_js_pages_transfers_index_initialtransferform",
-      "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "initialtransferform()"
     },
     {
@@ -10605,8 +10627,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "resources_js_pages_transfers_index_transfers",
-      "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "transfers()"
     },
     {
@@ -10660,8 +10682,8 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "resources_js_pages_wallets_index_wallets",
-      "community": 35,
-      "community_name": "dashboard.tsx",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "wallets()"
     },
     {
@@ -10715,8 +10737,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_types_auth",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "auth.ts"
     },
     {
@@ -10726,8 +10748,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_types_auth_user",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "user"
     },
     {
@@ -10737,8 +10759,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "resources_js_types_auth_auth",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "auth"
     },
     {
@@ -10748,8 +10770,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "resources_js_types_auth_passkey",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "passkey"
     },
     {
@@ -10759,8 +10781,8 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "resources_js_types_auth_twofactorsetupdata",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "twofactorsetupdata"
     },
     {
@@ -10770,8 +10792,8 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "resources_js_types_auth_twofactorsecretkey",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "twofactorsecretkey"
     },
     {
@@ -10781,8 +10803,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_types_global_d",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "global.d.ts"
     },
     {
@@ -10792,8 +10814,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "resources_js_types_global_d_react",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "react"
     },
     {
@@ -10803,8 +10825,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "resources_js_types_global_d_inputhtmlattributes",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "inputhtmlattributes"
     },
     {
@@ -10814,8 +10836,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "resources_js_types_global_d_inertiajs_core",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "@inertiajs/core"
     },
     {
@@ -10825,8 +10847,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "resources_js_types_global_d_inertiaconfig",
-      "community": 6,
-      "community_name": "auth.ts",
+      "community": 1,
+      "community_name": "two-factor-setup-modal.tsx",
       "norm_label": "inertiaconfig"
     },
     {
@@ -10847,8 +10869,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "resources_js_types_index_wallet",
-      "community": 8,
-      "community_name": "index.ts",
+      "community": 10,
+      "community_name": "transactions/index.tsx",
       "norm_label": "wallet"
     },
     {
@@ -10858,8 +10880,8 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "resources_js_types_index_category",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 18,
+      "community_name": "budgets/index.tsx",
       "norm_label": "category"
     },
     {
@@ -10880,8 +10902,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "resources_js_types_index_budget",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 8,
+      "community_name": "index.ts",
       "norm_label": "budget"
     },
     {
@@ -10913,8 +10935,8 @@
       "source_location": "L71",
       "_origin": "ast",
       "id": "resources_js_types_index_budgetfilters",
-      "community": 10,
-      "community_name": "transactions/index.tsx",
+      "community": 8,
+      "community_name": "index.ts",
       "norm_label": "budgetfilters"
     },
     {
@@ -10924,8 +10946,8 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "resources_js_types_index_wallettransfer",
-      "community": 87,
-      "community_name": "transfers/index.tsx",
+      "community": 8,
+      "community_name": "index.ts",
       "norm_label": "wallettransfer"
     },
     {
@@ -10968,8 +10990,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "resources_js_types_navigation",
-      "community": 8,
-      "community_name": "index.ts",
+      "community": 23,
+      "community_name": "app-sidebar.tsx",
       "norm_label": "navigation.ts"
     },
     {
@@ -11534,50 +11556,6 @@
       "norm_label": "vite.config.ts"
     },
     {
-      "label": "rules/graphify.md",
-      "file_type": "document",
-      "source_file": ".agents/rules/graphify.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "agents_rules_graphify",
-      "community": 134,
-      "community_name": "rules/graphify.md",
-      "norm_label": "rules/graphify.md"
-    },
-    {
-      "label": "graphify",
-      "file_type": "document",
-      "source_file": ".agents/rules/graphify.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "agents_rules_graphify_graphify",
-      "community": 134,
-      "community_name": "rules/graphify.md",
-      "norm_label": "graphify"
-    },
-    {
-      "label": "workflows/graphify.md",
-      "file_type": "document",
-      "source_file": ".agents/workflows/graphify.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "agents_workflows_graphify",
-      "community": 135,
-      "community_name": "workflows/graphify.md",
-      "norm_label": "workflows/graphify.md"
-    },
-    {
-      "label": "Workflow: graphify",
-      "file_type": "document",
-      "source_file": ".agents/workflows/graphify.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "agents_workflows_graphify_workflow_graphify",
-      "community": 135,
-      "community_name": "workflows/graphify.md",
-      "norm_label": "workflow: graphify"
-    },
-    {
       "label": "AGENTS.md",
       "file_type": "document",
       "source_file": "AGENTS.md",
@@ -11969,8 +11947,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "symfony_component_httpfoundation_streamedresponse",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 89,
+      "community_name": "TransactionController",
       "norm_label": "symfony\\component\\httpfoundation\\streamedresponse"
     },
     {
@@ -12170,6 +12148,50 @@
       "community": 38,
       "community_name": "TestCase",
       "norm_label": "illuminate\\foundation\\testing\\testcase"
+    },
+    {
+      "label": "rules/graphify.md",
+      "file_type": "document",
+      "source_file": ".agents/rules/graphify.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 134,
+      "community_name": "rules/graphify.md",
+      "norm_label": "rules/graphify.md",
+      "id": "agents_rules_graphify"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": ".agents/rules/graphify.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 134,
+      "community_name": "rules/graphify.md",
+      "norm_label": "graphify",
+      "id": "agents_rules_graphify_graphify"
+    },
+    {
+      "label": "workflows/graphify.md",
+      "file_type": "document",
+      "source_file": ".agents/workflows/graphify.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 135,
+      "community_name": "workflows/graphify.md",
+      "norm_label": "workflows/graphify.md",
+      "id": "agents_workflows_graphify"
+    },
+    {
+      "label": "Workflow: graphify",
+      "file_type": "document",
+      "source_file": ".agents/workflows/graphify.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 135,
+      "community_name": "workflows/graphify.md",
+      "norm_label": "workflow: graphify",
+      "id": "agents_workflows_graphify_workflow_graphify"
     },
     {
       "label": "Dependency Update Policy",
@@ -14368,7 +14390,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller",
@@ -14379,7 +14401,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L64",
+      "source_location": "L68",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller",
@@ -14402,7 +14424,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L25",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller_callback",
@@ -14414,7 +14436,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L69",
+      "source_location": "L73",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller_destroy",
@@ -14439,7 +14461,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L38",
+      "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller_callback",
@@ -14449,7 +14471,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -14461,7 +14483,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -14473,7 +14495,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L64",
+      "source_location": "L68",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -14485,7 +14507,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
-      "source_location": "L64",
+      "source_location": "L68",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -14580,7 +14602,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
@@ -14591,7 +14613,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L90",
+      "source_location": "L95",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
@@ -14624,7 +14646,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L109",
+      "source_location": "L114",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
@@ -14635,7 +14657,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L68",
+      "source_location": "L73",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
@@ -14671,7 +14693,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L49",
+      "source_location": "L54",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_callback",
@@ -14683,7 +14705,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L106",
+      "source_location": "L111",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_destroy",
@@ -14707,7 +14729,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L123",
+      "source_location": "L128",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_sync",
@@ -14719,7 +14741,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L87",
+      "source_location": "L92",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_update",
@@ -14730,7 +14752,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -14742,7 +14764,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -14754,7 +14776,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L68",
+      "source_location": "L73",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -14766,7 +14788,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L68",
+      "source_location": "L73",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -14778,7 +14800,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L90",
+      "source_location": "L95",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -14790,7 +14812,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L90",
+      "source_location": "L95",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -14802,7 +14824,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L109",
+      "source_location": "L114",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -14814,7 +14836,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L109",
+      "source_location": "L114",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -14826,7 +14848,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
-      "source_location": "L109",
+      "source_location": "L114",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15286,7 +15308,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L217",
+      "source_location": "L220",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller",
@@ -15297,7 +15319,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L223",
+      "source_location": "L226",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller",
@@ -15308,7 +15330,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L137",
+      "source_location": "L140",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller",
@@ -15319,7 +15341,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L158",
+      "source_location": "L161",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller",
@@ -15330,7 +15352,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L205",
+      "source_location": "L208",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller",
@@ -15352,7 +15374,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L55",
+      "source_location": "L58",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller",
@@ -15363,7 +15385,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L86",
+      "source_location": "L89",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller",
@@ -15399,7 +15421,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L80",
+      "source_location": "L83",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_store",
@@ -15411,7 +15433,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L74",
+      "source_location": "L77",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_store",
@@ -15423,7 +15445,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L62",
+      "source_location": "L65",
       "weight": 1.0,
       "_origin": "ast",
       "confidence_score": 1.0,
@@ -15434,7 +15456,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L55",
+      "source_location": "L58",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15447,7 +15469,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L123",
+      "source_location": "L126",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_update",
@@ -15459,7 +15481,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L107",
+      "source_location": "L110",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_update",
@@ -15471,7 +15493,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L86",
+      "source_location": "L89",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_update",
@@ -15483,7 +15505,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L111",
+      "source_location": "L114",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_update",
@@ -15494,7 +15516,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L86",
+      "source_location": "L89",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15507,7 +15529,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L146",
+      "source_location": "L149",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_destroy",
@@ -15519,7 +15541,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L144",
+      "source_location": "L147",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_destroy",
@@ -15531,7 +15553,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L137",
+      "source_location": "L140",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_destroy",
@@ -15542,7 +15564,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L137",
+      "source_location": "L140",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15555,7 +15577,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L167",
+      "source_location": "L170",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_export",
@@ -15566,7 +15588,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L158",
+      "source_location": "L161",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15578,7 +15600,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L158",
+      "source_location": "L161",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -15590,7 +15612,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L205",
+      "source_location": "L208",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -15603,7 +15625,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L209",
+      "source_location": "L212",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_transactioncontroller_transactioncontroller_filteredtransactionsquery",
@@ -15614,7 +15636,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L205",
+      "source_location": "L208",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15626,7 +15648,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L217",
+      "source_location": "L220",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15638,7 +15660,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L217",
+      "source_location": "L220",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15650,7 +15672,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L223",
+      "source_location": "L226",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15662,7 +15684,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L223",
+      "source_location": "L226",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -17128,7 +17150,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L31",
+      "source_location": "L58",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -17561,7 +17583,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L100",
+      "source_location": "L131",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_writetransactions",
@@ -18014,7 +18036,19 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L14",
+      "source_location": "L49",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_loginfo",
+      "target": "app_models_user_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Services/GoogleSheetsSyncService.php",
+      "source_location": "L15",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -18026,7 +18060,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L96",
+      "source_location": "L127",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -18038,7 +18072,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L120",
+      "source_location": "L151",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -18710,7 +18744,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice",
@@ -18721,7 +18755,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L62",
+      "source_location": "L93",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice",
@@ -18732,7 +18766,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L31",
+      "source_location": "L58",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice",
@@ -18743,7 +18777,18 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L141",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_services_googlesheetssyncservice_googlesheetssyncservice",
+      "target": "app_services_googlesheetssyncservice_googlesheetssyncservice_loginfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Services/GoogleSheetsSyncService.php",
+      "source_location": "L172",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice",
@@ -18754,7 +18799,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice",
@@ -18765,7 +18810,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L96",
+      "source_location": "L127",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice",
@@ -18776,7 +18821,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L120",
+      "source_location": "L151",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice",
@@ -18788,35 +18833,11 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L24",
+      "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_sync",
       "target": "app_services_googlesheetssyncservice_googlesheetssyncservice_ensuresheetsexist",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L22",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_sync",
-      "target": "app_services_googlesheetssyncservice_googlesheetssyncservice_getvalidaccesstoken",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L25",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_sync",
-      "target": "app_services_googlesheetssyncservice_googlesheetssyncservice_writetransactions",
       "confidence_score": 1.0
     },
     {
@@ -18828,6 +18849,42 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_sync",
+      "target": "app_services_googlesheetssyncservice_googlesheetssyncservice_getvalidaccesstoken",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Services/GoogleSheetsSyncService.php",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_sync",
+      "target": "app_services_googlesheetssyncservice_googlesheetssyncservice_loginfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Services/GoogleSheetsSyncService.php",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_sync",
+      "target": "app_services_googlesheetssyncservice_googlesheetssyncservice_writetransactions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Services/GoogleSheetsSyncService.php",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_sync",
       "target": "app_services_googlesheetssyncservice_googlesheetssyncservice_writewallets",
       "confidence_score": 1.0
     },
@@ -18836,7 +18893,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L117",
+      "source_location": "L148",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_writetransactions",
@@ -18848,7 +18905,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "app/Services/GoogleSheetsSyncService.php",
-      "source_location": "L133",
+      "source_location": "L164",
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_services_googlesheetssyncservice_googlesheetssyncservice_writewallets",
@@ -23564,7 +23621,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23576,7 +23633,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23812,7 +23869,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L73",
+      "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23820,22 +23877,11 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L33",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "resources_js_components_app_sidebar",
-      "target": "resources_js_components_app_sidebar_mainnavitems",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23847,7 +23893,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23859,7 +23905,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23871,7 +23917,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23883,7 +23929,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23895,7 +23941,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23907,7 +23953,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23919,7 +23965,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23931,7 +23977,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23943,7 +23989,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23955,7 +24001,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23967,7 +24013,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23979,7 +24025,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -23991,7 +24037,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/components/app-sidebar.tsx",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_components_app_sidebar",
@@ -24575,7 +24621,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/appearance.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_appearance",
@@ -24587,7 +24633,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_integrations",
@@ -24671,7 +24717,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/appearance.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_appearance",
@@ -24683,7 +24729,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_integrations",
@@ -24922,7 +24968,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L16",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -25138,7 +25184,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L16",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -25167,6 +25213,77 @@
       "_origin": "ast",
       "source": "resources_js_pages_wallets_index",
       "target": "resources_js_components_input_error_inputerror",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "resources/js/components/language-tabs.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "resources_js_components_language_tabs",
+      "target": "resources_js_components_language_tabs_languagetabs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "resources/js/components/language-tabs.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "resources_js_components_language_tabs",
+      "target": "resources_js_lib_utils",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "resources/js/components/language-tabs.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "resources_js_components_language_tabs",
+      "target": "resources_js_lib_utils_cn",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "resources/js/pages/settings/appearance.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "resources_js_pages_settings_appearance",
+      "target": "resources_js_components_language_tabs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "resources/js/components/language-tabs.tsx",
+      "source_location": "L37",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "resources_js_components_language_tabs_languagetabs",
+      "target": "resources_js_lib_utils_cn"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "resources/js/pages/settings/appearance.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "resources_js_pages_settings_appearance",
+      "target": "resources_js_components_language_tabs_languagetabs",
       "confidence_score": 1.0
     },
     {
@@ -26132,7 +26249,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L17",
+      "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -26156,7 +26273,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L17",
+      "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -27691,7 +27808,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L18",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -27775,7 +27892,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L18",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -28162,7 +28279,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_integrations",
@@ -28198,7 +28315,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L19",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -28414,7 +28531,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_integrations",
@@ -28450,7 +28567,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L19",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -28648,7 +28765,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -28756,7 +28873,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -28864,7 +28981,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -28972,7 +29089,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -29080,7 +29197,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -29188,7 +29305,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L20",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -29558,7 +29675,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L27",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -29630,7 +29747,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L27",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -29726,7 +29843,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L27",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -29810,7 +29927,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L27",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -29894,7 +30011,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L27",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -29978,7 +30095,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L27",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -30062,7 +30179,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L27",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -30736,7 +30853,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_integrations",
@@ -30760,7 +30877,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L35",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -30916,7 +31033,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_integrations",
@@ -30940,7 +31057,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L35",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -31107,7 +31224,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_integrations",
@@ -31143,7 +31260,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L36",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -31287,7 +31404,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_integrations",
@@ -31323,7 +31440,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L36",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -31782,7 +31899,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -31854,7 +31971,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -31926,7 +32043,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -32010,7 +32127,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -32094,7 +32211,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -32190,7 +32307,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L37",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -33614,7 +33731,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -33698,7 +33815,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -33828,7 +33945,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L45",
+      "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -33888,7 +34005,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L45",
+      "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -35422,18 +35539,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "resources_js_pages_settings_integrations",
-      "target": "resources_js_layouts_settings_layout",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -35456,18 +35561,6 @@
       "_origin": "ast",
       "source": "resources_js_layouts_settings_layout_settingslayout",
       "target": "resources_js_lib_utils_tourl"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "resources_js_pages_settings_integrations",
-      "target": "resources_js_layouts_settings_layout_settingslayout",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -35576,7 +35669,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L46",
+      "source_location": "L48",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -35720,7 +35813,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L46",
+      "source_location": "L48",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -35733,7 +35826,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L312",
+      "source_location": "L358",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index_transactions",
@@ -35757,7 +35850,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "resources/js/pages/transfers/index.tsx",
-      "source_location": "L286",
+      "source_location": "L282",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transfers_index_transfers",
@@ -36481,7 +36574,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/appearance.tsx",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_appearance",
@@ -36492,7 +36585,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_integrations",
@@ -36503,7 +36596,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/settings/integrations.tsx",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_settings_integrations",
@@ -36582,7 +36675,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L84",
+      "source_location": "L89",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36593,7 +36686,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L82",
+      "source_location": "L87",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36604,7 +36697,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L842",
+      "source_location": "L888",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36615,7 +36708,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L99",
+      "source_location": "L104",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36626,7 +36719,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L92",
+      "source_location": "L97",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36637,7 +36730,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L66",
+      "source_location": "L69",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36648,7 +36741,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L816",
+      "source_location": "L862",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36659,7 +36752,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L74",
+      "source_location": "L79",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36670,7 +36763,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L109",
+      "source_location": "L114",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36682,7 +36775,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L49",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36694,7 +36787,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L49",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36706,7 +36799,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L49",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36718,7 +36811,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L49",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36730,7 +36823,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L49",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36742,7 +36835,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L49",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36754,7 +36847,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L49",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index",
@@ -36766,7 +36859,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L105",
+      "source_location": "L110",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index_initialtransactionform",
@@ -36778,7 +36871,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "resources/js/pages/transactions/index.tsx",
-      "source_location": "L131",
+      "source_location": "L138",
       "weight": 1.0,
       "_origin": "ast",
       "source": "resources_js_pages_transactions_index_transactions",
@@ -37665,28 +37758,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": ".agents/rules/graphify.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "agents_rules_graphify",
-      "target": "agents_rules_graphify_graphify",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".agents/workflows/graphify.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "agents_workflows_graphify",
-      "target": "agents_workflows_graphify_workflow_graphify",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -37971,6 +38042,28 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/graphify.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "agents_rules_graphify",
+      "target": "agents_rules_graphify_graphify"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/workflows/graphify.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "agents_workflows_graphify",
+      "target": "agents_workflows_graphify_workflow_graphify"
+    },
+    {
       "relation": "implements",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -38052,5 +38145,5 @@
       "source_file": ".github/workflows/tests.yml"
     }
   ],
-  "built_at_commit": "f2be4a7d0b9b2ed1cd7db8bd4ff1d8b9c0236c31"
+  "built_at_commit": "081d860003f2686e39beb638a6288d5ac4f59549"
 }

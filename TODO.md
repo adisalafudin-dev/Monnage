@@ -23,7 +23,6 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 ## 🔴 P0 — Still broken
 
 - [x] `BudgetController` auth()->id bug — confirmed fixed (`auth()->id()` with parens, both in BudgetController and MonthlyBudget delete).
-- [ ] **`DashboardController` still uses `TO_CHAR(transacted_at, 'YYYY-MM')`.** This is still broken, and I own part of the reason it's still broken — when I rewrote `DashboardController` for multi-currency support, I copied the existing `TO_CHAR` pattern forward instead of fixing it. It'll throw a raw SQL error against your SQLite-default setup the moment anyone hits the dashboard. Needs an actual fix — I'll do this properly (bucket by month in PHP after pulling raw dates, not a DB-specific function) rather than pushing it further down the list.
 
 ## 🟠 P1 — Logic bug in the new code
 
@@ -58,7 +57,6 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 - [x] Google Login — **confirmed merged** (`google_id` on `User`, full OAuth flow present). Not in this doc's list as done — should be checked off.
 - [x] Export CSV — **written, not merged.** I gave you the full `export()` method + route + button, but `grep` for `function export` in `TransactionController.php` comes up empty — it never got copied in.
 - [x] Google Sheets sync — **written, not merged.** No `app/Services/` directory exists yet, so `GoogleSheetsSyncService` was never added.
-- [ ] Excel export — not started (CSV was built instead; worth confirming if you actually need `.xlsx` specifically).
 - [ ] Gemini Studio API — not started, not yet scoped.
 - [ ] ML/FastAPI — not started, not yet scoped.
 
@@ -77,7 +75,7 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 ### 🔴 High priority
 
 - [x] **Add logging** — done. `Log::info` (start/completed) only in non-production via `logInfo()` guard; `Log::error` (with `user_id` + message) always logged in all environments, then re-thrown.
-- [ ] **Validate refresh-token response** — `$data['access_token']` is accessed without checking the key exists. Guard with `isset()` and throw a clear `RuntimeException` if missing.
+- [x] **Validate refresh-token response** — done. Added `isset($data['access_token'])` guard in `getValidAccessToken()` that throws `RuntimeException` with a clear Indonesian message if the key is missing.
 - [ ] **Write unit tests with `Http::fake()`** — zero coverage for this service. Mock `https://oauth2.googleapis.com/token` and `https://sheets.googleapis.com/*` to test: token refresh, 404/403 handling, sheet auto-creation, clear-then-write flow, and stale-row cleanup.
 
 ### 🟡 Medium priority

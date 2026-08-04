@@ -203,7 +203,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_auth_googleauthcontroller",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "googleauthcontroller.php"
     },
     {
@@ -214,7 +214,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_auth_googleauthcontroller_googleauthcontroller",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "googleauthcontroller"
     },
     {
@@ -225,7 +225,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_auth_googleauthcontroller_googleauthcontroller_redirect",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".redirect()"
     },
     {
@@ -236,7 +236,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_auth_googleauthcontroller_googleauthcontroller_callback",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".callback()"
     },
     {
@@ -246,8 +246,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 20,
+      "community_name": "inertia.php",
       "norm_label": "budgetcontroller.php"
     },
     {
@@ -257,7 +257,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller_budgetcontroller",
-      "community": 20,
+      "community": 28,
       "community_name": "BudgetController",
       "norm_label": "budgetcontroller"
     },
@@ -268,7 +268,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller_budgetcontroller_index",
-      "community": 20,
+      "community": 28,
       "community_name": "BudgetController",
       "norm_label": ".index()"
     },
@@ -280,7 +280,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller_budgetcontroller_store",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": ".store()"
     },
     {
@@ -290,8 +290,8 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller_budgetcontroller_destroy",
-      "community": 20,
-      "community_name": "BudgetController",
+      "community": 13,
+      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
       "norm_label": ".destroy()"
     },
     {
@@ -302,7 +302,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller_budgetcontroller_storeoverall",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": ".storeoverall()"
     },
     {
@@ -323,7 +323,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller_budgetcontroller_spendingbycategory",
-      "community": 20,
+      "community": 28,
       "community_name": "BudgetController",
       "norm_label": ".spendingbycategory()"
     },
@@ -334,7 +334,7 @@
       "source_location": "L168",
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller_budgetcontroller_spentfor",
-      "community": 20,
+      "community": 28,
       "community_name": "BudgetController",
       "norm_label": ".spentfor()"
     },
@@ -345,7 +345,7 @@
       "source_location": "L186",
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller_budgetcontroller_resolverolledin",
-      "community": 20,
+      "community": 28,
       "community_name": "BudgetController",
       "norm_label": ".resolverolledin()"
     },
@@ -356,7 +356,7 @@
       "source_location": "L221",
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller_budgetcontroller_previousperiod",
-      "community": 20,
+      "community": 28,
       "community_name": "BudgetController",
       "norm_label": ".previousperiod()"
     },
@@ -367,7 +367,7 @@
       "source_location": "L231",
       "_origin": "ast",
       "id": "app_http_controllers_budgetcontroller_budgetcontroller_overallbudgetsummary",
-      "community": 20,
+      "community": 28,
       "community_name": "BudgetController",
       "norm_label": ".overallbudgetsummary()"
     },
@@ -456,7 +456,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_controller",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "controller.php"
     },
     {
@@ -467,7 +467,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_controller_controller",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "controller"
     },
     {
@@ -477,8 +477,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_http_controllers_dashboardcontroller",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 20,
+      "community_name": "inertia.php",
       "norm_label": "dashboardcontroller.php"
     },
     {
@@ -488,8 +488,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "app_http_controllers_dashboardcontroller_dashboardcontroller",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 20,
+      "community_name": "inertia.php",
       "norm_label": "dashboardcontroller"
     },
     {
@@ -499,97 +499,9 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "app_http_controllers_dashboardcontroller_dashboardcontroller_index",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 20,
+      "community_name": "inertia.php",
       "norm_label": ".index()"
-    },
-    {
-      "label": "GoogleSheetController.php",
-      "file_type": "code",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "app_http_controllers_googlesheetcontroller",
-      "community": 21,
-      "community_name": ".redirect",
-      "norm_label": "googlesheetcontroller.php"
-    },
-    {
-      "label": "GoogleSheetController",
-      "file_type": "code",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L17",
-      "_origin": "ast",
-      "id": "app_http_controllers_googlesheetcontroller_googlesheetcontroller",
-      "community": 21,
-      "community_name": ".redirect",
-      "norm_label": "googlesheetcontroller"
-    },
-    {
-      "label": ".edit()",
-      "file_type": "code",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L19",
-      "_origin": "ast",
-      "id": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_edit",
-      "community": 21,
-      "community_name": ".redirect",
-      "norm_label": ".edit()"
-    },
-    {
-      "label": ".redirect()",
-      "file_type": "code",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L30",
-      "_origin": "ast",
-      "id": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect",
-      "community": 21,
-      "community_name": ".redirect",
-      "norm_label": ".redirect()"
-    },
-    {
-      "label": ".callback()",
-      "file_type": "code",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L44",
-      "_origin": "ast",
-      "id": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_callback",
-      "community": 21,
-      "community_name": ".redirect",
-      "norm_label": ".callback()"
-    },
-    {
-      "label": ".update()",
-      "file_type": "code",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L68",
-      "_origin": "ast",
-      "id": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_update",
-      "community": 21,
-      "community_name": ".redirect",
-      "norm_label": ".update()"
-    },
-    {
-      "label": ".destroy()",
-      "file_type": "code",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L90",
-      "_origin": "ast",
-      "id": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_destroy",
-      "community": 21,
-      "community_name": ".redirect",
-      "norm_label": ".destroy()"
-    },
-    {
-      "label": ".sync()",
-      "file_type": "code",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L111",
-      "_origin": "ast",
-      "id": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_sync",
-      "community": 21,
-      "community_name": ".redirect",
-      "norm_label": ".sync()"
     },
     {
       "label": "LocaleController.php",
@@ -598,8 +510,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_http_controllers_localecontroller",
-      "community": 24,
-      "community_name": "SetLocale.php",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "localecontroller.php"
     },
     {
@@ -609,8 +521,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "app_http_controllers_localecontroller_localecontroller",
-      "community": 24,
-      "community_name": "SetLocale.php",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "localecontroller"
     },
     {
@@ -620,8 +532,8 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "app_http_controllers_localecontroller_localecontroller_update",
-      "community": 24,
-      "community_name": "SetLocale.php",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".update()"
     },
     {
@@ -631,8 +543,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_http_controllers_recurringtransactioncontroller",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 20,
+      "community_name": "inertia.php",
       "norm_label": "recurringtransactioncontroller.php"
     },
     {
@@ -642,8 +554,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "app_http_controllers_recurringtransactioncontroller_recurringtransactioncontroller",
-      "community": 14,
-      "community_name": "RecurringTransaction",
+      "community": 26,
+      "community_name": "Illuminate\\Http\\Request",
       "norm_label": "recurringtransactioncontroller"
     },
     {
@@ -653,8 +565,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "app_http_controllers_recurringtransactioncontroller_recurringtransactioncontroller_index",
-      "community": 14,
-      "community_name": "RecurringTransaction",
+      "community": 26,
+      "community_name": "Illuminate\\Http\\Request",
       "norm_label": ".index()"
     },
     {
@@ -664,8 +576,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_http_controllers_recurringtransactioncontroller_recurringtransactioncontroller_store",
-      "community": 14,
-      "community_name": "RecurringTransaction",
+      "community": 26,
+      "community_name": "Illuminate\\Http\\Request",
       "norm_label": ".store()"
     },
     {
@@ -675,8 +587,8 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "app_http_controllers_recurringtransactioncontroller_recurringtransactioncontroller_update",
-      "community": 14,
-      "community_name": "RecurringTransaction",
+      "community": 26,
+      "community_name": "Illuminate\\Http\\Request",
       "norm_label": ".update()"
     },
     {
@@ -686,8 +598,8 @@
       "source_location": "L84",
       "_origin": "ast",
       "id": "app_http_controllers_recurringtransactioncontroller_recurringtransactioncontroller_destroy",
-      "community": 14,
-      "community_name": "RecurringTransaction",
+      "community": 26,
+      "community_name": "Illuminate\\Http\\Request",
       "norm_label": ".destroy()"
     },
     {
@@ -697,8 +609,8 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "app_http_controllers_recurringtransactioncontroller_recurringtransactioncontroller_authorizewallet",
-      "community": 14,
-      "community_name": "RecurringTransaction",
+      "community": 26,
+      "community_name": "Illuminate\\Http\\Request",
       "norm_label": ".authorizewallet()"
     },
     {
@@ -708,8 +620,8 @@
       "source_location": "L101",
       "_origin": "ast",
       "id": "app_http_controllers_recurringtransactioncontroller_recurringtransactioncontroller_authorizerule",
-      "community": 14,
-      "community_name": "RecurringTransaction",
+      "community": 26,
+      "community_name": "Illuminate\\Http\\Request",
       "norm_label": ".authorizerule()"
     },
     {
@@ -720,7 +632,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlelinkcontroller",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "googlelinkcontroller.php"
     },
     {
@@ -731,7 +643,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "googlelinkcontroller"
     },
     {
@@ -742,7 +654,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller_redirect",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".redirect()"
     },
     {
@@ -753,7 +665,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller_callback",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".callback()"
     },
     {
@@ -764,8 +676,96 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller_destroy",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".destroy()"
+    },
+    {
+      "label": "GoogleSheetController.php",
+      "file_type": "code",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_http_controllers_settings_googlesheetcontroller",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
+      "norm_label": "googlesheetcontroller.php"
+    },
+    {
+      "label": "GoogleSheetController",
+      "file_type": "code",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L17",
+      "_origin": "ast",
+      "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
+      "norm_label": "googlesheetcontroller"
+    },
+    {
+      "label": ".edit()",
+      "file_type": "code",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_edit",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
+      "norm_label": ".edit()"
+    },
+    {
+      "label": ".redirect()",
+      "file_type": "code",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_redirect",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
+      "norm_label": ".redirect()"
+    },
+    {
+      "label": ".callback()",
+      "file_type": "code",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_callback",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
+      "norm_label": ".callback()"
+    },
+    {
+      "label": ".update()",
+      "file_type": "code",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L68",
+      "_origin": "ast",
+      "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_update",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
+      "norm_label": ".update()"
+    },
+    {
+      "label": ".destroy()",
+      "file_type": "code",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L90",
+      "_origin": "ast",
+      "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_destroy",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
+      "norm_label": ".destroy()"
+    },
+    {
+      "label": ".sync()",
+      "file_type": "code",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L109",
+      "_origin": "ast",
+      "id": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_sync",
+      "community": 21,
+      "community_name": "Illuminate\\Http\\RedirectResponse",
+      "norm_label": ".sync()"
     },
     {
       "label": "ProfileController.php",
@@ -775,7 +775,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_profilecontroller",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "profilecontroller.php"
     },
     {
@@ -786,7 +786,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_profilecontroller_profilecontroller",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "profilecontroller"
     },
     {
@@ -797,7 +797,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_profilecontroller_profilecontroller_edit",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".edit()"
     },
     {
@@ -807,8 +807,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "app_http_controllers_settings_profilecontroller_profilecontroller_update",
-      "community": 21,
-      "community_name": ".redirect",
+      "community": 2,
+      "community_name": "PasswordValidationRules.php",
       "norm_label": ".update()"
     },
     {
@@ -819,7 +819,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_profilecontroller_profilecontroller_destroy",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".destroy()"
     },
     {
@@ -830,7 +830,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_securitycontroller",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "securitycontroller.php"
     },
     {
@@ -841,7 +841,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_securitycontroller_securitycontroller",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "securitycontroller"
     },
     {
@@ -852,7 +852,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_settings_securitycontroller_securitycontroller_edit",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": ".edit()"
     },
     {
@@ -862,8 +862,8 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "app_http_controllers_settings_securitycontroller_securitycontroller_update",
-      "community": 21,
-      "community_name": ".redirect",
+      "community": 2,
+      "community_name": "PasswordValidationRules.php",
       "norm_label": ".update()"
     },
     {
@@ -873,8 +873,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 20,
+      "community_name": "inertia.php",
       "norm_label": "transactioncontroller.php"
     },
     {
@@ -884,8 +884,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": "transactioncontroller"
     },
     {
@@ -895,8 +895,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_index",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".index()"
     },
     {
@@ -906,8 +906,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_store",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".store()"
     },
     {
@@ -917,8 +917,8 @@
       "source_location": "L86",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_update",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".update()"
     },
     {
@@ -928,8 +928,8 @@
       "source_location": "L137",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_destroy",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".destroy()"
     },
     {
@@ -939,8 +939,8 @@
       "source_location": "L158",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_export",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".export()"
     },
     {
@@ -950,8 +950,8 @@
       "source_location": "L205",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_filteredtransactionsquery",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".filteredtransactionsquery()"
     },
     {
@@ -961,8 +961,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_php_closure",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": "closure"
     },
     {
@@ -972,8 +972,8 @@
       "source_location": "L217",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_adjustbalance",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".adjustbalance()"
     },
     {
@@ -983,8 +983,8 @@
       "source_location": "L223",
       "_origin": "ast",
       "id": "app_http_controllers_transactioncontroller_transactioncontroller_authorizewallet",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": ".authorizewallet()"
     },
     {
@@ -994,8 +994,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 20,
+      "community_name": "inertia.php",
       "norm_label": "walletcontroller.php"
     },
     {
@@ -1006,7 +1006,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": "walletcontroller"
     },
     {
@@ -1017,7 +1017,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller_index",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": ".index()"
     },
     {
@@ -1028,7 +1028,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller_store",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": ".store()"
     },
     {
@@ -1039,7 +1039,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller_update",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": ".update()"
     },
     {
@@ -1050,7 +1050,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller_destroy",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": ".destroy()"
     },
     {
@@ -1061,7 +1061,7 @@
       "_origin": "ast",
       "id": "app_http_controllers_walletcontroller_walletcontroller_authorizewallet",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": ".authorizewallet()"
     },
     {
@@ -1071,8 +1071,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_http_controllers_wallettransfercontroller",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 20,
+      "community_name": "inertia.php",
       "norm_label": "wallettransfercontroller.php"
     },
     {
@@ -1467,8 +1467,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_budget",
-      "community": 20,
-      "community_name": "BudgetController",
+      "community": 13,
+      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
       "norm_label": "budget.php"
     },
     {
@@ -1478,8 +1478,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_models_budget_budget",
-      "community": 20,
-      "community_name": "BudgetController",
+      "community": 13,
+      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
       "norm_label": "budget"
     },
     {
@@ -1489,8 +1489,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "app_models_budget_budget_casts",
-      "community": 20,
-      "community_name": "BudgetController",
+      "community": 13,
+      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
       "norm_label": ".casts()"
     },
     {
@@ -1500,8 +1500,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "app_models_budget_budget_user",
-      "community": 20,
-      "community_name": "BudgetController",
+      "community": 13,
+      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
       "norm_label": ".user()"
     },
     {
@@ -1511,8 +1511,8 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "app_models_budget_budget_category",
-      "community": 20,
-      "community_name": "BudgetController",
+      "community": 13,
+      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
       "norm_label": ".category()"
     },
     {
@@ -1588,8 +1588,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_models_googlesheetconnection_googlesheetconnection",
-      "community": 13,
-      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
+      "community": 36,
+      "community_name": "Transaction",
       "norm_label": "googlesheetconnection"
     },
     {
@@ -1599,8 +1599,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "app_models_googlesheetconnection_googlesheetconnection_casts",
-      "community": 13,
-      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
+      "community": 36,
+      "community_name": "Transaction",
       "norm_label": ".casts()"
     },
     {
@@ -1610,8 +1610,8 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "app_models_googlesheetconnection_googlesheetconnection_user",
-      "community": 13,
-      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
+      "community": 36,
+      "community_name": "Transaction",
       "norm_label": ".user()"
     },
     {
@@ -1621,8 +1621,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "app_models_googlesheetconnection_googlesheetconnection_istokenexpired",
-      "community": 13,
-      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
+      "community": 36,
+      "community_name": "Transaction",
       "norm_label": ".istokenexpired()"
     },
     {
@@ -1632,8 +1632,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "app_models_googlesheetconnection_googlesheetconnection_hasspreadsheet",
-      "community": 13,
-      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
+      "community": 36,
+      "community_name": "Transaction",
       "norm_label": ".hasspreadsheet()"
     },
     {
@@ -1830,8 +1830,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "app_models_transaction_transaction",
-      "community": 13,
-      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
+      "community": 36,
+      "community_name": "Transaction",
       "norm_label": "transaction"
     },
     {
@@ -1841,8 +1841,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "app_models_transaction_transaction_casts",
-      "community": 13,
-      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
+      "community": 36,
+      "community_name": "Transaction",
       "norm_label": ".casts()"
     },
     {
@@ -1852,8 +1852,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "app_models_transaction_transaction_wallet",
-      "community": 13,
-      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
+      "community": 36,
+      "community_name": "Transaction",
       "norm_label": ".wallet()"
     },
     {
@@ -1863,8 +1863,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "app_models_transaction_transaction_category",
-      "community": 13,
-      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
+      "community": 36,
+      "community_name": "Transaction",
       "norm_label": ".category()"
     },
     {
@@ -2083,8 +2083,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_models_wallettransfer",
-      "community": 0,
-      "community_name": "User",
+      "community": 13,
+      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
       "norm_label": "models/wallettransfer.php"
     },
     {
@@ -2369,8 +2369,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice",
-      "community": 13,
-      "community_name": "Illuminate\\Database\\Eloquent\\Factories\\HasFactory",
+      "community": 36,
+      "community_name": "Transaction",
       "norm_label": "googlesheetssyncservice.php"
     },
     {
@@ -2381,7 +2381,7 @@
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice",
       "community": 36,
-      "community_name": "GoogleSheetsSyncService",
+      "community_name": "Transaction",
       "norm_label": "googlesheetssyncservice"
     },
     {
@@ -2392,7 +2392,7 @@
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_sync",
       "community": 36,
-      "community_name": "GoogleSheetsSyncService",
+      "community_name": "Transaction",
       "norm_label": ".sync()"
     },
     {
@@ -2403,7 +2403,7 @@
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_getvalidaccesstoken",
       "community": 36,
-      "community_name": "GoogleSheetsSyncService",
+      "community_name": "Transaction",
       "norm_label": ".getvalidaccesstoken()"
     },
     {
@@ -2414,7 +2414,7 @@
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_ensuresheetsexist",
       "community": 36,
-      "community_name": "GoogleSheetsSyncService",
+      "community_name": "Transaction",
       "norm_label": ".ensuresheetsexist()"
     },
     {
@@ -2425,7 +2425,7 @@
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_writetransactions",
       "community": 36,
-      "community_name": "GoogleSheetsSyncService",
+      "community_name": "Transaction",
       "norm_label": ".writetransactions()"
     },
     {
@@ -2436,7 +2436,7 @@
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_writewallets",
       "community": 36,
-      "community_name": "GoogleSheetsSyncService",
+      "community_name": "Transaction",
       "norm_label": ".writewallets()"
     },
     {
@@ -2447,7 +2447,7 @@
       "_origin": "ast",
       "id": "app_services_googlesheetssyncservice_googlesheetssyncservice_overwriterange",
       "community": 36,
-      "community_name": "GoogleSheetsSyncService",
+      "community_name": "Transaction",
       "norm_label": ".overwriterange()"
     },
     {
@@ -2458,7 +2458,7 @@
       "_origin": "ast",
       "id": "app_support_currency",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": "currency.php"
     },
     {
@@ -2469,7 +2469,7 @@
       "_origin": "ast",
       "id": "app_support_currency_currency",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": "currency"
     },
     {
@@ -2480,7 +2480,7 @@
       "_origin": "ast",
       "id": "app_support_currency_currency_codes",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": ".codes()"
     },
     {
@@ -2491,7 +2491,7 @@
       "_origin": "ast",
       "id": "app_support_currency_currency_isvalid",
       "community": 28,
-      "community_name": "Currency",
+      "community_name": "BudgetController",
       "norm_label": ".isvalid()"
     },
     {
@@ -3818,8 +3818,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "config_inertia",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 20,
+      "community_name": "inertia.php",
       "norm_label": "inertia.php"
     },
     {
@@ -5017,8 +5017,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "package_devdependencies_babel_plugin_react_compiler",
-      "community": 19,
-      "community_name": "devDependencies",
+      "community": 72,
+      "community_name": "babel-plugin-react-compiler",
       "norm_label": "babel-plugin-react-compiler"
     },
     {
@@ -5028,8 +5028,8 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "babel_plugin_react_compiler",
-      "community": 19,
-      "community_name": "devDependencies",
+      "community": 72,
+      "community_name": "babel-plugin-react-compiler",
       "norm_label": "babel-plugin-react-compiler"
     },
     {
@@ -5215,8 +5215,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "package_devdependencies_typescript_eslint",
-      "community": 143,
-      "community_name": "typescript-eslint",
+      "community": 19,
+      "community_name": "devDependencies",
       "norm_label": "typescript-eslint"
     },
     {
@@ -5226,8 +5226,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "typescript_eslint",
-      "community": 143,
-      "community_name": "typescript-eslint",
+      "community": 19,
+      "community_name": "devDependencies",
       "norm_label": "typescript-eslint"
     },
     {
@@ -5710,8 +5710,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "package_dependencies_class_variance_authority",
-      "community": 30,
-      "community_name": "dependencies",
+      "community": 89,
+      "community_name": "class-variance-authority",
       "norm_label": "class-variance-authority"
     },
     {
@@ -5721,8 +5721,8 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "class_variance_authority",
-      "community": 30,
-      "community_name": "dependencies",
+      "community": 89,
+      "community_name": "class-variance-authority",
       "norm_label": "class-variance-authority"
     },
     {
@@ -5776,8 +5776,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "package_dependencies_globals",
-      "community": 137,
-      "community_name": "globals",
+      "community": 30,
+      "community_name": "dependencies",
       "norm_label": "globals"
     },
     {
@@ -5787,8 +5787,8 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "globals",
-      "community": 137,
-      "community_name": "globals",
+      "community": 30,
+      "community_name": "dependencies",
       "norm_label": "globals"
     },
     {
@@ -11090,7 +11090,7 @@
       "_origin": "ast",
       "id": "routes_settings",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "settings.php"
     },
     {
@@ -11100,8 +11100,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "routes_web",
-      "community": 37,
-      "community_name": "Wallet",
+      "community": 20,
+      "community_name": "inertia.php",
       "norm_label": "web.php"
     },
     {
@@ -11937,7 +11937,7 @@
       "_origin": "ast",
       "id": "illuminate_http_redirectresponse",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "illuminate\\http\\redirectresponse"
     },
     {
@@ -11959,7 +11959,7 @@
       "_origin": "ast",
       "id": "inertia_response",
       "community": 21,
-      "community_name": ".redirect",
+      "community_name": "Illuminate\\Http\\RedirectResponse",
       "norm_label": "inertia\\response"
     },
     {
@@ -11969,8 +11969,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "symfony_component_httpfoundation_streamedresponse",
-      "community": 26,
-      "community_name": "Illuminate\\Http\\Request",
+      "community": 37,
+      "community_name": "Wallet",
       "norm_label": "symfony\\component\\httpfoundation\\streamedresponse"
     },
     {
@@ -13298,18 +13298,6 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "app/Http/Controllers/BudgetController.php",
-      "source_location": "L103",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_budgetcontroller_budgetcontroller_store",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/BudgetController.php",
       "source_location": "L78",
       "weight": 1.0,
       "_origin": "ast",
@@ -13329,18 +13317,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/BudgetController.php",
-      "source_location": "L115",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_budgetcontroller_budgetcontroller_destroy",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/BudgetController.php",
@@ -13351,18 +13327,6 @@
       "source": "app_http_controllers_budgetcontroller_budgetcontroller_destroy",
       "target": "app_models_budget_budget",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/BudgetController.php",
-      "source_location": "L136",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_budgetcontroller_budgetcontroller_storeoverall",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
     },
     {
       "relation": "calls",
@@ -13387,18 +13351,6 @@
       "source": "app_http_controllers_budgetcontroller_budgetcontroller_storeoverall",
       "target": "illuminate_http_request",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/BudgetController.php",
-      "source_location": "L148",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_budgetcontroller_budgetcontroller_destroyoverall",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
     },
     {
       "relation": "references",
@@ -13598,18 +13550,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/CategoryController.php",
-      "source_location": "L32",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_categorycontroller_categorycontroller_store",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/CategoryController.php",
@@ -13632,18 +13572,6 @@
       "source": "app_http_controllers_categorycontroller_categorycontroller_update",
       "target": "app_http_controllers_categorycontroller_categorycontroller_authorizecategory",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/CategoryController.php",
-      "source_location": "L53",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_categorycontroller_categorycontroller_update",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
     },
     {
       "relation": "references",
@@ -13680,18 +13608,6 @@
       "source": "app_http_controllers_categorycontroller_categorycontroller_destroy",
       "target": "app_http_controllers_categorycontroller_categorycontroller_authorizecategory",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/CategoryController.php",
-      "source_location": "L68",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_categorycontroller_categorycontroller_destroy",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
     },
     {
       "relation": "references",
@@ -13740,29 +13656,6 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller",
-      "target": "app_http_controllers_controller_controller",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L17",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller",
-      "target": "app_http_controllers_controller_controller",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "app/Http/Controllers/LocaleController.php",
@@ -13804,6 +13697,29 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller",
+      "target": "app_http_controllers_controller_controller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller",
+      "target": "app_http_controllers_controller_controller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
       "target": "app_http_controllers_controller_controller",
       "confidence_score": 1.0
     },
@@ -13953,479 +13869,6 @@
       "context": "parameter_type",
       "_origin": "ast",
       "source": "app_http_controllers_dashboardcontroller_dashboardcontroller_index",
-      "target": "illuminate_http_request",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L17",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L14",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller",
-      "target": "app_services_googlesheetssyncservice_googlesheetssyncservice",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L6",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller",
-      "target": "illuminate_http_redirectresponse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller",
-      "target": "illuminate_http_request",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L9",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller",
-      "target": "config_inertia",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L10",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller",
-      "target": "inertia_response",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "routes/settings.php",
-      "source_location": "L8",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "routes_settings",
-      "target": "app_http_controllers_googlesheetcontroller",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L44",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_callback",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L90",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_destroy",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L19",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_edit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L30",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L111",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_sync",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L68",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_update",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L19",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_edit",
-      "target": "illuminate_http_request",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L19",
-      "weight": 1.0,
-      "context": "return_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_edit",
-      "target": "inertia_response",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L49",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_callback",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L106",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_destroy",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L30",
-      "weight": 1.0,
-      "context": "return_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect",
-      "target": "illuminate_http_redirectresponse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L125",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_sync",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L87",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_update",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/RecurringTransactionController.php",
-      "source_location": "L90",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_recurringtransactioncontroller_recurringtransactioncontroller_destroy",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/RecurringTransactionController.php",
-      "source_location": "L60",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_recurringtransactioncontroller_recurringtransactioncontroller_store",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/RecurringTransactionController.php",
-      "source_location": "L80",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_recurringtransactioncontroller_recurringtransactioncontroller_update",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L155",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_transactioncontroller_transactioncontroller_destroy",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L83",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_transactioncontroller_transactioncontroller_store",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/TransactionController.php",
-      "source_location": "L134",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_transactioncontroller_transactioncontroller_update",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/WalletController.php",
-      "source_location": "L72",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_walletcontroller_walletcontroller_destroy",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/WalletController.php",
-      "source_location": "L36",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_walletcontroller_walletcontroller_store",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/WalletController.php",
-      "source_location": "L53",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_walletcontroller_walletcontroller_update",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/WalletTransferController.php",
-      "source_location": "L112",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_wallettransfercontroller_wallettransfercontroller_destroy",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/WalletTransferController.php",
-      "source_location": "L83",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_wallettransfercontroller_wallettransfercontroller_store",
-      "target": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_redirect"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L44",
-      "weight": 1.0,
-      "context": "return_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_callback",
-      "target": "illuminate_http_redirectresponse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L44",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_callback",
-      "target": "illuminate_http_request",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L68",
-      "weight": 1.0,
-      "context": "return_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_update",
-      "target": "illuminate_http_redirectresponse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L68",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_update",
-      "target": "illuminate_http_request",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L90",
-      "weight": 1.0,
-      "context": "return_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_destroy",
-      "target": "illuminate_http_redirectresponse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L90",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_destroy",
-      "target": "illuminate_http_request",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L111",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_sync",
-      "target": "app_services_googlesheetssyncservice_googlesheetssyncservice",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L111",
-      "weight": 1.0,
-      "context": "return_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_sync",
-      "target": "illuminate_http_redirectresponse",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "app/Http/Controllers/GoogleSheetController.php",
-      "source_location": "L111",
-      "weight": 1.0,
-      "context": "parameter_type",
-      "_origin": "ast",
-      "source": "app_http_controllers_googlesheetcontroller_googlesheetcontroller_sync",
       "target": "illuminate_http_request",
       "confidence_score": 1.0
     },
@@ -14995,18 +14438,6 @@
       "context": "call",
       "confidence": "INFERRED",
       "confidence_score": 0.8,
-      "source_file": "app/Http/Controllers/Settings/ProfileController.php",
-      "source_location": "L60",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "app_http_controllers_settings_profilecontroller_profilecontroller_destroy",
-      "target": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller_redirect"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
       "source_file": "app/Http/Controllers/Settings/GoogleLinkController.php",
       "source_location": "L38",
       "weight": 1.0,
@@ -15059,6 +14490,347 @@
       "context": "parameter_type",
       "_origin": "ast",
       "source": "app_http_controllers_settings_googlelinkcontroller_googlelinkcontroller_destroy",
+      "target": "illuminate_http_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L14",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller",
+      "target": "app_services_googlesheetssyncservice_googlesheetssyncservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller",
+      "target": "illuminate_http_redirectresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller",
+      "target": "illuminate_http_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller",
+      "target": "config_inertia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller",
+      "target": "inertia_response",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "routes/settings.php",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "routes_settings",
+      "target": "app_http_controllers_settings_googlesheetcontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_callback",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L90",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_destroy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_edit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L30",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_redirect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L109",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_sync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L68",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_update",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L19",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_edit",
+      "target": "illuminate_http_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L19",
+      "weight": 1.0,
+      "context": "return_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_edit",
+      "target": "inertia_response",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L49",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_callback",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_redirect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L106",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_destroy",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_redirect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L30",
+      "weight": 1.0,
+      "context": "return_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_redirect",
+      "target": "illuminate_http_redirectresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L123",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_sync",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_redirect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_update",
+      "target": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_redirect",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L44",
+      "weight": 1.0,
+      "context": "return_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_callback",
+      "target": "illuminate_http_redirectresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L44",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_callback",
+      "target": "illuminate_http_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L68",
+      "weight": 1.0,
+      "context": "return_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_update",
+      "target": "illuminate_http_redirectresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L68",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_update",
+      "target": "illuminate_http_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L90",
+      "weight": 1.0,
+      "context": "return_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_destroy",
+      "target": "illuminate_http_redirectresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L90",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_destroy",
+      "target": "illuminate_http_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L109",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_sync",
+      "target": "app_services_googlesheetssyncservice_googlesheetssyncservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L109",
+      "weight": 1.0,
+      "context": "return_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_sync",
+      "target": "illuminate_http_redirectresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "app/Http/Controllers/Settings/GoogleSheetController.php",
+      "source_location": "L109",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "app_http_controllers_settings_googlesheetcontroller_googlesheetcontroller_sync",
       "target": "illuminate_http_request",
       "confidence_score": 1.0
     },
