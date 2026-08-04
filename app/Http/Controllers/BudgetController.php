@@ -73,7 +73,10 @@ class BudgetController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => [
+                'required',
+                Rule::exists('categories', 'id')->where('user_id', $request->user()->id),
+            ],
             'amount' => 'required|numeric|min:0.01',
             'currency' => ['required', 'string', 'size:3', Rule::in(Currency::codes())],
             'rollover' => 'boolean',

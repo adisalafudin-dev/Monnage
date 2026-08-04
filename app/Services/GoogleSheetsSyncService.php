@@ -177,7 +177,7 @@ class GoogleSheetsSyncService
             ->throw();
 
         $url = "https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/{$sheetTitle}!A1"
-            .'?valueInputOption=USER_ENTERED';
+            .'?valueInputOption=RAW';
 
         Http::withToken($accessToken)
             ->asJson()

@@ -13,11 +13,21 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class TransactionController extends Controller
 {
+
+    private function csvCell(?string $value): string
+    {
+        $value = (string) $value;
+
+        return preg_match('/^\s*[=+\-@]/', $value)
+            ? "'{$value}"
+            : $value;
+    }
+
    public function index(Request $request)
     {
         $request->validate([
-            'wallet_id' => 'nullable|exists:wallets,id',
-            'category_id' => 'nullable|exists:categories,id',
+            'wallet_id' => ['nullable', Rule::exists('wallets', 'id')->where('user_id', $request->user()->id)],
+            'category_id' => ['nullable', Rule::exists('categories', 'id')->where('user_id', $request->user()->id)],
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
         ]);
@@ -64,9 +74,9 @@ class TransactionController extends Controller
                 ->where("user_id", $request->user()->id)
                 ->where('status', Wallet::STATUS_ACTIVE)
             ],
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => ['required', Rule::exists('categories', 'id')->where('user_id', $request->user()->id)],
             'amount' => 'required|numeric|min:0.01',
-            'description' => 'nullable|string',
+            'description' => 'nullable|string|max:5000',
             'transacted_at' => 'required|date',
         ]);
 
@@ -94,9 +104,9 @@ class TransactionController extends Controller
                 Rule::exists("wallets", 'id')
                 ->where("user_id", $request->user()->id)
             ],
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => ['required', Rule::exists('categories', 'id')->where('user_id', $request->user()->id)],
             'amount' => 'required|numeric|min:0.01',
-            'description' => 'nullable|string',
+            'description' => 'nullable|string|max:5000',
             'transacted_at' => 'required|date',
         ]);
 
@@ -161,8 +171,8 @@ class TransactionController extends Controller
       public function export(Request $request): StreamedResponse
     {
         $request->validate([
-            'wallet_id' => 'nullable|exists:wallets,id',
-            'category_id' => 'nullable|exists:categories,id',
+            'wallet_id' => ['nullable', Rule::exists('wallets', 'id')->where('user_id', $request->user()->id)],
+            'category_id' => ['nullable', Rule::exists('categories', 'id')->where('user_id', $request->user()->id)],
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
         ]);
@@ -187,12 +197,12 @@ class TransactionController extends Controller
                 ->each(function (Transaction $transaction) use ($handle) {
                     fputcsv($handle, [
                         $transaction->transacted_at->format('Y-m-d H:i'),
-                        $transaction->wallet->title,
+                        $this->csvCell($transaction->wallet->title),
                         $transaction->wallet->currency,
-                        $transaction->category->name,
+                        $this->csvCell($transaction->category->name),
                         $transaction->category->type === 'income' ? 'Pemasukan' : 'Pengeluaran',
                         (string) $transaction->amount,
-                        $transaction->description ?? '',
+                        $this->csvCell($transaction->description),
                     ]);
                 });
 

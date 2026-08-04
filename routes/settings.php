@@ -14,6 +14,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('settings/profile', [ProfileController::class, 'update'])->name('profile.update');
     
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('settings/integrations', [GoogleSheetController::class, 'edit'])->name('integrations.edit');
     Route::get('settings/integrations/google-sheets/redirect', [GoogleSheetController::class, 'redirect'])->name('integrations.google-sheets.redirect');
     Route::get('settings/integrations/google-sheets/callback', [GoogleSheetController::class, 'callback'])->name('integrations.google-sheets.callback');
@@ -21,11 +24,6 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('settings/integrations/google-sheets', [GoogleSheetController::class, 'destroy'])->name('integrations.google-sheets.destroy');
     Route::post('settings/integrations/google-sheets/sync', [GoogleSheetController::class, 'sync'])->name('integrations.google-sheets.sync');
 
-
-
-});
-
-Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('settings/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('settings/security', [SecurityController::class, 'edit'])

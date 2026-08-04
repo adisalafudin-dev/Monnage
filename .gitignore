@@ -31,6 +31,7 @@ yarn-error.log
 /.cursor
 /.opencode
 
+/graphify-out
 .cursor
 .opencode
 .agents

@@ -30,16 +30,9 @@ class WalletTransferController extends Controller
         ]);
     }
  
-public function store(Request $request)
+public function store(StoreWalletTransferRequest $request)
 {
-    $validated = $request->validate([
-        'from_wallet_id' => 'required|exists:wallets,id|different:to_wallet_id',
-        'to_wallet_id' => 'required|exists:wallets,id',
-        'amount' => 'required|numeric|min:0.01',
-        'exchange_rate' => 'required|numeric|min:0.000001',
-        'description' => 'nullable|string',
-        'transferred_at' => 'required|date',
-    ]);
+    $validated = $request->validated();
 
     DB::transaction(function () use ($request, $validated) {
         $walletIds = collect([$validated['from_wallet_id'], $validated['to_wallet_id']])->sort()->values();

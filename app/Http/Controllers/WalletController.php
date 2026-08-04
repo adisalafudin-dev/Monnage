@@ -25,7 +25,7 @@ class WalletController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'nullable|string|max:5000',
             'balance' => 'required|numeric|min:0',
             'currency' => ['required', 'string', 'size:3', Rule::in(Currency::codes())],
             'status' => 'boolean',
@@ -42,7 +42,7 @@ class WalletController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'nullable|string|max:5000',
             'balance' => 'required|numeric|min:0',
             'currency' => ['required', 'string', 'size:3', Rule::in(Currency::codes())],
             'status' => 'boolean',

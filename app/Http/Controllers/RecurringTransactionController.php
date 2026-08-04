@@ -37,9 +37,12 @@ class RecurringTransactionController extends Controller
                     ->where('user_id', $request->user()->id)
                     ->where('status', Wallet::STATUS_ACTIVE),
             ],
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => [
+                'required',
+                Rule::exists('categories', 'id')->where('user_id', $request->user()->id),
+            ],
             'amount' => 'required|numeric|min:0.01',
-            'description' => 'nullable|string',
+            'description' => 'nullable|string|max:5000',
             'frequency' => ['required', Rule::in(RecurringTransaction::FREQUENCIES)],
             'interval' => 'required|integer|min:1|max:365',
             'start_date' => 'required|date',
@@ -70,7 +73,7 @@ class RecurringTransactionController extends Controller
         // already happened. Only these fields remain editable.
         $validated = $request->validate([
             'amount' => 'required|numeric|min:0.01',
-            'description' => 'nullable|string',
+            'description' => 'nullable|string|max:5000',
             'end_date' => 'nullable|date|after_or_equal:start_date',
             'is_active' => 'boolean',
         ]);
