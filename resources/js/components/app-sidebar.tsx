@@ -8,6 +8,7 @@ import {
     ArrowRightLeft,
     Repeat,
 } from 'lucide-react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import AppLogo from '@/components/app-logo';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -30,47 +31,49 @@ import { index as walletsIndex } from '@/routes/wallets';
 import { index as recurringTransactionsIndex } from '@/routes/recurring-transactions';
 import type { NavItem } from '@/types';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Dompet',
-        href: walletsIndex(),
-        icon: WalletCards,
-    },
-    {
-        title: 'Kategori',
-        href: categoriesIndex(),
-        icon: Tags,
-    },
-
-    {
-        title: 'Transfer',
-        href: transfersIndex(),
-        icon: ArrowRightLeft,
-    },
-    {
-        title: 'Budget',
-        href: budgetsIndex(),
-        icon: PiggyBank,
-    },
-
-    {
-        title: 'Transaksi',
-        href: transactionsIndex(),
-        icon: ReceiptText,
-    },
-    {
-        title: 'Planning',
-        href: recurringTransactionsIndex(),
-        icon: Repeat,
-    },
-];
-
 export function AppSidebar() {
+    const { t } = useLaravelReactI18n();
+
+    const mainNavItems: NavItem[] = [
+        {
+            title: t('Dashboard'),
+            href: dashboard(),
+            icon: LayoutGrid,
+        },
+        {
+            title: t('Dompet'),
+            href: walletsIndex(),
+            icon: WalletCards,
+        },
+        {
+            title: t('Kategori'),
+            href: categoriesIndex(),
+            icon: Tags,
+        },
+
+        {
+            title: t('Transfer'),
+            href: transfersIndex(),
+            icon: ArrowRightLeft,
+        },
+        {
+            title: t('Budget'),
+            href: budgetsIndex(),
+            icon: PiggyBank,
+        },
+
+        {
+            title: t('Transaksi'),
+            href: transactionsIndex(),
+            icon: ReceiptText,
+        },
+        {
+            title: t('Planning'),
+            href: recurringTransactionsIndex(),
+            icon: Repeat,
+        },
+    ];
+
     return (
         <Sidebar collapsible="icon" variant="inset">
             <SidebarHeader>
@@ -95,3 +98,4 @@ export function AppSidebar() {
         </Sidebar>
     );
 }
+

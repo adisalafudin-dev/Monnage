@@ -1,5 +1,5 @@
 import { Link, router } from '@inertiajs/react';
-import { Globe, LogOut, Settings } from 'lucide-react';
+import { LogOut, Settings } from 'lucide-react';
 import { useLaravelReactI18n } from 'laravel-react-i18n';
 import {
     DropdownMenuGroup,
@@ -19,21 +19,11 @@ type Props = {
 
 export function UserMenuContent({ user }: Props) {
     const cleanup = useMobileNavigation();
-    const { t, currentLocale } = useLaravelReactI18n();
+    const { t } = useLaravelReactI18n();
 
     const handleLogout = () => {
         cleanup();
         router.flushAll();
-    };
-
-    const handleLocaleSwitch = () => {
-        const nextLocale = currentLocale() === 'id' ? 'en' : 'id';
-        cleanup();
-        router.patch(
-            '/locale',
-            { locale: nextLocale },
-            { preserveScroll: true, preserveState: false },
-        );
     };
 
     return (
@@ -55,10 +45,6 @@ export function UserMenuContent({ user }: Props) {
                         <Settings className="mr-2" />
                         {t('Pengaturan')}
                     </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem onSelect={handleLocaleSwitch}>
-                    <Globe className="mr-2" />
-                    {currentLocale() === 'id' ? 'English' : 'Bahasa Indonesia'}
                 </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

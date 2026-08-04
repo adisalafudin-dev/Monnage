@@ -15,10 +15,10 @@ class SetLocale
     {
         $locale = $request->user()?->locale
             ?? $request->cookie('locale')
-            ?? 'en';
+            ?? 'id';
 
         if (! in_array($locale, self::SUPPORTED, true)) {
-            $locale = 'en';
+            $locale = 'id';
         }
 
         App::setLocale($locale);

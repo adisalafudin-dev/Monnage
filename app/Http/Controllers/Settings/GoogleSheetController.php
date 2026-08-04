@@ -52,7 +52,7 @@ class GoogleSheetController extends Controller
             $googleUser = $provider->user();
         } catch (InvalidStateException $e) {
             return redirect()->route('integrations.edit')->withErrors([
-                'sheets' => 'Menghubungkan Google Sheets gagal atau kedaluwarsa, silakan coba lagi.',
+                'sheets' => __('Menghubungkan Google Sheets gagal atau kedaluwarsa, silakan coba lagi.'),
             ]);
         }
 
@@ -67,7 +67,7 @@ class GoogleSheetController extends Controller
         );
 
         return redirect()->route('integrations.edit')
-            ->with('success', 'Google Sheets berhasil terhubung. Tempel link spreadsheet Anda di bawah.');
+            ->with('success', __('Google Sheets berhasil terhubung. Tempel link spreadsheet Anda di bawah.'));
     }
 
     public function update(Request $request): RedirectResponse
@@ -75,13 +75,13 @@ class GoogleSheetController extends Controller
         $validated = $request->validate(['spreadsheet_url' => 'required|url']);
 
         if (! preg_match('/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/', $validated['spreadsheet_url'], $matches)) {
-            return back()->withErrors(['spreadsheet_url' => 'Link Google Sheets tidak valid.']);
+            return back()->withErrors(['spreadsheet_url' => __('Link Google Sheets tidak valid.')]);
         }
 
         $connection = $request->user()->googleSheetConnection;
 
         if (! $connection?->access_token) {
-            return back()->withErrors(['spreadsheet_url' => 'Hubungkan akun Google Anda terlebih dahulu.']);
+            return back()->withErrors(['spreadsheet_url' => __('Hubungkan akun Google Anda terlebih dahulu.')]);
         }
 
         $connection->update([
@@ -89,7 +89,7 @@ class GoogleSheetController extends Controller
             'spreadsheet_url' => $validated['spreadsheet_url'],
         ]);
 
-        return redirect()->route('integrations.edit')->with('success', 'Spreadsheet berhasil disimpan.');
+        return redirect()->route('integrations.edit')->with('success', __('Spreadsheet berhasil disimpan.'));
     }
 
     public function destroy(Request $request): RedirectResponse
@@ -108,7 +108,7 @@ class GoogleSheetController extends Controller
             $connection->delete();
         }
 
-        return redirect()->route('integrations.edit')->with('success', 'Google Sheets berhasil diputuskan.');
+        return redirect()->route('integrations.edit')->with('success', __('Google Sheets berhasil diputuskan.'));
     }
 
     public function sync(Request $request, GoogleSheetsSyncService $syncService): RedirectResponse
@@ -116,7 +116,7 @@ class GoogleSheetController extends Controller
         $connection = $request->user()->googleSheetConnection;
 
         if (! $connection?->hasSpreadsheet()) {
-            return back()->withErrors(['sheets' => 'Tempel link spreadsheet terlebih dahulu.']);
+            return back()->withErrors(['sheets' => __('Tempel link spreadsheet terlebih dahulu.')]);
         }
 
         try {
@@ -125,6 +125,6 @@ class GoogleSheetController extends Controller
             return back()->withErrors(['sheets' => $e->getMessage()]);
         }
 
-        return redirect()->route('integrations.edit')->with('success', 'Berhasil sinkron ke Google Sheets.');
+        return redirect()->route('integrations.edit')->with('success', __('Berhasil sinkron ke Google Sheets.'));
     }
 }
