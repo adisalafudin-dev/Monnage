@@ -32,6 +32,8 @@ class GoogleSheetController extends Controller
         /** @var GoogleProvider $provider */
         $provider = Socialite::driver('google');
 
+        $provider->redirectUrl(route('integrations.google-sheets.callback'));
+
         $provider->scopes([
             'https://www.googleapis.com/auth/spreadsheets',
         ]);
@@ -44,7 +46,10 @@ class GoogleSheetController extends Controller
     public function callback(Request $request): RedirectResponse
     {
         try {
-            $googleUser = Socialite::driver('google')->user();
+            /** @var GoogleProvider $provider */
+            $provider = Socialite::driver('google');
+            $provider->redirectUrl(route('integrations.google-sheets.callback'));
+            $googleUser = $provider->user();
         } catch (InvalidStateException $e) {
             return redirect()->route('integrations.edit')->withErrors([
                 'sheets' => 'Menghubungkan Google Sheets gagal atau kedaluwarsa, silakan coba lagi.',

@@ -14,13 +14,17 @@ class GoogleLinkController extends Controller
 {
     public function redirect(): RedirectResponse
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')
+            ->redirectUrl(route('google.callback'))
+            ->redirect();
     }
 
     public function callback(Request $request): RedirectResponse
     {
         try {
-            $googleUser = Socialite::driver('google')->user();
+            $googleUser = Socialite::driver('google')
+                ->redirectUrl(route('google.callback'))
+                ->user();
         } catch (InvalidStateException $e) {
             return redirect()->route('security.edit')->withErrors([
                 'google' => 'Menghubungkan Google gagal atau kedaluwarsa, silakan coba lagi.',

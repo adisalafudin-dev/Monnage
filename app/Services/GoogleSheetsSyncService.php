@@ -141,7 +141,7 @@ class GoogleSheetsSyncService
     private function overwriteRange(string $spreadsheetId, string $accessToken, string $sheetTitle, array $rows): void
     {
         Http::withToken($accessToken)
-            ->post("https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/{$sheetTitle}!A1:Z10000:clear")
+            ->post("https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/{$sheetTitle}!A1:Z10000:clear", (object) [])
             ->throw();
 
         $url = "https://sheets.googleapis.com/v4/spreadsheets/{$spreadsheetId}/values/{$sheetTitle}!A1"
