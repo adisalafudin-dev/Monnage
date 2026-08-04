@@ -1,4 +1,5 @@
 import { Head, router, useForm } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import {
     ArrowDownRight,
     ArrowUpRight,
@@ -8,8 +9,9 @@ import {
     ReceiptText,
     Trash2,
     X,
+    Download,
 } from 'lucide-react';
-import { useLaravelReactI18n } from 'laravel-react-i18n';
+
 import { useState } from 'react';
 import InputError from '@/components/input-error';
 import Pagination from '@/components/pagination';
@@ -42,7 +44,7 @@ import {
 import { Textarea } from '@/components/ui/textarea';
 import { formatCurrency } from '@/lib/currency';
 import { dashboard } from '@/routes';
-import { destroy, index, store, update } from '@/routes/transactions';
+import transactionsRoutes from '@/routes/transactions';
 import type {
     Category,
     Paginated,
@@ -52,8 +54,13 @@ import type {
     Wallet,
 } from '@/types';
 
-import { Download } from 'lucide-react';
-import { export as exportTransactions } from '@/routes/transactions';
+const {
+    destroy,
+    export: exportTransactions,
+    index,
+    store,
+    update,
+} = transactionsRoutes;
 
 type Props = {
     transactions: Paginated<Transaction>;

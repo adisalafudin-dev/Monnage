@@ -8,6 +8,9 @@ import i18n from 'laravel-react-i18n/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+    resolve: {
+        dedupe: ['react', 'react-dom'],
+    },
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
