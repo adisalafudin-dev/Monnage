@@ -7,6 +7,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WalletTransferController;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecurringTransactionController;
 use Inertia\Inertia;
@@ -40,6 +41,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('recurring-transactions', RecurringTransactionController::class)
         ->only(['index', 'store', 'update', 'destroy']);
+
+    Route::patch('locale', [LocaleController::class, 'update'])->name('locale.update');
 });
 
 

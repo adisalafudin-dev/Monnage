@@ -22,65 +22,45 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 
 ## 🔴 P0 — Still broken
 
-- [x] **`BudgetController` still has the `auth()->id` bug** (line 82: `if ($budget->user_id !== auth()->id)`, missing `()`). This one was _not_ touched in the latest commit. `auth()->id` (no parens) is always `null`, so `$budget->user_id !== null` is always `true` → deleting any budget always 403s, even your own. One-line fix: `auth()->id()`.
-- [x] **`DashboardController`'s monthly summary query uses PostgreSQL-only SQL against a SQLite-by-default app.** It now runs `TO_CHAR(transacted_at, 'YYYY-MM')` (Postgres syntax). Your own `.env.example` sets `DB_CONNECTION=sqlite`, and SQLite has no `TO_CHAR` function — this will throw a raw SQL error the moment the dashboard route is hit on a fresh/default local setup. (The prior version used `DATE_FORMAT`, MySQL syntax — also wrong for SQLite, so this was never actually portable; it's just now pinned to a different single database engine.) Either target the DB you actually deploy on, or write the month-bucketing in PHP after pulling raw dates instead of relying on DB-specific date functions, so it works across SQLite/MySQL/Postgres.
+- [x] `BudgetController` auth()->id bug — confirmed fixed (`auth()->id()` with parens, both in BudgetController and MonthlyBudget delete).
+- [ ] **`DashboardController` still uses `TO_CHAR(transacted_at, 'YYYY-MM')`.** This is still broken, and I own part of the reason it's still broken — when I rewrote `DashboardController` for multi-currency support, I copied the existing `TO_CHAR` pattern forward instead of fixing it. It'll throw a raw SQL error against your SQLite-default setup the moment anyone hits the dashboard. Needs an actual fix — I'll do this properly (bucket by month in PHP after pulling raw dates, not a DB-specific function) rather than pushing it further down the list.
 
 ## 🟠 P1 — Logic bug in the new code
 
-- [x] **`CategoryController@update` runs its "can't change type if in use" check _after_ the update already happened.** Current order:
-    ```php
-    $category->update($validated);
+- [x] `CategoryController@update` type-change guard — confirmed fixed, the check now runs before `$category->update($validated)`.
 
-    if ($category->type !== $validated['type'] && (...)) {
-        return back()->withErrors([...]);
-    }
-    ```
-    By the time the `if` runs, `$category->type` has already been mutated in memory (and saved to the DB) to `$validated['type']` by `update()`, so `$category->type !== $validated['type']` can never be true — **this guard is dead code and never fires.** Users can currently change a category's type freely even when transactions/budgets already reference it, silently corrupting the income/expense totals that depend on that type. Fix: capture the original type _before_ calling `update()`, e.g.:
-    ```php
-    $originalType = $category->type;
+## 🟡 P1 — Missing frontend
 
-    if ($originalType !== $validated['type']
-        && ($category->transactions()->exists() || $category->budgets()->exists())) {
-        return back()->withErrors([...]);
-    }
-
-    $category->update($validated);
-    ```
-
-## 🟡 P1 — Missing frontend (only piece left)
-
-- [x] **Budgets still has no frontend page** (`resources/js/pages/budgets/index.tsx` doesn't exist), and there's no "Budgets" link in the sidebar nav (`app-sidebar.tsx` only has Dashboard / Dompet / Kategori / Transaksi). `BudgetController` already renders `Inertia::render('budgets/index', ...)` with computed spend/remaining/percentage per category — the backend is ready, only the page and nav entry are missing. Given the pattern already established by the other three pages, this should be the most straightforward remaining page to build.
+- [x] Budgets page — confirmed exists, with nav entry.
 
 ## 🟡 P2 — Test coverage
 
-- [x] Still no feature tests for `WalletController`, `CategoryController`, `TransactionController`, or `BudgetController` — the one new test (`tests/Unit/UserTest.php`) only checks that the `passkeys()` relation exists. The core money-moving logic (balance adjustment, budget spend calculation, the category-type-lock bug above) has zero automated coverage, which is exactly the kind of logic that regresses silently.
-- [x] Add a regression test for the `BudgetController` auth bug and the `CategoryController` type-change-after-update bug specifically, so they can't reappear.
+- [ ] **Not actually done, despite being checked off.** I looked at `tests/` directly — it's only Fortify's own scaffolded auth tests (`AuthenticationTest`, `PasswordResetTest`, etc.), `DashboardTest`, and `ExampleTest`. There is still zero test coverage for `WalletController`, `CategoryController`, `TransactionController`, `BudgetController`, `WalletTransferController`, or `RecurringTransactionController` — every bit of money-moving logic we've built across this whole conversation (transfers, rollover, recurring generation, balance adjustments) has no automated protection. This is the checkbox I'd trust least in the whole doc, and it's the one I flagged last turn as the actual priority.
 
-## 🟢 P2 — Data model / domain gaps (unchanged from before)
+## 🟢 P2 — Data model / domain gaps
 
-- [x] No wallet-to-wallet transfer type — moving money between your own wallets still has to be faked with two offsetting transactions.
-- [x] Delete "update" feature wallet-to-wallet transfer feature
-- [x] No multi-currency support.
-- [x] `Wallet.status` boolean still has no documented meaning and isn't obviously surfaced in the new wallets UI beyond a checkbox — worth confirming what it's meant to represent (active/archived?).
-- [ ] Budgets: no rollover, no total/overall monthly budget across categories, monthly cadence only.
-- [ ] No recurring transactions.
-- [ ] Cascading hard-deletes on wallets still permanently remove transaction history (categories now have a use-guard against deletion, wallets don't).
+- [x] Wallet-to-wallet transfers — confirmed (`WalletTransfer` model present).
+- [x] Multi-currency support — confirmed (`Currency` support class, currency columns present).
+- [x] `Wallet.status` documented + enforced — confirmed.
+- [x] Budgets: rollover + overall monthly cap — confirmed (`rollover` column on `Budget`, `MonthlyBudget` model present).
+- [x] Recurring transactions — confirmed (`RecurringTransaction` model + `ProcessRecurringTransactions` scheduled command present).
+- [x] Wallet hard-delete guard — confirmed (`WalletController@destroy` blocks deletion when transactions/transfers exist). One small gap: it doesn't yet check `recurringTransactions()->exists()` the way I specced — a wallet with an active recurring rule could still be deleted today, which would then let the rule reference a dangling wallet. Small fix, want me to add it?
 
 ## ⚪ P3 — Polish
 
-- [ ] No pagination on `TransactionController@index` — still loads the full history in one response.
-- [ ] Repo still has no README/description.
-- [ ] Validation/success messages are in Indonesian, UI labels ("Dompet", "Kategori", "Transaksi") are in Indonesian too now — consistent, but confirm this is the intended single-language product (no i18n toggle currently).
-- [x] Delete modal still using alert javascript use modal
+- [x] Pagination on `TransactionController@index` — confirmed, `->paginate(20)`.
+- [x] README — confirmed, 48 lines added.
+- [ ] i18n confirmation — still just needs a decision, no code.
+- [x] Delete modals — confirmed.
 
----
+## P4 — Next Feature
 
-## P4 - Next Feature
-
-- [ ] Add Google Login Authentication
-- [ ] Add Export Excel, CSV
-- [ ] Add Request API Gemini Studio
-- [ ] Add Machine Learning Python With FASTAPI
+- [ ] Google Login — **confirmed merged** (`google_id` on `User`, full OAuth flow present). Not in this doc's list as done — should be checked off.
+- [ ] Export CSV — **written, not merged.** I gave you the full `export()` method + route + button, but `grep` for `function export` in `TransactionController.php` comes up empty — it never got copied in.
+- [ ] Google Sheets sync — **written, not merged.** No `app/Services/` directory exists yet, so `GoogleSheetsSyncService` was never added.
+- [ ] Excel export — not started (CSV was built instead; worth confirming if you actually need `.xlsx` specifically).
+- [ ] Gemini Studio API — not started, not yet scoped.
+- [ ] ML/FastAPI — not started, not yet scoped.
 
 ## Suggested order of work
 
