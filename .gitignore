@@ -28,12 +28,9 @@ yarn-error.log
 /.vscode
 /.zed
 /.codex
-/.cursor
-/.opencode
-
-/graphify-out
-.cursor
-.opencode
-.agents
+/.cursor/
+/.opencode/
+/.agents/
+/graphify-out/
 /lang/php_*.json
 /database/seeders/Local/
