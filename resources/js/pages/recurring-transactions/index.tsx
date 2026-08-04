@@ -1,5 +1,6 @@
 import { Head, router, useForm } from '@inertiajs/react';
 import { Pencil, Plus, Repeat, Trash2 } from 'lucide-react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { useState } from 'react';
 import InputError from '@/components/input-error';
 import { Badge } from '@/components/ui/badge';
@@ -67,12 +68,16 @@ const dateFormatter = new Intl.DateTimeFormat('id-ID', {
     year: 'numeric',
 });
 
-const frequencyLabels: Record<string, string> = {
-    daily: 'Harian',
-    weekly: 'Mingguan',
-    monthly: 'Bulanan',
-    yearly: 'Tahunan',
-};
+function getFrequencyLabel(freq: string, t: (key: string) => string): string {
+    const labels: Record<string, string> = {
+        daily: t('Harian'),
+        weekly: t('Mingguan'),
+        monthly: t('Bulanan'),
+        yearly: t('Tahunan'),
+    };
+
+    return labels[freq] ?? freq;
+}
 
 function today() {
     return new Date().toISOString().slice(0, 10);
@@ -91,16 +96,21 @@ function initialCreateForm(): CreateForm {
     };
 }
 
-function describeSchedule(rule: RecurringTransaction) {
-    const unit = {
-        daily: 'hari',
-        weekly: 'minggu',
-        monthly: 'bulan',
-        yearly: 'tahun',
-    }[rule.frequency];
+function describeSchedule(
+    rule: RecurringTransaction,
+    t: (key: string, replacements?: Record<string, any>) => string,
+) {
+    const unitMap: Record<string, string> = {
+        daily: t('hari'),
+        weekly: t('minggu'),
+        monthly: t('bulan'),
+        yearly: t('tahun'),
+    };
+    const unit = unitMap[rule.frequency] ?? rule.frequency;
+
     return rule.interval === 1
-        ? frequencyLabels[rule.frequency]
-        : `Setiap ${rule.interval} ${unit}`;
+        ? getFrequencyLabel(rule.frequency, t)
+        : t('Setiap :interval :unit', { interval: rule.interval, unit });
 }
 
 export default function RecurringTransactions({
@@ -109,6 +119,7 @@ export default function RecurringTransactions({
     categories,
     frequencies,
 }: Props) {
+    const { t } = useLaravelReactI18n();
     const [isCreateOpen, setIsCreateOpen] = useState(false);
     const [editingRule, setEditingRule] = useState<RecurringTransaction | null>(
         null,
@@ -199,39 +210,41 @@ export default function RecurringTransactions({
 
     return (
         <>
-            <Head title="Transaksi Berulang" />
+            <Head title={t('Transaksi Berulang')} />
             <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                     <div>
                         <h1 className="text-2xl font-semibold tracking-tight">
-                            Rencanakan Transaksi Rutin Anda
+                            {t('Rencanakan Transaksi Rutin Anda')}
                         </h1>
                         <p className="text-sm text-muted-foreground">
-                            Otomatis catat transaksi rutin seperti gaji, sewa,
-                            atau langganan.
+                            {t(
+                                'Otomatis catat transaksi rutin seperti gaji, sewa, atau langganan.',
+                            )}
                         </p>
                     </div>
                     <Button onClick={openCreateDialog} disabled={!canCreate}>
-                        <Plus /> Buat aturan
+                        <Plus /> {t('Buat aturan')}
                     </Button>
                 </div>
 
                 {!canCreate && (
                     <Card className="border-dashed">
                         <CardContent className="py-5 text-sm text-muted-foreground">
-                            Buat minimal satu dompet aktif dan satu kategori
-                            sebelum membuat transaksi berulang.
+                            {t(
+                                'Buat minimal satu dompet aktif dan satu kategori sebelum membuat transaksi berulang.',
+                            )}
                         </CardContent>
                     </Card>
                 )}
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Daftar aturan</CardTitle>
+                        <CardTitle>{t('Daftar aturan')}</CardTitle>
                         <CardDescription>
-                            Transaksi baru dibuat otomatis pada jadwalnya.
-                            Menghapus aturan tidak menghapus riwayat transaksi
-                            yang sudah tercatat.
+                            {t(
+                                'Transaksi baru dibuat otomatis pada jadwalnya. Menghapus aturan tidak menghapus riwayat transaksi yang sudah tercatat.',
+                            )}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -239,11 +252,12 @@ export default function RecurringTransactions({
                             <div className="flex min-h-56 flex-col items-center justify-center rounded-lg border border-dashed px-4 text-center">
                                 <Repeat className="mb-3 size-8 text-muted-foreground" />
                                 <p className="font-medium">
-                                    Belum ada transaksi berulang
+                                    {t('Belum ada transaksi berulang')}
                                 </p>
                                 <p className="mt-1 text-sm text-muted-foreground">
-                                    Buat aturan pertama Anda untuk transaksi
-                                    rutin.
+                                    {t(
+                                        'Buat aturan pertama Anda untuk transaksi rutin.',
+                                    )}
                                 </p>
                                 {canCreate && (
                                     <Button
@@ -251,7 +265,7 @@ export default function RecurringTransactions({
                                         onClick={openCreateDialog}
                                     >
                                         <Plus />
-                                        Buat aturan
+                                        {t('Buat aturan')}
                                     </Button>
                                 )}
                             </div>
@@ -275,11 +289,12 @@ export default function RecurringTransactions({
                                                         <Badge variant="outline">
                                                             {describeSchedule(
                                                                 rule,
+                                                                t,
                                                             )}
                                                         </Badge>
                                                         {!rule.is_active && (
                                                             <Badge variant="secondary">
-                                                                Nonaktif
+                                                                {t('Nonaktif')}
                                                             </Badge>
                                                         )}
                                                     </div>
@@ -297,14 +312,18 @@ export default function RecurringTransactions({
                                                         )}
                                                     </p>
                                                     <p className="mt-1 text-xs text-muted-foreground">
-                                                        Jadwal berikutnya:{' '}
-                                                        {dateFormatter.format(
-                                                            new Date(
-                                                                rule.next_due_date,
-                                                            ),
+                                                        {t(
+                                                            'Jadwal berikutnya: :date',
+                                                            {
+                                                                date: dateFormatter.format(
+                                                                    new Date(
+                                                                        rule.next_due_date,
+                                                                    ),
+                                                                ),
+                                                            },
                                                         )}
                                                         {rule.end_date &&
-                                                            ` · berakhir ${dateFormatter.format(new Date(rule.end_date))}`}
+                                                            ` · ${t('berakhir :date', { date: dateFormatter.format(new Date(rule.end_date)) })}`}
                                                     </p>
                                                 </div>
                                                 <div className="flex items-center gap-2">
@@ -315,8 +334,12 @@ export default function RecurringTransactions({
                                                         }
                                                         aria-label={
                                                             rule.is_active
-                                                                ? 'Nonaktifkan aturan'
-                                                                : 'Aktifkan aturan'
+                                                                ? t(
+                                                                      'Nonaktifkan aturan',
+                                                                  )
+                                                                : t(
+                                                                      'Aktifkan aturan',
+                                                                  )
                                                         }
                                                     />
                                                     <Button
@@ -325,7 +348,9 @@ export default function RecurringTransactions({
                                                         onClick={() =>
                                                             openEditDialog(rule)
                                                         }
-                                                        aria-label="Ubah aturan"
+                                                        aria-label={t(
+                                                            'Ubah aturan',
+                                                        )}
                                                     >
                                                         <Pencil />
                                                     </Button>
@@ -336,7 +361,9 @@ export default function RecurringTransactions({
                                                         onClick={() =>
                                                             askDelete(rule)
                                                         }
-                                                        aria-label="Hapus aturan"
+                                                        aria-label={t(
+                                                            'Hapus aturan',
+                                                        )}
                                                     >
                                                         <Trash2 />
                                                     </Button>
@@ -358,15 +385,16 @@ export default function RecurringTransactions({
             >
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Buat transaksi berulang</DialogTitle>
+                        <DialogTitle>{t('Buat transaksi berulang')}</DialogTitle>
                         <DialogDescription>
-                            Dompet, kategori, dan jadwal tidak bisa diubah lagi
-                            setelah dibuat.
+                            {t(
+                                'Dompet, kategori, dan jadwal tidak bisa diubah lagi setelah dibuat.',
+                            )}
                         </DialogDescription>
                     </DialogHeader>
                     <form className="grid gap-4" onSubmit={submitCreate}>
                         <div className="grid gap-2">
-                            <Label htmlFor="rt-wallet">Dompet</Label>
+                            <Label htmlFor="rt-wallet">{t('Dompet')}</Label>
                             <Select
                                 value={createForm.data.wallet_id}
                                 onValueChange={(value) =>
@@ -377,7 +405,7 @@ export default function RecurringTransactions({
                                     id="rt-wallet"
                                     className="w-full"
                                 >
-                                    <SelectValue placeholder="Pilih dompet" />
+                                    <SelectValue placeholder={t('Pilih dompet')} />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {wallets.map((wallet) => (
@@ -393,7 +421,7 @@ export default function RecurringTransactions({
                             <InputError message={createForm.errors.wallet_id} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="rt-category">Kategori</Label>
+                            <Label htmlFor="rt-category">{t('Kategori')}</Label>
                             <Select
                                 value={createForm.data.category_id}
                                 onValueChange={(value) =>
@@ -404,7 +432,7 @@ export default function RecurringTransactions({
                                     id="rt-category"
                                     className="w-full"
                                 >
-                                    <SelectValue placeholder="Pilih kategori" />
+                                    <SelectValue placeholder={t('Pilih kategori')} />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {categories.map((category) => (
@@ -414,8 +442,8 @@ export default function RecurringTransactions({
                                         >
                                             {category.name} (
                                             {category.type === 'income'
-                                                ? 'Pemasukan'
-                                                : 'Pengeluaran'}
+                                                ? t('Pemasukan')
+                                                : t('Pengeluaran')}
                                             )
                                         </SelectItem>
                                     ))}
@@ -426,7 +454,7 @@ export default function RecurringTransactions({
                             />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="rt-amount">Nominal</Label>
+                            <Label htmlFor="rt-amount">{t('Nominal')}</Label>
                             <Input
                                 id="rt-amount"
                                 type="number"
@@ -445,7 +473,7 @@ export default function RecurringTransactions({
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
-                                <Label htmlFor="rt-frequency">Frekuensi</Label>
+                                <Label htmlFor="rt-frequency">{t('Frekuensi')}</Label>
                                 <Select
                                     value={createForm.data.frequency}
                                     onValueChange={(value) =>
@@ -461,7 +489,7 @@ export default function RecurringTransactions({
                                     <SelectContent>
                                         {frequencies.map((freq) => (
                                             <SelectItem key={freq} value={freq}>
-                                                {frequencyLabels[freq]}
+                                                {getFrequencyLabel(freq, t)}
                                             </SelectItem>
                                         ))}
                                     </SelectContent>
@@ -471,7 +499,7 @@ export default function RecurringTransactions({
                                 />
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="rt-interval">Setiap</Label>
+                                <Label htmlFor="rt-interval">{t('Setiap')}</Label>
                                 <Input
                                     id="rt-interval"
                                     type="number"
@@ -492,7 +520,7 @@ export default function RecurringTransactions({
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
-                                <Label htmlFor="rt-start">Mulai</Label>
+                                <Label htmlFor="rt-start">{t('Mulai')}</Label>
                                 <Input
                                     id="rt-start"
                                     type="date"
@@ -510,9 +538,9 @@ export default function RecurringTransactions({
                             </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="rt-end">
-                                    Berakhir{' '}
+                                    {t('Berakhir')}{' '}
                                     <span className="text-muted-foreground">
-                                        (opsional)
+                                        ({t('opsional')})
                                     </span>
                                 </Label>
                                 <Input
@@ -533,9 +561,9 @@ export default function RecurringTransactions({
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="rt-description">
-                                Keterangan{' '}
+                                {t('Keterangan')}{' '}
                                 <span className="text-muted-foreground">
-                                    (opsional)
+                                    ({t('opsional')})
                                 </span>
                             </Label>
                             <Textarea
@@ -548,7 +576,7 @@ export default function RecurringTransactions({
                                         event.target.value,
                                     )
                                 }
-                                placeholder="Contoh: Sewa kos bulanan"
+                                placeholder={t('Contoh: Sewa kos bulanan')}
                             />
                             <InputError
                                 message={createForm.errors.description}
@@ -560,13 +588,13 @@ export default function RecurringTransactions({
                                 variant="outline"
                                 onClick={closeCreateDialog}
                             >
-                                Batal
+                                {t('Batal')}
                             </Button>
                             <Button
                                 type="submit"
                                 disabled={createForm.processing}
                             >
-                                Buat aturan
+                                {t('Buat aturan')}
                             </Button>
                         </DialogFooter>
                     </form>
@@ -580,15 +608,15 @@ export default function RecurringTransactions({
             >
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Ubah transaksi berulang</DialogTitle>
+                        <DialogTitle>{t('Ubah transaksi berulang')}</DialogTitle>
                         <DialogDescription>
                             {editingRule &&
-                                `${editingRule.wallet?.title} · ${editingRule.category?.name} · ${describeSchedule(editingRule)}`}
+                                `${editingRule.wallet?.title} · ${editingRule.category?.name} · ${describeSchedule(editingRule, t)}`}
                         </DialogDescription>
                     </DialogHeader>
                     <form className="grid gap-4" onSubmit={submitEdit}>
                         <div className="grid gap-2">
-                            <Label htmlFor="rt-edit-amount">Nominal</Label>
+                            <Label htmlFor="rt-edit-amount">{t('Nominal')}</Label>
                             <Input
                                 id="rt-edit-amount"
                                 type="number"
@@ -606,9 +634,9 @@ export default function RecurringTransactions({
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="rt-edit-end">
-                                Berakhir{' '}
+                                {t('Berakhir')}{' '}
                                 <span className="text-muted-foreground">
-                                    (opsional)
+                                    ({t('opsional')})
                                 </span>
                             </Label>
                             <Input
@@ -626,9 +654,9 @@ export default function RecurringTransactions({
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="rt-edit-description">
-                                Keterangan{' '}
+                                {t('Keterangan')}{' '}
                                 <span className="text-muted-foreground">
-                                    (opsional)
+                                    ({t('opsional')})
                                 </span>
                             </Label>
                             <Textarea
@@ -650,13 +678,13 @@ export default function RecurringTransactions({
                                 variant="outline"
                                 onClick={closeEditDialog}
                             >
-                                Batal
+                                {t('Batal')}
                             </Button>
                             <Button
                                 type="submit"
                                 disabled={editForm.processing}
                             >
-                                Simpan perubahan
+                                {t('Simpan perubahan')}
                             </Button>
                         </DialogFooter>
                     </form>
@@ -670,13 +698,17 @@ export default function RecurringTransactions({
             >
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Hapus aturan</DialogTitle>
+                        <DialogTitle>{t('Hapus aturan')}</DialogTitle>
                         <DialogDescription>
-                            Hapus transaksi berulang “
-                            {deletingRule?.description ||
-                                deletingRule?.category?.name}
-                            ”? Riwayat transaksi yang sudah tercatat tidak akan
-                            terhapus.
+                            {t(
+                                'Hapus transaksi berulang “:name”? Riwayat transaksi yang sudah tercatat tidak akan terhapus.',
+                                {
+                                    name:
+                                        deletingRule?.description ||
+                                        deletingRule?.category?.name ||
+                                        '',
+                                },
+                            )}
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter className="mt-2">
@@ -685,14 +717,14 @@ export default function RecurringTransactions({
                             variant="outline"
                             onClick={closeDeleteDialog}
                         >
-                            Batal
+                            {t('Batal')}
                         </Button>
                         <Button
                             type="button"
                             onClick={confirmDelete}
                             className="text-destructive"
                         >
-                            Hapus
+                            {t('Hapus')}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

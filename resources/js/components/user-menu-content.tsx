@@ -1,5 +1,6 @@
 import { Link, router } from '@inertiajs/react';
-import { LogOut, Settings } from 'lucide-react';
+import { Globe, LogOut, Settings } from 'lucide-react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import {
     DropdownMenuGroup,
     DropdownMenuItem,
@@ -18,10 +19,21 @@ type Props = {
 
 export function UserMenuContent({ user }: Props) {
     const cleanup = useMobileNavigation();
+    const { t, currentLocale } = useLaravelReactI18n();
 
     const handleLogout = () => {
         cleanup();
         router.flushAll();
+    };
+
+    const handleLocaleSwitch = () => {
+        const nextLocale = currentLocale() === 'id' ? 'en' : 'id';
+        cleanup();
+        router.patch(
+            '/locale',
+            { locale: nextLocale },
+            { preserveScroll: true, preserveState: false },
+        );
     };
 
     return (
@@ -41,8 +53,12 @@ export function UserMenuContent({ user }: Props) {
                         onClick={cleanup}
                     >
                         <Settings className="mr-2" />
-                        Settings
+                        {t('Pengaturan')}
                     </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={handleLocaleSwitch}>
+                    <Globe className="mr-2" />
+                    {currentLocale() === 'id' ? 'English' : 'Bahasa Indonesia'}
                 </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
@@ -55,7 +71,7 @@ export function UserMenuContent({ user }: Props) {
                     data-test="logout-button"
                 >
                     <LogOut className="mr-2" />
-                    Log out
+                    {t('Keluar')}
                 </Link>
             </DropdownMenuItem>
         </>

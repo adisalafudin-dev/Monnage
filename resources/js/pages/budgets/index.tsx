@@ -7,6 +7,7 @@ import {
     TrendingDown,
     Wallet2,
 } from 'lucide-react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { useState } from 'react';
 import InputError from '@/components/input-error';
 import { Badge } from '@/components/ui/badge';
@@ -114,6 +115,7 @@ export default function Budgets({
     currencies,
     filters,
 }: Props) {
+    const { t } = useLaravelReactI18n();
     const defaultCurrency = currencies[0] ?? 'IDR';
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingBudget, setEditingBudget] = useState<Budget | null>(null);
@@ -258,40 +260,41 @@ export default function Budgets({
 
     return (
         <>
-            <Head title="Budget" />
+            <Head title={t('Budget')} />
 
             <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                     <div>
                         <h1 className="text-2xl font-semibold tracking-tight">
-                            Budget
+                            {t('Budget')}
                         </h1>
                         <p className="text-sm text-muted-foreground">
-                            Atur batas pengeluaran per kategori tiap bulan.
+                            {t('Atur batas pengeluaran per kategori tiap bulan.')}
                         </p>
                     </div>
                     <Button
                         onClick={openCreateDialog}
                         disabled={!canCreateBudget}
                     >
-                        <Plus /> Tambah budget
+                        <Plus /> {t('Tambah budget')}
                     </Button>
                 </div>
 
                 {!canCreateBudget && (
                     <Card className="border-dashed">
                         <CardContent className="py-5 text-sm text-muted-foreground">
-                            Buat minimal satu kategori pengeluaran sebelum
-                            menetapkan budget.
+                            {t(
+                                'Buat minimal satu kategori pengeluaran sebelum menetapkan budget.',
+                            )}
                         </CardContent>
                     </Card>
                 )}
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Periode</CardTitle>
+                        <CardTitle>{t('Periode')}</CardTitle>
                         <CardDescription>
-                            Pilih bulan dan tahun yang ingin dilihat.
+                            {t('Pilih bulan dan tahun yang ingin dilihat.')}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -300,7 +303,7 @@ export default function Budgets({
                             onSubmit={applyPeriodFilter}
                         >
                             <div className="grid gap-2">
-                                <Label htmlFor="filter-month">Bulan</Label>
+                                <Label htmlFor="filter-month">{t('Bulan')}</Label>
                                 <Select
                                     value={String(periodFilter.month)}
                                     onValueChange={(value) =>
@@ -322,14 +325,14 @@ export default function Budgets({
                                                 key={name}
                                                 value={String(i + 1)}
                                             >
-                                                {name}
+                                                {t(name)}
                                             </SelectItem>
                                         ))}
                                     </SelectContent>
                                 </Select>
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="filter-year">Tahun</Label>
+                                <Label htmlFor="filter-year">{t('Tahun')}</Label>
                                 <Input
                                     id="filter-year"
                                     type="number"
@@ -348,7 +351,7 @@ export default function Budgets({
                                     type="submit"
                                     className="w-full sm:w-auto"
                                 >
-                                    Tampilkan
+                                    {t('Tampilkan')}
                                 </Button>
                             </div>
                         </form>
@@ -357,18 +360,23 @@ export default function Budgets({
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Total budget bulanan</CardTitle>
+                        <CardTitle>{t('Total budget bulanan')}</CardTitle>
                         <CardDescription>
-                            Batas keseluruhan lintas kategori, per mata uang,
-                            untuk {monthNames[filters.month - 1]} {filters.year}
-                            .
+                            {t(
+                                'Batas keseluruhan lintas kategori, per mata uang, untuk :month :year.',
+                                {
+                                    month: t(monthNames[filters.month - 1]),
+                                    year: filters.year,
+                                },
+                            )}
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-3 sm:grid-cols-2">
                         {overallBudgets.length === 0 ? (
                             <p className="text-sm text-muted-foreground sm:col-span-2">
-                                Belum ada transaksi pengeluaran atau total
-                                budget untuk periode ini.
+                                {t(
+                                    'Belum ada transaksi pengeluaran atau total budget untuk periode ini.',
+                                )}
                             </p>
                         ) : (
                             overallBudgets.map((overall) => {
@@ -385,7 +393,7 @@ export default function Budgets({
                                             <div className="flex items-center gap-1">
                                                 {isOver && (
                                                     <Badge variant="destructive">
-                                                        Melebihi
+                                                        {t('Melebihi')}
                                                     </Badge>
                                                 )}
                                                 <Button
@@ -398,8 +406,8 @@ export default function Budgets({
                                                     }
                                                 >
                                                     {overall.amount === null
-                                                        ? 'Atur'
-                                                        : 'Ubah'}
+                                                        ? t('Atur')
+                                                        : t('Ubah')}
                                                 </Button>
                                                 {overall.id && (
                                                     <Button
@@ -411,7 +419,7 @@ export default function Budgets({
                                                                 overall,
                                                             )
                                                         }
-                                                        aria-label={`Hapus total budget ${overall.currency}`}
+                                                        aria-label={`${t('Hapus total budget')} ${overall.currency}`}
                                                     >
                                                         <Trash2 />
                                                     </Button>
@@ -420,12 +428,12 @@ export default function Budgets({
                                         </div>
                                         {overall.amount === null ? (
                                             <p className="mt-1 text-sm text-muted-foreground">
-                                                Terpakai{' '}
+                                                {t('Terpakai')}{' '}
                                                 {formatCurrency(
                                                     overall.spent,
                                                     overall.currency,
                                                 )}{' '}
-                                                · belum ada batas total
+                                                · {t('belum ada batas total')}
                                             </p>
                                         ) : (
                                             <>
@@ -434,7 +442,7 @@ export default function Budgets({
                                                         overall.spent,
                                                         overall.currency,
                                                     )}{' '}
-                                                    dari{' '}
+                                                    {t('dari')}{' '}
                                                     {formatCurrency(
                                                         overall.amount,
                                                         overall.currency,
@@ -463,7 +471,7 @@ export default function Budgets({
                         <Card>
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">
-                                    Total budget
+                                    {t('Total budget')}
                                 </CardTitle>
                                 <PiggyBank className="size-4 text-muted-foreground" />
                             </CardHeader>
@@ -476,7 +484,7 @@ export default function Budgets({
                                     )}
                                 </div>
                                 <CardDescription className="mt-1 text-xs">
-                                    {monthNames[filters.month - 1]}{' '}
+                                    {t(monthNames[filters.month - 1])}{' '}
                                     {filters.year}
                                 </CardDescription>
                             </CardContent>
@@ -484,7 +492,7 @@ export default function Budgets({
                         <Card>
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">
-                                    Total terpakai
+                                    {t('Total terpakai')}
                                 </CardTitle>
                                 <Wallet2 className="size-4 text-muted-foreground" />
                             </CardHeader>
@@ -497,7 +505,7 @@ export default function Budgets({
                                     )}
                                 </div>
                                 <CardDescription className="mt-1 text-xs">
-                                    Sisa{' '}
+                                    {t('Sisa')}{' '}
                                     {formatCurrency(
                                         (totalsByCurrency[budgetCurrencies[0]]
                                             ?.budgeted ?? 0) -
@@ -512,7 +520,7 @@ export default function Budgets({
                         <Card>
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">
-                                    Melebihi budget
+                                    {t('Melebihi budget')}
                                 </CardTitle>
                                 <TrendingDown className="size-4 text-rose-600 dark:text-rose-400" />
                             </CardHeader>
@@ -521,7 +529,9 @@ export default function Budgets({
                                     {overBudgetCount}
                                 </div>
                                 <CardDescription className="mt-1 text-xs">
-                                    dari {budgets.length} kategori berbudget
+                                    {t('dari :count kategori berbudget', {
+                                        count: budgets.length,
+                                    })}
                                 </CardDescription>
                             </CardContent>
                         </Card>
@@ -529,11 +539,15 @@ export default function Budgets({
                 ) : (
                     <Card>
                         <CardHeader>
-                            <CardTitle>Ringkasan per mata uang</CardTitle>
+                            <CardTitle>{t('Ringkasan per mata uang')}</CardTitle>
                             <CardDescription>
-                                Total budget dipisah per mata uang —{' '}
-                                {overBudgetCount} dari {budgets.length} kategori
-                                melebihi budget.
+                                {t(
+                                    'Total budget dipisah per mata uang — :overCount dari :totalCount kategori melebihi budget.',
+                                    {
+                                        overCount: overBudgetCount,
+                                        totalCount: budgets.length,
+                                    },
+                                )}
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="grid gap-3 sm:grid-cols-2">
@@ -550,7 +564,9 @@ export default function Budgets({
                                             </span>
                                             {totals.overCount > 0 && (
                                                 <Badge variant="destructive">
-                                                    {totals.overCount} melebihi
+                                                    {t(':count melebihi', {
+                                                        count: totals.overCount,
+                                                    })}
                                                 </Badge>
                                             )}
                                         </div>
@@ -559,7 +575,7 @@ export default function Budgets({
                                                 totals.spent,
                                                 currency,
                                             )}{' '}
-                                            dari{' '}
+                                            {t('dari')}{' '}
                                             {formatCurrency(
                                                 totals.budgeted,
                                                 currency,
@@ -574,10 +590,11 @@ export default function Budgets({
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Rincian budget</CardTitle>
+                        <CardTitle>{t('Rincian budget')}</CardTitle>
                         <CardDescription>
-                            Progres pengeluaran dibandingkan batas budget per
-                            kategori.
+                            {t(
+                                'Progres pengeluaran dibandingkan batas budget per kategori.',
+                            )}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -585,11 +602,12 @@ export default function Budgets({
                             <div className="flex min-h-56 flex-col items-center justify-center rounded-lg border border-dashed px-4 text-center">
                                 <PiggyBank className="mb-3 size-8 text-muted-foreground" />
                                 <p className="font-medium">
-                                    Belum ada budget untuk periode ini
+                                    {t('Belum ada budget untuk periode ini')}
                                 </p>
                                 <p className="mt-1 text-sm text-muted-foreground">
-                                    Tetapkan budget per kategori pengeluaran
-                                    untuk memantau pengeluaran Anda.
+                                    {t(
+                                        'Tetapkan budget per kategori pengeluaran untuk memantau pengeluaran Anda.',
+                                    )}
                                 </p>
                                 {canCreateBudget && (
                                     <Button
@@ -597,7 +615,7 @@ export default function Budgets({
                                         onClick={openCreateDialog}
                                     >
                                         <Plus />
-                                        Tambah budget
+                                        {t('Tambah budget')}
                                     </Button>
                                 )}
                             </div>
@@ -629,12 +647,12 @@ export default function Budgets({
                                                                 className="gap-1"
                                                             >
                                                                 <RotateCcw className="size-3" />{' '}
-                                                                Rollover
+                                                                {t('Rollover')}
                                                             </Badge>
                                                         )}
                                                         {isOverBudget && (
                                                             <Badge variant="destructive">
-                                                                Melebihi budget
+                                                                {t('Melebihi budget')}
                                                             </Badge>
                                                         )}
                                                     </div>
@@ -645,7 +663,7 @@ export default function Budgets({
                                                             ),
                                                             budget.currency,
                                                         )}{' '}
-                                                        dari{' '}
+                                                        {t('dari')}{' '}
                                                         {formatCurrency(
                                                             Number(
                                                                 budget.available,
@@ -653,26 +671,23 @@ export default function Budgets({
                                                             budget.currency,
                                                         )}
                                                         {' · '}
-                                                        {budget.percentage}%
-                                                        terpakai
+                                                        {t(':percentage% terpakai', {
+                                                            percentage: budget.percentage,
+                                                        })}
                                                     </p>
                                                     {budget.rollover &&
                                                         budget.rolled_in !==
                                                             0 && (
                                                             <p className="mt-0.5 text-xs text-muted-foreground">
-                                                                Termasuk{' '}
-                                                                {budget.rolled_in >
-                                                                0
-                                                                    ? 'sisa'
-                                                                    : 'defisit'}{' '}
-                                                                bulan lalu:{' '}
-                                                                {budget.rolled_in >
-                                                                0
-                                                                    ? '+'
-                                                                    : ''}
-                                                                {formatCurrency(
-                                                                    budget.rolled_in,
-                                                                    budget.currency,
+                                                                {t(
+                                                                    'Termasuk :type bulan lalu: :amount',
+                                                                    {
+                                                                        type:
+                                                                            budget.rolled_in > 0
+                                                                                ? t('sisa')
+                                                                                : t('defisit'),
+                                                                        amount: `${budget.rolled_in > 0 ? '+' : ''}${formatCurrency(budget.rolled_in, budget.currency)}`,
+                                                                    },
                                                                 )}
                                                             </p>
                                                         )}
@@ -687,7 +702,7 @@ export default function Budgets({
                                                             )
                                                         }
                                                     >
-                                                        Ubah
+                                                        {t('Ubah')}
                                                     </Button>
                                                     <Button
                                                         variant="ghost"
@@ -696,7 +711,7 @@ export default function Budgets({
                                                         onClick={() =>
                                                             deleteBudget(budget)
                                                         }
-                                                        aria-label={`Hapus budget ${budget.category.name}`}
+                                                        aria-label={`${t('Hapus budget')} ${budget.category.name}`}
                                                     >
                                                         <Trash2 />
                                                     </Button>
@@ -713,7 +728,7 @@ export default function Budgets({
                                             </div>
 
                                             <p className="mt-2 text-xs text-muted-foreground">
-                                                Sisa:{' '}
+                                                {t('Sisa')}:{' '}
                                                 {formatCurrency(
                                                     Number(budget.remaining),
                                                     budget.currency,
@@ -735,17 +750,19 @@ export default function Budgets({
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>
-                            {editingBudget ? 'Ubah budget' : 'Tambah budget'}
+                            {editingBudget ? t('Ubah budget') : t('Tambah budget')}
                         </DialogTitle>
                         <DialogDescription>
-                            Budget berlaku untuk {monthNames[data.month - 1]}{' '}
-                            {data.year}.
+                            {t('Budget berlaku untuk :month :year.', {
+                                month: t(monthNames[data.month - 1]),
+                                year: data.year,
+                            })}
                         </DialogDescription>
                     </DialogHeader>
 
                     <form className="grid gap-4" onSubmit={submit}>
                         <div className="grid gap-2">
-                            <Label htmlFor="budget-category">Kategori</Label>
+                            <Label htmlFor="budget-category">{t('Kategori')}</Label>
                             <Select
                                 value={data.category_id}
                                 onValueChange={(value) =>
@@ -757,7 +774,7 @@ export default function Budgets({
                                     id="budget-category"
                                     className="w-full"
                                 >
-                                    <SelectValue placeholder="Pilih kategori pengeluaran" />
+                                    <SelectValue placeholder={t('Pilih kategori pengeluaran')} />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {expenseCategories.map((category) => (
@@ -769,7 +786,7 @@ export default function Budgets({
                                             {budgetedKeys.has(
                                                 `${category.id}-${data.currency}`,
                                             ) && !editingBudget
-                                                ? ` (sudah ada budget ${data.currency})`
+                                                ? ` (${t('sudah ada budget :currency', { currency: data.currency })})`
                                                 : ''}
                                         </SelectItem>
                                     ))}
@@ -778,7 +795,7 @@ export default function Budgets({
                             <InputError message={errors.category_id} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="budget-currency">Mata uang</Label>
+                            <Label htmlFor="budget-currency">{t('Mata uang')}</Label>
                             <Select
                                 value={data.currency}
                                 onValueChange={(value) =>
@@ -790,7 +807,7 @@ export default function Budgets({
                                     id="budget-currency"
                                     className="w-full"
                                 >
-                                    <SelectValue placeholder="Pilih mata uang" />
+                                    <SelectValue placeholder={t('Pilih mata uang')} />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {currencies.map((code) => (
@@ -803,7 +820,7 @@ export default function Budgets({
                             <InputError message={errors.currency} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="budget-amount">Jumlah budget</Label>
+                            <Label htmlFor="budget-amount">{t('Jumlah budget')}</Label>
                             <Input
                                 id="budget-amount"
                                 type="number"
@@ -831,12 +848,12 @@ export default function Budgets({
                                     htmlFor="budget-rollover"
                                     className="font-normal"
                                 >
-                                    Rollover ke bulan berikutnya
+                                    {t('Rollover ke bulan berikutnya')}
                                 </Label>
                                 <p className="text-xs text-muted-foreground">
-                                    Sisa (atau kelebihan) budget bulan ini akan
-                                    ikut memengaruhi budget bulan depan untuk
-                                    kategori yang sama.
+                                    {t(
+                                        'Sisa (atau kelebihan) budget bulan ini akan ikut memengaruhi budget bulan depan untuk kategori yang sama.',
+                                    )}
                                 </p>
                             </div>
                         </div>
@@ -847,12 +864,12 @@ export default function Budgets({
                                 variant="outline"
                                 onClick={closeDialog}
                             >
-                                Batal
+                                {t('Batal')}
                             </Button>
                             <Button type="submit" disabled={processing}>
                                 {editingBudget
-                                    ? 'Simpan perubahan'
-                                    : 'Buat budget'}
+                                    ? t('Simpan perubahan')
+                                    : t('Buat budget')}
                             </Button>
                         </DialogFooter>
                     </form>
@@ -865,10 +882,16 @@ export default function Budgets({
             >
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Hapus budget</DialogTitle>
+                        <DialogTitle>{t('Hapus budget')}</DialogTitle>
                         <DialogDescription>
-                            Hapus budget untuk “{deletingBudget?.category.name}”
-                            ({deletingBudget?.currency})?
+                            {t(
+                                'Hapus budget untuk “:category” (:currency)?',
+                                {
+                                    category:
+                                        deletingBudget?.category.name || '',
+                                    currency: deletingBudget?.currency || '',
+                                },
+                            )}
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter className="mt-2">
@@ -878,7 +901,7 @@ export default function Budgets({
                             onClick={closeDeleteDialog}
                             disabled={processing}
                         >
-                            Batal
+                            {t('Batal')}
                         </Button>
                         <Button
                             type="button"
@@ -886,7 +909,7 @@ export default function Budgets({
                             disabled={processing}
                             className="text-destructive"
                         >
-                            Hapus
+                            {t('Hapus')}
                         </Button>
                     </DialogFooter>
                 </DialogContent>
@@ -899,16 +922,21 @@ export default function Budgets({
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>
-                            Total budget bulanan · {overallForm.data.currency}
+                            {t('Total budget bulanan')} · {overallForm.data.currency}
                         </DialogTitle>
                         <DialogDescription>
-                            Batas total lintas kategori untuk{' '}
-                            {monthNames[filters.month - 1]} {filters.year}.
+                            {t(
+                                'Batas total lintas kategori untuk :month :year.',
+                                {
+                                    month: t(monthNames[filters.month - 1]),
+                                    year: filters.year,
+                                },
+                            )}
                         </DialogDescription>
                     </DialogHeader>
                     <form className="grid gap-4" onSubmit={submitOverall}>
                         <div className="grid gap-2">
-                            <Label htmlFor="overall-amount">Jumlah</Label>
+                            <Label htmlFor="overall-amount">{t('Jumlah')}</Label>
                             <Input
                                 id="overall-amount"
                                 type="number"
@@ -932,13 +960,13 @@ export default function Budgets({
                                 variant="outline"
                                 onClick={closeOverallDialog}
                             >
-                                Batal
+                                {t('Batal')}
                             </Button>
                             <Button
                                 type="submit"
                                 disabled={overallForm.processing}
                             >
-                                Simpan
+                                {t('Simpan')}
                             </Button>
                         </DialogFooter>
                     </form>
@@ -951,10 +979,14 @@ export default function Budgets({
             >
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Hapus total budget</DialogTitle>
+                        <DialogTitle>{t('Hapus total budget')}</DialogTitle>
                         <DialogDescription>
-                            Hapus batas total bulanan untuk{' '}
-                            {deletingOverall?.currency}?
+                            {t(
+                                'Hapus batas total bulanan untuk :currency?',
+                                {
+                                    currency: deletingOverall?.currency || '',
+                                },
+                            )}
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter className="mt-2">
@@ -963,14 +995,14 @@ export default function Budgets({
                             variant="outline"
                             onClick={() => setDeletingOverall(null)}
                         >
-                            Batal
+                            {t('Batal')}
                         </Button>
                         <Button
                             type="button"
                             onClick={confirmDeleteOverall}
                             className="text-destructive"
                         >
-                            Hapus
+                            {t('Hapus')}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

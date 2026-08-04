@@ -33,7 +33,7 @@ class WalletController extends Controller
 
         $request->user()->wallets()->create($validated);
 
-        return redirect()->route('wallets.index')->with('success', 'Dompet berhasil dibuat.');
+        return redirect()->route('wallets.index')->with('success', __('Dompet berhasil dibuat.'));
     }
 
     public function update(Request $request, Wallet $wallet)
@@ -50,7 +50,7 @@ class WalletController extends Controller
 
         $wallet->update($validated);
 
-        return redirect()->route('wallets.index')->with('success', 'Dompet berhasil diperbarui.');
+        return redirect()->route('wallets.index')->with('success', __('Dompet berhasil diperbarui.'));
     }
     
     public function destroy(Wallet $wallet)
@@ -63,13 +63,13 @@ class WalletController extends Controller
             || $wallet->transfersTo()->exists()
         ) {
             return back()->withErrors([
-                'wallet' => 'Dompet yang memiliki riwayat transaksi atau transfer tidak dapat dihapus. Arsipkan dompet ini sebagai gantinya.',
+                'wallet' => __('Dompet yang memiliki riwayat transaksi atau transfer tidak dapat dihapus. Arsipkan dompet ini sebagai gantinya.'),
             ]);
         }
 
         $wallet->delete();
 
-        return redirect()->route('wallets.index')->with('success', 'Dompet berhasil dihapus.');
+        return redirect()->route('wallets.index')->with('success', __('Dompet berhasil dihapus.'));
     }
 
     private function authorizeWallet(Wallet $wallet)

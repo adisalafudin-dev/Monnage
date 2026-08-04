@@ -7,6 +7,7 @@ import {
     Plus,
     Trash2,
 } from 'lucide-react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import InputError from '@/components/input-error';
@@ -60,6 +61,7 @@ const initialForm: CategoryForm = {
 };
 
 export default function Categories({ categories }: Props) {
+    const { t } = useLaravelReactI18n();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingCategory, setEditingCategory] =
         useState<CategoryWithUsage | null>(null);
@@ -110,9 +112,11 @@ export default function Categories({ categories }: Props) {
             onSuccess() {
                 closeDialog();
                 toast.success(
-                    editingCategory
-                        ? 'Perubahan kategori disimpan.'
-                        : 'Kategori berhasil dibuat.',
+                    t(
+                        editingCategory
+                            ? 'Perubahan kategori disimpan.'
+                            : 'Kategori berhasil dibuat.',
+                    ),
                 );
             },
         };
@@ -146,22 +150,21 @@ export default function Categories({ categories }: Props) {
 
     return (
         <>
-            <Head title="Kategori" />
+            <Head title={t('Kategori')} />
 
             <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                     <div>
                         <h1 className="text-2xl font-semibold tracking-tight">
-                            Kategori
+                            {t('Kategori')}
                         </h1>
                         <p className="text-sm text-muted-foreground">
-                            Kelompokkan transaksi pemasukan dan pengeluaran
-                            Anda.
+                            {t('Kelompokkan transaksi pemasukan dan pengeluaran Anda.')}
                         </p>
                     </div>
                     <Button onClick={openCreateDialog}>
                         <Plus />
-                        Tambah kategori
+                        {t('Tambah kategori')}
                     </Button>
                 </div>
 
@@ -169,7 +172,7 @@ export default function Categories({ categories }: Props) {
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">
-                                Total kategori
+                                {t('Total kategori')}
                             </CardTitle>
                             <FolderTree className="size-4 text-muted-foreground" />
                         </CardHeader>
@@ -182,7 +185,7 @@ export default function Categories({ categories }: Props) {
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">
-                                Pemasukan
+                                {t('Pemasukan')}
                             </CardTitle>
                             <ArrowUpRight className="size-4 text-emerald-600 dark:text-emerald-400" />
                         </CardHeader>
@@ -195,7 +198,7 @@ export default function Categories({ categories }: Props) {
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">
-                                Pengeluaran
+                                {t('Pengeluaran')}
                             </CardTitle>
                             <ArrowDownRight className="size-4 text-rose-600 dark:text-rose-400" />
                         </CardHeader>
@@ -209,10 +212,11 @@ export default function Categories({ categories }: Props) {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Daftar kategori</CardTitle>
+                        <CardTitle>{t('Daftar kategori')}</CardTitle>
                         <CardDescription>
-                            Kategori yang sudah digunakan transaksi atau budget
-                            tidak dapat dihapus.
+                            {t(
+                                'Kategori yang sudah digunakan transaksi atau budget tidak dapat dihapus.',
+                            )}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -220,18 +224,19 @@ export default function Categories({ categories }: Props) {
                             <div className="flex min-h-56 flex-col items-center justify-center rounded-lg border border-dashed px-4 text-center">
                                 <FolderTree className="mb-3 size-8 text-muted-foreground" />
                                 <p className="font-medium">
-                                    Belum ada kategori
+                                    {t('Belum ada kategori')}
                                 </p>
                                 <p className="mt-1 text-sm text-muted-foreground">
-                                    Buat kategori agar transaksi dapat
-                                    dikelompokkan.
+                                    {t(
+                                        'Buat kategori agar transaksi dapat dikelompokkan.',
+                                    )}
                                 </p>
                                 <Button
                                     className="mt-4"
                                     onClick={openCreateDialog}
                                 >
                                     <Plus />
-                                    Tambah kategori
+                                    {t('Tambah kategori')}
                                 </Button>
                             </div>
                         ) : (
@@ -240,16 +245,16 @@ export default function Categories({ categories }: Props) {
                                     <thead className="border-b text-left text-muted-foreground">
                                         <tr>
                                             <th className="pb-3 font-medium">
-                                                Nama
+                                                {t('Nama')}
                                             </th>
                                             <th className="pb-3 font-medium">
-                                                Jenis
+                                                {t('Jenis')}
                                             </th>
                                             <th className="pb-3 text-right font-medium">
-                                                Dipakai transaksi
+                                                {t('Dipakai transaksi')}
                                             </th>
                                             <th className="w-24 pb-3 text-right font-medium">
-                                                Aksi
+                                                {t('Aksi')}
                                             </th>
                                         </tr>
                                     </thead>
@@ -278,8 +283,8 @@ export default function Categories({ categories }: Props) {
                                                         >
                                                             {category.type ===
                                                             'income'
-                                                                ? 'Pemasukan'
-                                                                : 'Pengeluaran'}
+                                                                ? t('Pemasukan')
+                                                                : t('Pengeluaran')}
                                                         </Badge>
                                                     </td>
                                                     <td className="py-4 text-right text-muted-foreground tabular-nums">
@@ -297,7 +302,7 @@ export default function Categories({ categories }: Props) {
                                                                         category,
                                                                     )
                                                                 }
-                                                                aria-label={`Ubah ${category.name}`}
+                                                                aria-label={`${t('Ubah')} ${category.name}`}
                                                             >
                                                                 <Pencil />
                                                             </Button>
@@ -313,10 +318,10 @@ export default function Categories({ categories }: Props) {
                                                                 disabled={
                                                                     isUsed
                                                                 }
-                                                                aria-label={`Hapus ${category.name}`}
+                                                                aria-label={`${t('Hapus')} ${category.name}`}
                                                                 title={
                                                                     isUsed
-                                                                        ? 'Kategori sudah digunakan'
+                                                                        ? t('Kategori sudah digunakan')
                                                                         : undefined
                                                                 }
                                                             >
@@ -343,31 +348,31 @@ export default function Categories({ categories }: Props) {
                     <DialogHeader>
                         <DialogTitle>
                             {editingCategory
-                                ? 'Ubah kategori'
-                                : 'Tambah kategori'}
+                                ? t('Ubah kategori')
+                                : t('Tambah kategori')}
                         </DialogTitle>
                         <DialogDescription>
                             {editingCategory
-                                ? 'Perbarui nama atau jenis kategori.'
-                                : 'Tentukan kategori untuk transaksi Anda.'}
+                                ? t('Perbarui nama atau jenis kategori.')
+                                : t('Tentukan kategori untuk transaksi Anda.')}
                         </DialogDescription>
                     </DialogHeader>
                     <form className="grid gap-4" onSubmit={submit}>
                         <div className="grid gap-2">
-                            <Label htmlFor="category-name">Nama kategori</Label>
+                            <Label htmlFor="category-name">{t('Nama kategori')}</Label>
                             <Input
                                 id="category-name"
                                 value={data.name}
                                 onChange={(event) =>
                                     setData('name', event.target.value)
                                 }
-                                placeholder="Contoh: Makan & minum"
+                                placeholder={t('Contoh: Makan & minum')}
                                 autoFocus
                             />
                             <InputError message={errors.name} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="category-type">Jenis</Label>
+                            <Label htmlFor="category-type">{t('Jenis')}</Label>
                             <Select
                                 value={data.type}
                                 onValueChange={(value: CategoryForm['type']) =>
@@ -383,17 +388,18 @@ export default function Categories({ categories }: Props) {
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem value="income">
-                                        Pemasukan
+                                        {t('Pemasukan')}
                                     </SelectItem>
                                     <SelectItem value="expense">
-                                        Pengeluaran
+                                        {t('Pengeluaran')}
                                     </SelectItem>
                                 </SelectContent>
                             </Select>
                             {isTypeLocked && (
                                 <p className="text-xs text-muted-foreground">
-                                    Jenis tidak dapat diubah karena kategori
-                                    sudah digunakan.
+                                    {t(
+                                        'Jenis tidak dapat diubah karena kategori sudah digunakan.',
+                                    )}
                                 </p>
                             )}
                             <InputError message={errors.type} />
@@ -404,12 +410,12 @@ export default function Categories({ categories }: Props) {
                                 variant="outline"
                                 onClick={closeDialog}
                             >
-                                Batal
+                                {t('Batal')}
                             </Button>
                             <Button type="submit" disabled={processing}>
                                 {editingCategory
-                                    ? 'Simpan perubahan'
-                                    : 'Buat kategori'}
+                                    ? t('Simpan perubahan')
+                                    : t('Buat kategori')}
                             </Button>
                         </DialogFooter>
                     </form>
@@ -421,9 +427,11 @@ export default function Categories({ categories }: Props) {
             >
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Hapus kategori</DialogTitle>
+                        <DialogTitle>{t('Hapus kategori')}</DialogTitle>
                         <DialogDescription>
-                            Hapus kategori “{deletingCategory?.name}”?
+                            {t('Hapus kategori “:name”?', {
+                                name: deletingCategory?.name ?? '',
+                            })}
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter className="mt-2">
@@ -433,7 +441,7 @@ export default function Categories({ categories }: Props) {
                             onClick={closeDeleteDialog}
                             disabled={processing}
                         >
-                            Batal
+                            {t('Batal')}
                         </Button>
                         <Button
                             type="button"
@@ -441,7 +449,7 @@ export default function Categories({ categories }: Props) {
                             disabled={processing}
                             className="text-destructive"
                         >
-                            Hapus
+                            {t('Hapus')}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

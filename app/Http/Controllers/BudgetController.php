@@ -84,7 +84,7 @@ class BudgetController extends Controller
         $category = $request->user()->categories()->findOrFail($validated['category_id']);
 
         if ($category->type !== 'expense') {
-            return back()->withErrors(['category_id' => 'Budget hanya berlaku untuk kategori pengeluaran.']);
+            return back()->withErrors(['category_id' => __('Budget hanya berlaku untuk kategori pengeluaran.')]);
         }
 
         $request->user()->budgets()->updateOrCreate(
@@ -101,7 +101,7 @@ class BudgetController extends Controller
         );
 
         return redirect()->route('budgets.index', ['month' => $validated['month'], 'year' => $validated['year']])
-            ->with('success', 'Budget berhasil disimpan.');
+            ->with('success', __('Budget berhasil disimpan.'));
     }
 
     public function destroy(Budget $budget)
@@ -112,7 +112,7 @@ class BudgetController extends Controller
 
         $budget->delete();
 
-        return redirect()->back()->with('success', 'Budget berhasil dihapus.');
+        return redirect()->back()->with('success', __('Budget berhasil dihapus.'));
     }
 
     public function storeOverall(Request $request)
@@ -134,7 +134,7 @@ class BudgetController extends Controller
         );
 
         return redirect()->route('budgets.index', ['month' => $validated['month'], 'year' => $validated['year']])
-            ->with('success', 'Total budget bulanan berhasil disimpan.');
+            ->with('success', __('Total budget bulanan berhasil disimpan.'));
     }
 
     public function destroyOverall(MonthlyBudget $monthlyBudget)
@@ -145,7 +145,7 @@ class BudgetController extends Controller
 
         $monthlyBudget->delete();
 
-        return redirect()->back()->with('success', 'Total budget bulanan berhasil dihapus.');
+        return redirect()->back()->with('success', __('Total budget bulanan berhasil dihapus.'));
     }
 
     /**

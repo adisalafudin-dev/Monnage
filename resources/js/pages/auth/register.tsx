@@ -1,4 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
@@ -14,9 +15,11 @@ type Props = {
 };
 
 export default function Register({ passwordRules }: Props) {
+    const { t } = useLaravelReactI18n();
+
     return (
         <>
-            <Head title="Buat akun" />
+            <Head title={t('Buat akun')} />
             <Form
                 {...store.form()}
                 resetOnSuccess={['password', 'password_confirmation']}
@@ -27,7 +30,7 @@ export default function Register({ passwordRules }: Props) {
                     <>
                         <div className="grid gap-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Nama lengkap</Label>
+                                <Label htmlFor="name">{t('Nama lengkap')}</Label>
                                 <Input
                                     id="name"
                                     type="text"
@@ -36,7 +39,7 @@ export default function Register({ passwordRules }: Props) {
                                     tabIndex={1}
                                     autoComplete="name"
                                     name="name"
-                                    placeholder="Nama Anda"
+                                    placeholder={t('Nama Anda')}
                                 />
                                 <InputError
                                     message={errors.name}
@@ -45,7 +48,7 @@ export default function Register({ passwordRules }: Props) {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Alamat email</Label>
+                                <Label htmlFor="email">{t('Alamat email')}</Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -59,14 +62,14 @@ export default function Register({ passwordRules }: Props) {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="password">Kata sandi</Label>
+                                <Label htmlFor="password">{t('Kata sandi')}</Label>
                                 <PasswordInput
                                     id="password"
                                     required
                                     tabIndex={3}
                                     autoComplete="new-password"
                                     name="password"
-                                    placeholder="Buat kata sandi"
+                                    placeholder={t('Buat kata sandi')}
                                     passwordrules={passwordRules}
                                 />
                                 <InputError message={errors.password} />
@@ -74,7 +77,7 @@ export default function Register({ passwordRules }: Props) {
 
                             <div className="grid gap-2">
                                 <Label htmlFor="password_confirmation">
-                                    Konfirmasi kata sandi
+                                    {t('Konfirmasi kata sandi')}
                                 </Label>
                                 <PasswordInput
                                     id="password_confirmation"
@@ -82,7 +85,7 @@ export default function Register({ passwordRules }: Props) {
                                     tabIndex={4}
                                     autoComplete="new-password"
                                     name="password_confirmation"
-                                    placeholder="Ulangi kata sandi"
+                                    placeholder={t('Ulangi kata sandi')}
                                     passwordrules={passwordRules}
                                 />
                                 <InputError
@@ -97,14 +100,14 @@ export default function Register({ passwordRules }: Props) {
                                 data-test="register-user-button"
                             >
                                 {processing && <Spinner />}
-                                Buat akun
+                                {t('Buat akun')}
                             </Button>
                         </div>
 
                         <div className="text-center text-sm text-muted-foreground">
-                            Sudah punya akun?{' '}
+                            {t('Sudah punya akun?')}{' '}
                             <TextLink href={login()} tabIndex={6}>
-                                Masuk
+                                {t('Masuk')}
                             </TextLink>
                         </div>
                     </>

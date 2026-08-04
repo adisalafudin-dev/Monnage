@@ -33,3 +33,5 @@ yarn-error.log
 
 /.cursor
 /.opencode
+/lang/php_*.json
+/database/seeders/Local/

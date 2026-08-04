@@ -1,4 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import InputError from '@/components/input-error';
 import PasskeyVerify from '@/components/passkey-verify';
 import PasswordInput from '@/components/password-input';
@@ -19,9 +20,11 @@ type Props = {
 };
 
 export default function Login({ status, canResetPassword }: Props) {
+    const { t } = useLaravelReactI18n();
+
     return (
         <>
-            <Head title="Masuk" />
+            <Head title={t('Masuk')} />
 
             {status && (
                 <div className="mb-5 rounded-lg border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-sm font-medium text-emerald-700 dark:text-emerald-400">
@@ -30,9 +33,9 @@ export default function Login({ status, canResetPassword }: Props) {
             )}
 
             <PasskeyVerify
-                label="Masuk dengan passkey"
-                loadingLabel="Memverifikasi..."
-                separator="atau masuk dengan email"
+                label={t('Masuk dengan passkey')}
+                loadingLabel={t('Memverifikasi...')}
+                separator={t('atau masuk dengan email')}
             />
 
             <Button variant="outline" className="mb-6 w-full" asChild>
@@ -59,7 +62,7 @@ export default function Login({ status, canResetPassword }: Props) {
                             d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1a11 11 0 0 0-9.82 6.06l3.66 2.85c.87-2.6 3.3-4.53 6.16-4.53z"
                         />
                     </svg>
-                    Masuk dengan Google
+                    {t('Masuk dengan Google')}
                 </a>
             </Button>
 
@@ -72,7 +75,7 @@ export default function Login({ status, canResetPassword }: Props) {
                     <>
                         <div className="grid gap-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Alamat email</Label>
+                                <Label htmlFor="email">{t('Alamat email')}</Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -88,14 +91,14 @@ export default function Login({ status, canResetPassword }: Props) {
 
                             <div className="grid gap-2">
                                 <div className="flex items-center">
-                                    <Label htmlFor="password">Kata sandi</Label>
+                                    <Label htmlFor="password">{t('Kata sandi')}</Label>
                                     {canResetPassword && (
                                         <TextLink
                                             href={request()}
                                             className="ml-auto text-sm"
                                             tabIndex={5}
                                         >
-                                            Lupa kata sandi?
+                                            {t('Lupa kata sandi?')}
                                         </TextLink>
                                     )}
                                 </div>
@@ -105,7 +108,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                     required
                                     tabIndex={2}
                                     autoComplete="current-password"
-                                    placeholder="Masukkan kata sandi"
+                                    placeholder={t('Masukkan kata sandi')}
                                 />
                                 <InputError message={errors.password} />
                             </div>
@@ -116,7 +119,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                     name="remember"
                                     tabIndex={3}
                                 />
-                                <Label htmlFor="remember">Ingat saya</Label>
+                                <Label htmlFor="remember">{t('Ingat saya')}</Label>
                             </div>
 
                             <Button
@@ -127,14 +130,14 @@ export default function Login({ status, canResetPassword }: Props) {
                                 data-test="login-button"
                             >
                                 {processing && <Spinner />}
-                                Masuk
+                                {t('Masuk')}
                             </Button>
                         </div>
 
                         <div className="text-center text-sm text-muted-foreground">
-                            Belum punya akun?{' '}
+                            {t('Belum punya akun?')}{' '}
                             <TextLink href={register()} tabIndex={5}>
-                                Daftar sekarang
+                                {t('Daftar sekarang')}
                             </TextLink>
                         </div>
                     </>

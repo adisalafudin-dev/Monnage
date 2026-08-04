@@ -1,5 +1,6 @@
 import { Head, router, useForm } from '@inertiajs/react';
 import { Pencil, Plus, Trash2, WalletCards } from 'lucide-react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import InputError from '@/components/input-error';
@@ -58,6 +59,7 @@ const initialForm: WalletForm = {
     status: true,
 };
 export default function Wallets({ wallets }: Props) {
+    const { t } = useLaravelReactI18n();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingWallet, setEditingWallet] = useState<Wallet | null>(null);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -66,11 +68,6 @@ export default function Wallets({ wallets }: Props) {
 
     const { data, setData, post, put, processing, errors, reset, clearErrors } =
         useForm<WalletForm>(initialForm);
-
-    // const totalBalance = wallets.reduce(
-    //     (total, wallet) => total + Number(wallet.balance),
-    //     0,
-    // );
 
     const totalsByCurrency = wallets.reduce<Record<string, number>>(
         (totals, wallet) => {
@@ -122,9 +119,11 @@ export default function Wallets({ wallets }: Props) {
                 }
                 closeDialog();
                 toast.success(
-                    editingWallet
-                        ? 'Perubahan dompet disimpan.'
-                        : 'Dompet berhasil dibuat.',
+                    t(
+                        editingWallet
+                            ? 'Perubahan dompet disimpan.'
+                            : 'Dompet berhasil dibuat.',
+                    ),
                 );
             },
         };
@@ -163,27 +162,27 @@ export default function Wallets({ wallets }: Props) {
         router.delete(destroy.url(deletingWallet), {
             onSuccess: closeDeleteDialog,
             onError: (errors) =>
-                setDeleteError(errors.wallet ?? 'Dompet tidak dapat dihapus.'),
+                setDeleteError(errors.wallet ?? t('Dompet tidak dapat dihapus.')),
         });
     }
 
     return (
         <>
-            <Head title="Dompet" />
+            <Head title={t('Dompet')} />
 
             <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                     <div>
                         <h1 className="text-2xl font-semibold tracking-tight">
-                            Dompet
+                            {t('Dompet')}
                         </h1>
                         <p className="text-sm text-muted-foreground">
-                            Kelola saldo dan sumber dana Anda.
+                            {t('Kelola saldo dan sumber dana Anda.')}
                         </p>
                     </div>
                     <Button onClick={openCreateDialog}>
                         <Plus />
-                        Tambah dompet
+                        {t('Tambah dompet')}
                     </Button>
                 </div>
 
@@ -191,7 +190,7 @@ export default function Wallets({ wallets }: Props) {
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">
-                                Total saldo
+                                {t('Total saldo')}
                             </CardTitle>
                             <WalletCards className="size-4 text-muted-foreground" />
                         </CardHeader>
@@ -214,14 +213,16 @@ export default function Wallets({ wallets }: Props) {
                                 </div>
                             </div>
                             <CardDescription className="mt-1 text-xs">
-                                Dari {wallets.length} dompet terdaftar
+                                {t('Dari :count dompet terdaftar', {
+                                    count: wallets.length,
+                                })}
                             </CardDescription>
                         </CardContent>
                     </Card>
                     <Card>
                         <CardHeader className="pb-2">
                             <CardTitle className="text-sm font-medium">
-                                Dompet aktif
+                                {t('Dompet aktif')}
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
@@ -232,7 +233,7 @@ export default function Wallets({ wallets }: Props) {
                                 }
                             </div>
                             <CardDescription className="mt-1 text-xs">
-                                Bisa dipakai untuk transaksi dan transfer baru
+                                {t('Bisa dipakai untuk transaksi dan transfer baru')}
                             </CardDescription>
                         </CardContent>
                     </Card>
@@ -240,28 +241,29 @@ export default function Wallets({ wallets }: Props) {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Daftar dompet</CardTitle>
+                        <CardTitle>{t('Daftar dompet')}</CardTitle>
                         <CardDescription>
-                            Dompet diarsipkan tetap menyimpan riwayat, tetapi
-                            tidak dapat dipakai untuk transaksi atau transfer
-                            baru.
+                            {t(
+                                'Dompet diarsipkan tetap menyimpan riwayat, tetapi tidak dapat dipakai untuk transaksi atau transfer baru.',
+                            )}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
                         {wallets.length === 0 ? (
                             <div className="flex min-h-56 flex-col items-center justify-center rounded-lg border border-dashed px-4 text-center">
                                 <WalletCards className="mb-3 size-8 text-muted-foreground" />
-                                <p className="font-medium">Belum ada dompet</p>
+                                <p className="font-medium">{t('Belum ada dompet')}</p>
                                 <p className="mt-1 text-sm text-muted-foreground">
-                                    Buat dompet pertama Anda untuk mulai
-                                    mencatat transaksi.
+                                    {t(
+                                        'Buat dompet pertama Anda untuk mulai mencatat transaksi.',
+                                    )}
                                 </p>
                                 <Button
                                     className="mt-4"
                                     onClick={openCreateDialog}
                                 >
                                     <Plus />
-                                    Tambah dompet
+                                    {t('Tambah dompet')}
                                 </Button>
                             </div>
                         ) : (
@@ -270,19 +272,19 @@ export default function Wallets({ wallets }: Props) {
                                     <thead className="border-b text-left text-muted-foreground">
                                         <tr>
                                             <th className="pb-3 font-medium">
-                                                Dompet
+                                                {t('Dompet')}
                                             </th>
                                             <th className="pb-3 font-medium">
-                                                Deskripsi
+                                                {t('Deskripsi')}
                                             </th>
                                             <th className="pb-3 font-medium">
-                                                Status
+                                                {t('Status')}
                                             </th>
                                             <th className="pb-3 text-right font-medium">
-                                                Saldo
+                                                {t('Saldo')}
                                             </th>
                                             <th className="w-24 pb-3 text-right font-medium">
-                                                Aksi
+                                                {t('Aksi')}
                                             </th>
                                         </tr>
                                     </thead>
@@ -307,8 +309,8 @@ export default function Wallets({ wallets }: Props) {
                                                         }
                                                     >
                                                         {wallet.status
-                                                            ? 'Aktif'
-                                                            : 'Diarsipkan'}
+                                                            ? t('Aktif')
+                                                            : t('Diarsipkan')}
                                                     </Badge>
                                                 </td>
                                                 <td className="py-4 text-right font-medium tabular-nums">
@@ -327,7 +329,7 @@ export default function Wallets({ wallets }: Props) {
                                                                     wallet,
                                                                 )
                                                             }
-                                                            aria-label={`Ubah ${wallet.title}`}
+                                                            aria-label={`${t('Ubah')} ${wallet.title}`}
                                                         >
                                                             <Pencil />
                                                         </Button>
@@ -340,7 +342,7 @@ export default function Wallets({ wallets }: Props) {
                                                                     wallet,
                                                                 )
                                                             }
-                                                            aria-label={`Hapus ${wallet.title}`}
+                                                            aria-label={`${t('Hapus')} ${wallet.title}`}
                                                         >
                                                             <Trash2 />
                                                         </Button>
@@ -363,34 +365,34 @@ export default function Wallets({ wallets }: Props) {
                 <DialogContent>
                     <DialogHeader>
                         <DialogTitle>
-                            {editingWallet ? 'Ubah dompet' : 'Tambah dompet'}
+                            {editingWallet ? t('Ubah dompet') : t('Tambah dompet')}
                         </DialogTitle>
                         <DialogDescription>
                             {editingWallet
-                                ? 'Perbarui informasi dompet Anda.'
-                                : 'Masukkan detail dompet dan saldo awalnya.'}
+                                ? t('Perbarui informasi dompet Anda.')
+                                : t('Masukkan detail dompet dan saldo awalnya.')}
                         </DialogDescription>
                     </DialogHeader>
 
                     <form className="grid gap-4" onSubmit={submit}>
                         <div className="grid gap-2">
-                            <Label htmlFor="wallet-title">Nama dompet</Label>
+                            <Label htmlFor="wallet-title">{t('Nama dompet')}</Label>
                             <Input
                                 id="wallet-title"
                                 value={data.title}
                                 onChange={(event) =>
                                     setData('title', event.target.value)
                                 }
-                                placeholder="Contoh: Rekening utama"
+                                placeholder={t('Contoh: Rekening utama')}
                                 autoFocus
                             />
                             <InputError message={errors.title} />
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="wallet-description">
-                                Deskripsi{' '}
+                                {t('Deskripsi')}{' '}
                                 <span className="text-muted-foreground">
-                                    (opsional)
+                                    ({t('opsional')})
                                 </span>
                             </Label>
                             <Textarea
@@ -399,13 +401,13 @@ export default function Wallets({ wallets }: Props) {
                                 onChange={(event) =>
                                     setData('description', event.target.value)
                                 }
-                                placeholder="Keterangan singkat untuk dompet ini"
+                                placeholder={t('Keterangan singkat untuk dompet ini')}
                                 rows={3}
                             />
                             <InputError message={errors.description} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="wallet-balance">Saldo awal</Label>
+                            <Label htmlFor="wallet-balance">{t('Saldo awal')}</Label>
                             <Input
                                 id="wallet-balance"
                                 type="number"
@@ -419,7 +421,7 @@ export default function Wallets({ wallets }: Props) {
                             <InputError message={errors.balance} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="wallet-currency">Mata uang</Label>
+                            <Label htmlFor="wallet-currency">{t('Mata uang')}</Label>
                             <Select
                                 value={data.currency}
                                 onValueChange={(value) =>
@@ -430,7 +432,7 @@ export default function Wallets({ wallets }: Props) {
                                     id="wallet-currency"
                                     className="w-full"
                                 >
-                                    <SelectValue placeholder="Pilih mata uang" />
+                                    <SelectValue placeholder={t('Pilih mata uang')} />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {CURRENCY_CODES.map((code) => (
@@ -450,12 +452,12 @@ export default function Wallets({ wallets }: Props) {
                                         setData('status', checked === true)
                                     }
                                 />
-                                Dompet aktif
+                                {t('Dompet aktif')}
                             </label>
                             <p className="pl-6 text-xs leading-5 text-muted-foreground">
-                                Nonaktifkan untuk mengarsipkan dompet. Riwayat
-                                tetap tersedia, tetapi transaksi dan transfer
-                                baru tidak dapat dibuat.
+                                {t(
+                                    'Nonaktifkan untuk mengarsipkan dompet. Riwayat tetap tersedia, tetapi transaksi dan transfer baru tidak dapat dibuat.',
+                                )}
                             </p>
                         </div>
                         {deleteError && (
@@ -469,12 +471,12 @@ export default function Wallets({ wallets }: Props) {
                                 variant="outline"
                                 onClick={closeDialog}
                             >
-                                Batal
+                                {t('Batal')}
                             </Button>
                             <Button type="submit" disabled={processing}>
                                 {editingWallet
-                                    ? 'Simpan perubahan'
-                                    : 'Buat dompet'}
+                                    ? t('Simpan perubahan')
+                                    : t('Buat dompet')}
                             </Button>
                         </DialogFooter>
                     </form>
@@ -486,9 +488,11 @@ export default function Wallets({ wallets }: Props) {
             >
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Hapus dompet</DialogTitle>
+                        <DialogTitle>{t('Hapus dompet')}</DialogTitle>
                         <DialogDescription>
-                            Hapus dompet “{deletingWallet?.title}”?
+                            {t('Hapus dompet “:title”?', {
+                                title: deletingWallet?.title ?? '',
+                            })}
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter className="mt-2">
@@ -498,7 +502,7 @@ export default function Wallets({ wallets }: Props) {
                             onClick={closeDeleteDialog}
                             disabled={processing}
                         >
-                            Batal
+                            {t('Batal')}
                         </Button>
                         <Button
                             type="button"
@@ -506,7 +510,7 @@ export default function Wallets({ wallets }: Props) {
                             disabled={processing}
                             className="text-destructive"
                         >
-                            Hapus
+                            {t('Hapus')}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

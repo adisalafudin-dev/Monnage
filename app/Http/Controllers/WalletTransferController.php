@@ -58,12 +58,12 @@ public function store(Request $request)
 
         if ($fromWallet->balance < $validated['amount']) {
             throw ValidationException::withMessages([
-                'amount' => 'Saldo dompet asal tidak mencukupi.',
+                'amount' => __('Saldo dompet asal tidak mencukupi.'),
             ]);
         }
 
         
-        abort_if(! $fromWallet->status || ! $toWallet->status, 422, 'Dompet yang diarsipkan tidak bisa digunakan untuk transfer.');
+        abort_if(! $fromWallet->status || ! $toWallet->status, 422, __('Dompet yang diarsipkan tidak bisa digunakan untuk transfer.'));
 
 
         // Same-currency transfers always use rate 1, regardless of what was sent.
@@ -80,10 +80,9 @@ public function store(Request $request)
         $toWallet->increment('balance', $convertedAmount);
     });
 
-    return redirect()->route('transfers.index')->with('success', 'Transfer berhasil dicatat.');
+    return redirect()->route('transfers.index')->with('success', __('Transfer berhasil dicatat.'));
 }
  
-
  
     public function destroy(Request $request, WalletTransfer $transfer)
     {
@@ -110,7 +109,7 @@ public function store(Request $request)
             $currentTransfer->delete();
         });
  
-        return redirect()->route('transfers.index')->with('success', 'Transfer berhasil dihapus.');
+        return redirect()->route('transfers.index')->with('success', __('Transfer berhasil dihapus.'));
     }
  
     private function authorizeWallet(Wallet $wallet, Request $request)

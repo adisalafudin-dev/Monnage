@@ -1,5 +1,6 @@
 import { Head, router, useForm } from '@inertiajs/react';
 import { ArrowRightLeft, Pencil, Plus, Trash2 } from 'lucide-react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { useMemo, useState } from 'react';
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
@@ -73,6 +74,7 @@ function initialTransferForm(): TransferForm {
 }
 
 export default function Transfers({ transfers, wallets }: Props) {
+    const { t } = useLaravelReactI18n();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingTransfer, setEditingTransfer] =
         useState<WalletTransfer | null>(null);
@@ -159,12 +161,12 @@ export default function Transfers({ transfers, wallets }: Props) {
 
     return (
         <>
-            <Head title="Transfer" />
+            <Head title={t('Transfer')} />
             <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                     <div>
                         <h1 className="text-2xl font-semibold tracking-tight">
-                            Transfer
+                            {t('Transfer')}
                         </h1>
                         <p className="text-sm text-muted-foreground">
                             Pindahkan saldo antar dompet Anda sendiri, termasuk
@@ -175,7 +177,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                         onClick={openCreateDialog}
                         disabled={!canCreateTransfer}
                     >
-                        <Plus /> Tambah transfer
+                        <Plus /> {t('Tambah transfer')}
                     </Button>
                 </div>
 
@@ -190,7 +192,7 @@ export default function Transfers({ transfers, wallets }: Props) {
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Riwayat transfer</CardTitle>
+                        <CardTitle>{t('Riwayat transfer')}</CardTitle>
                         <CardDescription>
                             Saldo dompet asal dan tujuan diperbarui otomatis
                             untuk setiap transfer.
@@ -201,7 +203,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                             <div className="flex min-h-56 flex-col items-center justify-center rounded-lg border border-dashed px-4 text-center">
                                 <ArrowRightLeft className="mb-3 size-8 text-muted-foreground" />
                                 <p className="font-medium">
-                                    Belum ada transfer
+                                    {t('Belum ada transfer')}
                                 </p>
                                 <p className="mt-1 text-sm text-muted-foreground">
                                     Catat transfer pertama Anda untuk
@@ -213,7 +215,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                                         onClick={openCreateDialog}
                                     >
                                         <Plus />
-                                        Tambah transfer
+                                        {t('Tambah transfer')}
                                     </Button>
                                 )}
                             </div>
@@ -223,22 +225,22 @@ export default function Transfers({ transfers, wallets }: Props) {
                                     <thead className="border-b text-left text-muted-foreground">
                                         <tr>
                                             <th className="pb-3 font-medium">
-                                                Tanggal
+                                                {t('Tanggal')}
                                             </th>
                                             <th className="pb-3 font-medium">
-                                                Keterangan
+                                                {t('Keterangan')}
                                             </th>
                                             <th className="pb-3 font-medium">
-                                                Dari
+                                                {t('Dari')}
                                             </th>
                                             <th className="pb-3 font-medium">
-                                                Ke
+                                                {t('Ke')}
                                             </th>
                                             <th className="pb-3 text-right font-medium">
-                                                Nominal
+                                                {t('Nominal')}
                                             </th>
                                             <th className="w-24 pb-3 text-right font-medium">
-                                                Aksi
+                                                {t('Aksi')}
                                             </th>
                                         </tr>
                                     </thead>
@@ -309,7 +311,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                                                                         transfer,
                                                                     )
                                                                 }
-                                                                aria-label="Ubah transfer"
+                                                                aria-label={t('Ubah transfer')}
                                                             >
                                                                 <Pencil />
                                                             </Button>
@@ -322,7 +324,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                                                                         transfer,
                                                                     )
                                                                 }
-                                                                aria-label="Hapus transfer"
+                                                                aria-label={t('Hapus transfer')}
                                                             >
                                                                 <Trash2 />
                                                             </Button>
@@ -347,8 +349,8 @@ export default function Transfers({ transfers, wallets }: Props) {
                     <DialogHeader>
                         <DialogTitle>
                             {editingTransfer
-                                ? 'Ubah transfer'
-                                : 'Tambah transfer'}
+                                ? t('Ubah transfer')
+                                : t('Tambah transfer')}
                         </DialogTitle>
                         <DialogDescription>
                             Pilih dompet asal dan tujuan untuk memindahkan
@@ -358,7 +360,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                     <form className="grid gap-4" onSubmit={submit}>
                         <div className="grid gap-2">
                             <Label htmlFor="transfer-from-wallet">
-                                Dari dompet
+                                {t('Dari dompet')}
                             </Label>
                             <Select
                                 value={data.from_wallet_id}
@@ -374,7 +376,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                                     id="transfer-from-wallet"
                                     className="w-full"
                                 >
-                                    <SelectValue placeholder="Pilih dompet asal" />
+                                    <SelectValue placeholder={t('Pilih dompet asal')} />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {activeWallets.map((wallet) => (
@@ -395,7 +397,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="transfer-to-wallet">
-                                Ke dompet
+                                {t('Ke dompet')}
                             </Label>
                             <Select
                                 value={data.to_wallet_id}
@@ -411,7 +413,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                                     id="transfer-to-wallet"
                                     className="w-full"
                                 >
-                                    <SelectValue placeholder="Pilih dompet tujuan" />
+                                    <SelectValue placeholder={t('Pilih dompet tujuan')} />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {activeWallets
@@ -438,7 +440,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="transfer-amount">
-                                Nominal{' '}
+                                {t('Nominal')}{' '}
                                 {fromWallet && (
                                     <span className="text-muted-foreground">
                                         ({fromWallet.currency})
@@ -492,7 +494,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                         )}
                         <div className="grid gap-2">
                             <Label htmlFor="transfer-date">
-                                Tanggal transfer
+                                {t('Tanggal transfer')}
                             </Label>
                             <Input
                                 id="transfer-date"
@@ -509,9 +511,9 @@ export default function Transfers({ transfers, wallets }: Props) {
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="transfer-description">
-                                Keterangan{' '}
+                                {t('Keterangan')}{' '}
                                 <span className="text-muted-foreground">
-                                    (opsional)
+                                    ({t('opsional')})
                                 </span>
                             </Label>
                             <Textarea
@@ -521,7 +523,7 @@ export default function Transfers({ transfers, wallets }: Props) {
                                 onChange={(event) =>
                                     setData('description', event.target.value)
                                 }
-                                placeholder="Contoh: Pindah dana ke tabungan"
+                                placeholder={t('Contoh: Pindah dana ke tabungan')}
                             />
                             <InputError message={errors.description} />
                         </div>
@@ -531,12 +533,12 @@ export default function Transfers({ transfers, wallets }: Props) {
                                 variant="outline"
                                 onClick={closeDialog}
                             >
-                                Batal
+                                {t('Batal')}
                             </Button>
                             <Button type="submit" disabled={processing}>
                                 {editingTransfer
-                                    ? 'Simpan perubahan'
-                                    : 'Simpan transfer'}
+                                    ? t('Simpan perubahan')
+                                    : t('Simpan transfer')}
                             </Button>
                         </DialogFooter>
                     </form>

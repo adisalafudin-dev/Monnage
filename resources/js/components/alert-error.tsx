@@ -1,4 +1,5 @@
 import { AlertCircleIcon } from 'lucide-react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 export default function AlertError({
@@ -8,14 +9,16 @@ export default function AlertError({
     errors: string[];
     title?: string;
 }) {
+    const { t } = useLaravelReactI18n();
+
     return (
         <Alert variant="destructive">
             <AlertCircleIcon />
-            <AlertTitle>{title || 'Something went wrong.'}</AlertTitle>
+            <AlertTitle>{title ? t(title) : t('Ada kesalahan terjadi.')}</AlertTitle>
             <AlertDescription>
                 <ul className="list-inside list-disc text-sm">
                     {Array.from(new Set(errors)).map((error, index) => (
-                        <li key={index}>{error}</li>
+                        <li key={index}>{t(error)}</li>
                     ))}
                 </ul>
             </AlertDescription>

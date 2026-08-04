@@ -29,7 +29,7 @@ class CategoryController extends Controller
 
         $request->user()->categories()->create($validated);
 
-        return redirect()->route('categories.index')->with('success', 'Kategori berhasil dibuat.');
+        return redirect()->route('categories.index')->with('success', __('Kategori berhasil dibuat.'));
     }
 
     public function update(Request $request, Category $category)
@@ -44,13 +44,13 @@ class CategoryController extends Controller
         if ($category->type !== $validated['type']
             && ($category->transactions()->exists() || $category->budgets()->exists())) {
             return back()->withErrors([
-                'type' => 'Jenis kategori tidak dapat diubah karena sudah digunakan.',
+                'type' => __('Jenis kategori tidak dapat diubah karena sudah digunakan.'),
             ]);
         }
 
         $category->update($validated);
         
-        return redirect()->route('categories.index')->with('success', 'Kategori berhasil diperbarui.');
+        return redirect()->route('categories.index')->with('success', __('Kategori berhasil diperbarui.'));
     }
 
     public function destroy(Category $category)
@@ -59,13 +59,13 @@ class CategoryController extends Controller
 
         if ($category->transactions()->exists() || $category->budgets()->exists()) {
             return back()->withErrors([
-                'category' => 'Kategori yang sudah digunakan tidak dapat dihapus.',
+                'category' => __('Kategori yang sudah digunakan tidak dapat dihapus.'),
             ]);
         }
 
         $category->delete();
 
-        return redirect()->route('categories.index')->with('success', 'Kategori berhasil dihapus.');
+        return redirect()->route('categories.index')->with('success', __('Kategori berhasil dihapus.'));
     }
 
     private function authorizeCategory(Category $category)

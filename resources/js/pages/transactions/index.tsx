@@ -9,6 +9,7 @@ import {
     Trash2,
     X,
 } from 'lucide-react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { useState } from 'react';
 import InputError from '@/components/input-error';
 import Pagination from '@/components/pagination';
@@ -50,6 +51,9 @@ import type {
     TransactionTotals,
     Wallet,
 } from '@/types';
+
+import { Download } from 'lucide-react';
+import { export as exportTransactions } from '@/routes/transactions';
 
 type Props = {
     transactions: Paginated<Transaction>;
@@ -101,6 +105,7 @@ export default function Transactions({
     filters,
     totals,
 }: Props) {
+    const { t } = useLaravelReactI18n();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingTransaction, setEditingTransaction] =
         useState<Transaction | null>(null);
@@ -229,44 +234,63 @@ export default function Transactions({
 
     return (
         <>
-            <Head title="Transaksi" />
+            <Head title={t('Transaksi')} />
             <div className="flex flex-1 flex-col gap-6 p-4 md:p-6">
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                     <div>
                         <h1 className="text-2xl font-semibold tracking-tight">
-                            Transaksi
+                            {t('Transaksi')}
                         </h1>
                         <p className="text-sm text-muted-foreground">
-                            Catat semua pemasukan dan pengeluaran Anda.
+                            {t('Catat semua pemasukan dan pengeluaran Anda.')}
                         </p>
                     </div>
-                    <Button
+                    {/* <Button
                         onClick={openCreateDialog}
                         disabled={!canCreateTransaction}
                     >
-                        <Plus /> Tambah transaksi
-                    </Button>
+                        <Plus /> {t('Tambah transaksi')}
+                    </Button> */}
+
+                    <div className="flex gap-2">
+                        <Button variant="outline" asChild>
+                            <a
+                                href={exportTransactions.url({
+                                    query: filterData,
+                                })}
+                            >
+                                <Download /> Export CSV
+                            </a>
+                        </Button>
+                        <Button
+                            onClick={openCreateDialog}
+                            disabled={!canCreateTransaction}
+                        >
+                            <Plus /> Tambah transaksi
+                        </Button>
+                    </div>
                 </div>
 
                 {!canCreateTransaction && (
                     <Card className="border-dashed">
                         <CardContent className="py-5 text-sm text-muted-foreground">
-                            Buat minimal satu dompet aktif dan satu kategori
-                            sebelum mencatat transaksi.
+                            {t(
+                                'Buat minimal satu dompet aktif dan satu kategori sebelum mencatat transaksi.',
+                            )}
                         </CardContent>
                     </Card>
                 )}
 
                 <div className="grid gap-4 md:grid-cols-3">
                     <SummaryCard
-                        title="Transaksi ditampilkan"
+                        title={t('Transaksi ditampilkan')}
                         amount={String(transactions.data.length)}
                         icon={ReceiptText}
                     />
                     {currencies.length <= 1 ? (
                         <>
                             <SummaryCard
-                                title="Pemasukan"
+                                title={t('Pemasukan')}
                                 amount={formatCurrency(
                                     totalsByCurrency[currencies[0]]?.income ??
                                         0,
@@ -276,7 +300,7 @@ export default function Transactions({
                                 iconClassName="text-emerald-600 dark:text-emerald-400"
                             />
                             <SummaryCard
-                                title="Pengeluaran"
+                                title={t('Pengeluaran')}
                                 amount={formatCurrency(
                                     totalsByCurrency[currencies[0]]?.expense ??
                                         0,
@@ -320,7 +344,7 @@ export default function Transactions({
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                             <Filter className="size-4" />
-                            Filter transaksi
+                            {t('Filter transaksi')}
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -329,14 +353,14 @@ export default function Transactions({
                             onSubmit={applyFilters}
                         >
                             <FilterSelect
-                                label="Dompet"
+                                label={t('Dompet')}
                                 value={filterData.wallet_id}
-                                placeholder="Semua dompet"
+                                placeholder={t('Semua dompet')}
                                 items={wallets.map((wallet) => ({
                                     value: String(wallet.id),
                                     label: wallet.status
                                         ? wallet.title
-                                        : `${wallet.title} (diarsipkan)`,
+                                        : `${wallet.title} (${t('diarsipkan')})`,
                                 }))}
                                 onChange={(value) =>
                                     setFilterData((current) => ({
@@ -346,9 +370,9 @@ export default function Transactions({
                                 }
                             />
                             <FilterSelect
-                                label="Kategori"
+                                label={t('Kategori')}
                                 value={filterData.category_id}
-                                placeholder="Semua kategori"
+                                placeholder={t('Semua kategori')}
                                 items={categories.map((category) => ({
                                     value: String(category.id),
                                     label: category.name,
@@ -361,7 +385,9 @@ export default function Transactions({
                                 }
                             />
                             <div className="grid gap-2">
-                                <Label htmlFor="start-date">Dari tanggal</Label>
+                                <Label htmlFor="start-date">
+                                    {t('Dari tanggal')}
+                                </Label>
                                 <Input
                                     id="start-date"
                                     type="date"
@@ -375,7 +401,9 @@ export default function Transactions({
                                 />
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="end-date">Sampai tanggal</Label>
+                                <Label htmlFor="end-date">
+                                    {t('Sampai tanggal')}
+                                </Label>
                                 <Input
                                     id="end-date"
                                     type="date"
@@ -390,14 +418,14 @@ export default function Transactions({
                             </div>
                             <div className="flex items-end gap-2">
                                 <Button type="submit" className="flex-1">
-                                    Terapkan
+                                    {t('Terapkan')}
                                 </Button>
                                 <Button
                                     type="button"
                                     variant="outline"
                                     size="icon"
                                     onClick={clearFilters}
-                                    aria-label="Hapus filter"
+                                    aria-label={t('Hapus filter')}
                                 >
                                     <X />
                                 </Button>
@@ -408,10 +436,11 @@ export default function Transactions({
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Riwayat transaksi</CardTitle>
+                        <CardTitle>{t('Riwayat transaksi')}</CardTitle>
                         <CardDescription>
-                            Saldo dompet diperbarui otomatis untuk setiap
-                            transaksi.
+                            {t(
+                                'Saldo dompet diperbarui otomatis untuk setiap transaksi.',
+                            )}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -419,11 +448,12 @@ export default function Transactions({
                             <div className="flex min-h-56 flex-col items-center justify-center rounded-lg border border-dashed px-4 text-center">
                                 <ReceiptText className="mb-3 size-8 text-muted-foreground" />
                                 <p className="font-medium">
-                                    Belum ada transaksi
+                                    {t('Belum ada transaksi')}
                                 </p>
                                 <p className="mt-1 text-sm text-muted-foreground">
-                                    Catat transaksi pertama Anda untuk melihat
-                                    riwayat di sini.
+                                    {t(
+                                        'Catat transaksi pertama Anda untuk melihat riwayat di sini.',
+                                    )}
                                 </p>
                                 {canCreateTransaction && (
                                     <Button
@@ -431,7 +461,7 @@ export default function Transactions({
                                         onClick={openCreateDialog}
                                     >
                                         <Plus />
-                                        Tambah transaksi
+                                        {t('Tambah transaksi')}
                                     </Button>
                                 )}
                             </div>
@@ -442,22 +472,22 @@ export default function Transactions({
                                         <thead className="border-b text-left text-muted-foreground">
                                             <tr>
                                                 <th className="pb-3 font-medium">
-                                                    Tanggal
+                                                    {t('Tanggal')}
                                                 </th>
                                                 <th className="pb-3 font-medium">
-                                                    Keterangan
+                                                    {t('Keterangan')}
                                                 </th>
                                                 <th className="pb-3 font-medium">
-                                                    Dompet
+                                                    {t('Dompet')}
                                                 </th>
                                                 <th className="pb-3 font-medium">
-                                                    Kategori
+                                                    {t('Kategori')}
                                                 </th>
                                                 <th className="pb-3 text-right font-medium">
-                                                    Nominal
+                                                    {t('Nominal')}
                                                 </th>
                                                 <th className="w-24 pb-3 text-right font-medium">
-                                                    Aksi
+                                                    {t('Aksi')}
                                                 </th>
                                             </tr>
                                         </thead>
@@ -532,7 +562,9 @@ export default function Transactions({
                                                                                 transaction,
                                                                             )
                                                                         }
-                                                                        aria-label="Ubah transaksi"
+                                                                        aria-label={t(
+                                                                            'Ubah transaksi',
+                                                                        )}
                                                                     >
                                                                         <Pencil />
                                                                     </Button>
@@ -545,7 +577,9 @@ export default function Transactions({
                                                                                 transaction,
                                                                             )
                                                                         }
-                                                                        aria-label="Hapus transaksi"
+                                                                        aria-label={t(
+                                                                            'Hapus transaksi',
+                                                                        )}
                                                                     >
                                                                         <Trash2 />
                                                                     </Button>
@@ -564,7 +598,7 @@ export default function Transactions({
                                     from={transactions.from}
                                     to={transactions.to}
                                     total={transactions.total}
-                                    itemLabel="transaksi"
+                                    itemLabel={t('transaksi')}
                                 />
                             </div>
                         )}
@@ -580,16 +614,20 @@ export default function Transactions({
                     <DialogHeader>
                         <DialogTitle>
                             {editingTransaction
-                                ? 'Ubah transaksi'
-                                : 'Tambah transaksi'}
+                                ? t('Ubah transaksi')
+                                : t('Tambah transaksi')}
                         </DialogTitle>
                         <DialogDescription>
-                            Pilih dompet dan kategori untuk mencatat transaksi.
+                            {t(
+                                'Pilih dompet dan kategori untuk mencatat transaksi.',
+                            )}
                         </DialogDescription>
                     </DialogHeader>
                     <form className="grid gap-4" onSubmit={submit}>
                         <div className="grid gap-2">
-                            <Label htmlFor="transaction-wallet">Dompet</Label>
+                            <Label htmlFor="transaction-wallet">
+                                {t('Dompet')}
+                            </Label>
                             <Select
                                 value={data.wallet_id}
                                 onValueChange={(value) =>
@@ -600,7 +638,9 @@ export default function Transactions({
                                     id="transaction-wallet"
                                     className="w-full"
                                 >
-                                    <SelectValue placeholder="Pilih dompet" />
+                                    <SelectValue
+                                        placeholder={t('Pilih dompet')}
+                                    />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {selectableWallets.map((wallet) => (
@@ -617,7 +657,7 @@ export default function Transactions({
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="transaction-category">
-                                Kategori
+                                {t('Kategori')}
                             </Label>
                             <Select
                                 value={data.category_id}
@@ -629,7 +669,9 @@ export default function Transactions({
                                     id="transaction-category"
                                     className="w-full"
                                 >
-                                    <SelectValue placeholder="Pilih kategori" />
+                                    <SelectValue
+                                        placeholder={t('Pilih kategori')}
+                                    />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {categories.map((category) => (
@@ -639,8 +681,8 @@ export default function Transactions({
                                         >
                                             {category.name} (
                                             {category.type === 'income'
-                                                ? 'Pemasukan'
-                                                : 'Pengeluaran'}
+                                                ? t('Pemasukan')
+                                                : t('Pengeluaran')}
                                             )
                                         </SelectItem>
                                     ))}
@@ -649,7 +691,9 @@ export default function Transactions({
                             <InputError message={errors.category_id} />
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="transaction-amount">Nominal</Label>
+                            <Label htmlFor="transaction-amount">
+                                {t('Nominal')}
+                            </Label>
                             <Input
                                 id="transaction-amount"
                                 type="number"
@@ -665,7 +709,7 @@ export default function Transactions({
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="transaction-date">
-                                Tanggal transaksi
+                                {t('Tanggal transaksi')}
                             </Label>
                             <Input
                                 id="transaction-date"
@@ -679,9 +723,9 @@ export default function Transactions({
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="transaction-description">
-                                Keterangan{' '}
+                                {t('Keterangan')}{' '}
                                 <span className="text-muted-foreground">
-                                    (opsional)
+                                    ({t('opsional')})
                                 </span>
                             </Label>
                             <Textarea
@@ -691,7 +735,9 @@ export default function Transactions({
                                 onChange={(event) =>
                                     setData('description', event.target.value)
                                 }
-                                placeholder="Contoh: Belanja kebutuhan mingguan"
+                                placeholder={t(
+                                    'Contoh: Belanja kebutuhan mingguan',
+                                )}
                             />
                             <InputError message={errors.description} />
                         </div>
@@ -701,12 +747,12 @@ export default function Transactions({
                                 variant="outline"
                                 onClick={closeDialog}
                             >
-                                Batal
+                                {t('Batal')}
                             </Button>
                             <Button type="submit" disabled={processing}>
                                 {editingTransaction
-                                    ? 'Simpan perubahan'
-                                    : 'Simpan transaksi'}
+                                    ? t('Simpan perubahan')
+                                    : t('Simpan transaksi')}
                             </Button>
                         </DialogFooter>
                     </form>
@@ -718,9 +764,11 @@ export default function Transactions({
             >
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Hapus transaksi</DialogTitle>
+                        <DialogTitle>{t('Hapus transaksi')}</DialogTitle>
                         <DialogDescription>
-                            Hapus transaksi ini? Saldo dompet akan disesuaikan.
+                            {t(
+                                'Hapus transaksi ini? Saldo dompet akan disesuaikan.',
+                            )}
                         </DialogDescription>
                     </DialogHeader>
                     <DialogFooter className="mt-2">
@@ -730,7 +778,7 @@ export default function Transactions({
                             onClick={closeDeleteDialog}
                             disabled={processing}
                         >
-                            Batal
+                            {t('Batal')}
                         </Button>
                         <Button
                             type="button"
@@ -738,7 +786,7 @@ export default function Transactions({
                             disabled={processing}
                             className="text-destructive"
                         >
-                            Hapus
+                            {t('Hapus')}
                         </Button>
                     </DialogFooter>
                 </DialogContent>

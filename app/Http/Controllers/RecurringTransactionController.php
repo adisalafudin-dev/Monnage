@@ -58,7 +58,7 @@ class RecurringTransactionController extends Controller
         ]);
 
         return redirect()->route('recurring-transactions.index')
-            ->with('success', 'Transaksi berulang berhasil dibuat.');
+            ->with('success', __('Transaksi berulang berhasil dibuat.'));
     }
 
     public function update(Request $request, RecurringTransaction $recurringTransaction)
@@ -78,7 +78,7 @@ class RecurringTransactionController extends Controller
         $recurringTransaction->update($validated);
 
         return redirect()->route('recurring-transactions.index')
-            ->with('success', 'Transaksi berulang berhasil diperbarui.');
+            ->with('success', __('Transaksi berulang berhasil diperbarui.'));
     }
 
     public function destroy(Request $request, RecurringTransaction $recurringTransaction)
@@ -88,7 +88,7 @@ class RecurringTransactionController extends Controller
         $recurringTransaction->delete();
 
         return redirect()->route('recurring-transactions.index')
-            ->with('success', 'Transaksi berulang berhasil dihapus. Riwayat transaksi yang sudah dibuat tidak ikut terhapus.');
+            ->with('success', __('Transaksi berulang berhasil dihapus. Riwayat transaksi yang sudah dibuat tidak ikut terhapus.'));
     }
 
     private function authorizeWallet(Wallet $wallet, Request $request)

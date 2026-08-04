@@ -20,6 +20,7 @@ class User extends Authenticatable
         'password',
         'google_id',
         'avatar',
+        'locale',
     ];
 
     protected $hidden = [
@@ -67,5 +68,9 @@ class User extends Authenticatable
         return $this->hasMany(RecurringTransaction::class);
     }
 
+    public function googleSheetConnection()
+    {
+        return $this->hasOne(GoogleSheetConnection::class);
+    }
     
 }

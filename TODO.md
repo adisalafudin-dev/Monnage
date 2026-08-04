@@ -50,14 +50,14 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 
 - [x] Pagination on `TransactionController@index` — confirmed, `->paginate(20)`.
 - [x] README — confirmed, 48 lines added.
-- [ ] i18n confirmation — still just needs a decision, no code.
+- [x] i18n confirmation — still just needs a decision, no code.
 - [x] Delete modals — confirmed.
 
 ## P4 — Next Feature
 
-- [ ] Google Login — **confirmed merged** (`google_id` on `User`, full OAuth flow present). Not in this doc's list as done — should be checked off.
-- [ ] Export CSV — **written, not merged.** I gave you the full `export()` method + route + button, but `grep` for `function export` in `TransactionController.php` comes up empty — it never got copied in.
-- [ ] Google Sheets sync — **written, not merged.** No `app/Services/` directory exists yet, so `GoogleSheetsSyncService` was never added.
+- [x] Google Login — **confirmed merged** (`google_id` on `User`, full OAuth flow present). Not in this doc's list as done — should be checked off.
+- [x] Export CSV — **written, not merged.** I gave you the full `export()` method + route + button, but `grep` for `function export` in `TransactionController.php` comes up empty — it never got copied in.
+- [x] Google Sheets sync — **written, not merged.** No `app/Services/` directory exists yet, so `GoogleSheetsSyncService` was never added.
 - [ ] Excel export — not started (CSV was built instead; worth confirming if you actually need `.xlsx` specifically).
 - [ ] Gemini Studio API — not started, not yet scoped.
 - [ ] ML/FastAPI — not started, not yet scoped.
@@ -67,3 +67,32 @@ Good news up front: the last commit fixed the app-boot-blocking bug and shipped 
 [X] Build `budgets/index.tsx` + add the sidebar nav link — this finishes the full core product loop end-to-end.
 [ ] Add feature tests for all four domain controllers, including regression tests for the two bugs above.
 [ ] Then move on to the P2/P3 domain and polish items (transfers, recurring transactions, budget rollover, pagination, soft-deletes on wallets).
+
+---
+
+## 🟠 P2 — GoogleSheetsSyncService improvements (audited 2026-08-04)
+
+`app/Services/GoogleSheetsSyncService.php` — functional & efficient, but needs hardening for production. Current quality ~7/10.
+
+### 🔴 High priority
+
+- [ ] **Add logging** — no `Log::info`/`Log::error` anywhere. Add start/success/failure logs with `user_id` so production syncs are debuggable.
+- [ ] **Validate refresh-token response** — `$data['access_token']` is accessed without checking the key exists. Guard with `isset()` and throw a clear `RuntimeException` if missing.
+- [ ] **Write unit tests with `Http::fake()`** — zero coverage for this service. Mock `https://oauth2.googleapis.com/token` and `https://sheets.googleapis.com/*` to test: token refresh, 404/403 handling, sheet auto-creation, clear-then-write flow, and stale-row cleanup.
+
+### 🟡 Medium priority
+
+- [ ] **Split responsibilities (SRP)** — class currently does OAuth token management + sheet management + data writing. Extract:
+    - `GoogleOAuthService` — token refresh logic
+    - `GoogleSheetsClient` — API calls (create sheet, clear, write)
+    - `GoogleSheetsSyncService` — orchestrator only
+- [ ] **Replace magic strings with constants/enums** — `'Transactions'`, `'Wallets'`, `'income'`, `'Pemasukan'`, `'Aktif'`, `'Diarsipkan'` are scattered. Use class constants or PHP enums.
+- [ ] **Move API URLs to config** — `https://sheets.googleapis.com/...` and `https://oauth2.googleapis.com/token` are hardcoded. Put them in `config/services.php` for testability (mock server) and future changes.
+- [ ] **Handle partial-sync inconsistency** — if `writeTransactions` succeeds but `writeWallets` fails, the spreadsheet is left inconsistent. Consider staging sheets + swap, or record a partial-sync status in the DB.
+
+### 🟢 Low priority
+
+- [ ] **Add retry logic** — wrap Google API calls with `Http::retry(3, 100)` for transient errors (rate limit, timeout).
+- [ ] **Dynamic range instead of `A1:Z10000`** — hardcoded 10k-row assumption. Compute range from `count($rows)`.
+- [ ] **Batch large writes** — a single `PUT` with thousands of rows can hit API quota. Batch per 500–1000 rows.
+- [ ] **Wallet hard-delete guard gap** — `WalletController@destroy` doesn't check `recurringTransactions()->exists()`; a wallet with an active recurring rule could still be deleted, leaving a dangling reference.

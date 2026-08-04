@@ -1,4 +1,5 @@
 import { router } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import type { SVGProps } from 'react';
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
@@ -39,6 +40,8 @@ export default function ManageGoogleAccount({
     googleConnected,
     hasPassword,
 }: Props) {
+    const { t } = useLaravelReactI18n();
+
     function disconnect() {
         router.delete(googleDisconnect.url(), { preserveScroll: true });
     }
@@ -47,8 +50,8 @@ export default function ManageGoogleAccount({
         <div className="space-y-6">
             <Heading
                 variant="small"
-                title="Google account"
-                description="Sign in faster by connecting your Google account"
+                title="Akun Google"
+                description="Masuk lebih cepat dengan menghubungkan akun Google Anda"
             />
 
             <div className="flex items-center justify-between rounded-lg border border-border p-4">
@@ -59,7 +62,7 @@ export default function ManageGoogleAccount({
                     <div>
                         <p className="font-medium">Google</p>
                         <p className="text-sm text-muted-foreground">
-                            {googleConnected ? 'Connected' : 'Not connected'}
+                            {googleConnected ? t('Terhubung') : t('Belum terhubung')}
                         </p>
                     </div>
                 </div>
@@ -71,23 +74,22 @@ export default function ManageGoogleAccount({
                         disabled={!hasPassword}
                         title={
                             !hasPassword
-                                ? 'Set a password first so you don\u2019t lose access to your account'
+                                ? t('Atur kata sandi terlebih dahulu agar Anda tidak kehilangan akses ke akun Anda')
                                 : undefined
                         }
                     >
-                        Disconnect
+                        {t('Putuskan koneksi')}
                     </Button>
                 ) : (
                     <Button variant="outline" asChild>
-                        <a href={googleRedirect.url()}>Connect</a>
+                        <a href={googleRedirect.url()}>{t('Hubungkan')}</a>
                     </Button>
                 )}
             </div>
 
             {googleConnected && !hasPassword && (
                 <p className="text-sm text-muted-foreground">
-                    This account has no password set. Add one above before
-                    disconnecting Google, or you'll lose access.
+                    {t('Akun ini tidak memiliki kata sandi. Tambahkan kata sandi di atas sebelum memutuskan koneksi Google, atau Anda akan kehilangan akses.')}
                 </p>
             )}
         </div>

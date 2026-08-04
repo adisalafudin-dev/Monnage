@@ -1,5 +1,5 @@
-// Components
 import { Form, Head } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
 import { Spinner } from '@/components/ui/spinner';
@@ -7,14 +7,15 @@ import { logout } from '@/routes';
 import { send } from '@/routes/verification';
 
 export default function VerifyEmail({ status }: { status?: string }) {
+    const { t } = useLaravelReactI18n();
+
     return (
         <>
-            <Head title="Email verification" />
+            <Head title={t('Verifikasi email')} />
 
             {status === 'verification-link-sent' && (
                 <div className="mb-4 text-center text-sm font-medium text-green-600">
-                    A new verification link has been sent to the email address
-                    you provided during registration.
+                    {t('Tautan verifikasi baru telah dikirimkan ke alamat email yang Anda berikan saat pendaftaran.')}
                 </div>
             )}
 
@@ -23,14 +24,14 @@ export default function VerifyEmail({ status }: { status?: string }) {
                     <>
                         <Button disabled={processing} variant="secondary">
                             {processing && <Spinner />}
-                            Resend verification email
+                            {t('Kirim ulang email verifikasi')}
                         </Button>
 
                         <TextLink
                             href={logout()}
                             className="mx-auto block text-sm"
                         >
-                            Log out
+                            {t('Keluar')}
                         </TextLink>
                     </>
                 )}
@@ -40,7 +41,7 @@ export default function VerifyEmail({ status }: { status?: string }) {
 }
 
 VerifyEmail.layout = {
-    title: 'Email verification',
+    title: 'Verifikasi email',
     description:
-        'Please verify your email address by clicking on the link we just emailed to you.',
+        'Harap verifikasi alamat email Anda dengan mengeklik tautan yang baru saja kami kirimkan melalui email kepada Anda.',
 };

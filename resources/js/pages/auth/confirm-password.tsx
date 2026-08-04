@@ -1,4 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import {
     index as confirmOptions,
     store as confirmStore,
@@ -12,29 +13,31 @@ import { Spinner } from '@/components/ui/spinner';
 import { store } from '@/routes/password/confirm';
 
 export default function ConfirmPassword() {
+    const { t } = useLaravelReactI18n();
+
     return (
         <>
-            <Head title="Confirm password" />
+            <Head title={t('Konfirmasi kata sandi')} />
 
             <PasskeyVerify
                 routes={{
                     options: confirmOptions(),
                     submit: confirmStore(),
                 }}
-                label="Confirm with passkey"
-                loadingLabel="Confirming..."
-                separator="Or confirm with password"
+                label={t('Konfirmasi dengan passkey')}
+                loadingLabel={t('Mengonfirmasi...')}
+                separator={t('Atau konfirmasi dengan kata sandi')}
             />
 
             <Form {...store.form()} resetOnSuccess={['password']}>
                 {({ processing, errors }) => (
                     <div className="space-y-6">
                         <div className="grid gap-2">
-                            <Label htmlFor="password">Password</Label>
+                            <Label htmlFor="password">{t('Kata sandi')}</Label>
                             <PasswordInput
                                 id="password"
                                 name="password"
-                                placeholder="Password"
+                                placeholder={t('Kata sandi')}
                                 autoComplete="current-password"
                                 autoFocus
                             />
@@ -49,7 +52,7 @@ export default function ConfirmPassword() {
                                 data-test="confirm-password-button"
                             >
                                 {processing && <Spinner />}
-                                Confirm password
+                                {t('Konfirmasi kata sandi')}
                             </Button>
                         </div>
                     </div>
@@ -60,7 +63,7 @@ export default function ConfirmPassword() {
 }
 
 ConfirmPassword.layout = {
-    title: 'Confirm password',
+    title: 'Konfirmasi kata sandi',
     description:
-        'This is a secure area of the application. Please confirm your password before continuing.',
+        'Ini adalah area aman aplikasi. Harap konfirmasi kata sandi Anda sebelum melanjutkan.',
 };

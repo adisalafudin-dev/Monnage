@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react';
+import { useLaravelReactI18n } from 'laravel-react-i18n';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -19,6 +20,8 @@ export default function Pagination({
     total,
     itemLabel = 'item',
 }: Props) {
+    const { t } = useLaravelReactI18n();
+
     if (total === 0 || links.length <= 3) {
         return null;
     }
@@ -26,7 +29,12 @@ export default function Pagination({
     return (
         <div className="flex flex-col items-center justify-between gap-3 border-t pt-4 sm:flex-row">
             <p className="text-sm text-muted-foreground">
-                Menampilkan {from ?? 0}–{to ?? 0} dari {total} {itemLabel}
+                {t('Menampilkan :from–:to dari :total :item', {
+                    from: from ?? 0,
+                    to: to ?? 0,
+                    total,
+                    item: t(itemLabel),
+                })}
             </p>
             <div className="flex items-center gap-1">
                 {links.map((link, index) => {

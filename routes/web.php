@@ -19,6 +19,8 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
+Route::patch('locale', [LocaleController::class, 'update'])->name('locale.update');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -31,6 +33,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('transactions', TransactionController::class)
         ->only(['index', 'store', 'update', 'destroy']);
 
+
+    Route::get('transactions/export', [TransactionController::class, 'export'])->name('transactions.export');
+
     Route::resource('budgets', BudgetController::class)->only(['index', 'store', 'destroy']);
     Route::post('budgets/overall', [BudgetController::class, 'storeOverall'])->name('budgets.overall.store');
     Route::delete('budgets/overall/{monthlyBudget}', [BudgetController::class, 'destroyOverall'])->name('budgets.overall.destroy');
@@ -42,7 +47,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('recurring-transactions', RecurringTransactionController::class)
         ->only(['index', 'store', 'update', 'destroy']);
 
-    Route::patch('locale', [LocaleController::class, 'update'])->name('locale.update');
 });
 
 
