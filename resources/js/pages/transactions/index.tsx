@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import InputError from '@/components/input-error';
+import Pagination from '@/components/pagination';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -49,7 +50,6 @@ import type {
     TransactionTotals,
     Wallet,
 } from '@/types';
-import Pagination from '@/components/pagination';
 
 type Props = {
     transactions: Paginated<Transaction>;
@@ -93,11 +93,6 @@ function initialTransactionForm(): TransactionForm {
         transacted_at: localDateTime(),
     };
 }
-
-type CurrencyTotals = Record<
-    string,
-    { income: number; expense: number; count: number }
->;
 
 export default function Transactions({
     transactions,
@@ -167,7 +162,10 @@ export default function Transactions({
     }
 
     function closeDialog() {
-        if (processing) return;
+        if (processing) {
+            return;
+        }
+
         setIsDialogOpen(false);
         setEditingTransaction(null);
         clearErrors();
@@ -179,6 +177,7 @@ export default function Transactions({
 
         if (editingTransaction) {
             put(update.url(editingTransaction), options);
+
             return;
         }
 
@@ -210,13 +209,19 @@ export default function Transactions({
     }
 
     function closeDeleteDialog() {
-        if (processing) return;
+        if (processing) {
+            return;
+        }
+
         setIsDeleteDialogOpen(false);
         setDeletingTransaction(null);
     }
 
     function confirmDelete() {
-        if (!deletingTransaction) return;
+        if (!deletingTransaction) {
+            return;
+        }
+
         router.delete(destroy.url(deletingTransaction), {
             onSuccess: closeDeleteDialog,
         });
@@ -255,7 +260,7 @@ export default function Transactions({
                 <div className="grid gap-4 md:grid-cols-3">
                     <SummaryCard
                         title="Transaksi ditampilkan"
-                        amount={String(transactions.length)}
+                        amount={String(transactions.data.length)}
                         icon={ReceiptText}
                     />
                     {currencies.length <= 1 ? (
@@ -410,7 +415,7 @@ export default function Transactions({
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
-                        {transactions.length === 0 ? (
+                        {transactions.data.length === 0 ? (
                             <div className="flex min-h-56 flex-col items-center justify-center rounded-lg border border-dashed px-4 text-center">
                                 <ReceiptText className="mb-3 size-8 text-muted-foreground" />
                                 <p className="font-medium">
@@ -431,127 +436,136 @@ export default function Transactions({
                                 )}
                             </div>
                         ) : (
-                            <div className="overflow-x-auto">
-                                <table className="w-full min-w-200 text-sm">
-                                    <thead className="border-b text-left text-muted-foreground">
-                                        <tr>
-                                            <th className="pb-3 font-medium">
-                                                Tanggal
-                                            </th>
-                                            <th className="pb-3 font-medium">
-                                                Keterangan
-                                            </th>
-                                            <th className="pb-3 font-medium">
-                                                Dompet
-                                            </th>
-                                            <th className="pb-3 font-medium">
-                                                Kategori
-                                            </th>
-                                            <th className="pb-3 text-right font-medium">
-                                                Nominal
-                                            </th>
-                                            <th className="w-24 pb-3 text-right font-medium">
-                                                Aksi
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {transactions.map((transaction) => {
-                                            const isIncome =
-                                                transaction.category?.type ===
-                                                'income';
-                                            const currency =
-                                                transaction.wallet?.currency ??
-                                                'IDR';
-                                            return (
-                                                <tr
-                                                    key={transaction.id}
-                                                    className="border-b last:border-0"
-                                                >
-                                                    <td className="py-4 whitespace-nowrap text-muted-foreground">
-                                                        {dateFormatter.format(
-                                                            new Date(
-                                                                transaction.transacted_at,
-                                                            ),
-                                                        )}
-                                                    </td>
-                                                    <td className="max-w-60 truncate py-4 font-medium">
-                                                        {transaction.description ||
-                                                            '—'}
-                                                    </td>
-                                                    <td className="py-4 text-muted-foreground">
-                                                        {
-                                                            transaction.wallet
-                                                                ?.title
-                                                        }
-                                                    </td>
-                                                    <td className="py-4">
-                                                        <Badge
-                                                            variant={
-                                                                isIncome
-                                                                    ? 'secondary'
-                                                                    : 'outline'
-                                                            }
+                            <div className="space-y-4">
+                                <div className="overflow-x-auto">
+                                    <table className="w-full min-w-200 text-sm">
+                                        <thead className="border-b text-left text-muted-foreground">
+                                            <tr>
+                                                <th className="pb-3 font-medium">
+                                                    Tanggal
+                                                </th>
+                                                <th className="pb-3 font-medium">
+                                                    Keterangan
+                                                </th>
+                                                <th className="pb-3 font-medium">
+                                                    Dompet
+                                                </th>
+                                                <th className="pb-3 font-medium">
+                                                    Kategori
+                                                </th>
+                                                <th className="pb-3 text-right font-medium">
+                                                    Nominal
+                                                </th>
+                                                <th className="w-24 pb-3 text-right font-medium">
+                                                    Aksi
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {transactions.data.map(
+                                                (transaction) => {
+                                                    const isIncome =
+                                                        transaction.category
+                                                            ?.type === 'income';
+                                                    const currency =
+                                                        transaction.wallet
+                                                            ?.currency ?? 'IDR';
+
+                                                    return (
+                                                        <tr
+                                                            key={transaction.id}
+                                                            className="border-b last:border-0"
                                                         >
-                                                            {
-                                                                transaction
-                                                                    .category
-                                                                    ?.name
-                                                            }
-                                                        </Badge>
-                                                    </td>
-                                                    <td
-                                                        className={`py-4 text-right font-medium tabular-nums ${isIncome ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}
-                                                    >
-                                                        {isIncome ? '+' : '−'}
-                                                        {formatCurrency(
-                                                            Number(
-                                                                transaction.amount,
-                                                            ),
-                                                            currency,
-                                                        )}
-                                                    </td>
-                                                    <td className="py-4">
-                                                        <div className="flex justify-end gap-1">
-                                                            <Button
-                                                                variant="ghost"
-                                                                size="icon"
-                                                                onClick={() =>
-                                                                    openEditDialog(
-                                                                        transaction,
-                                                                    )
+                                                            <td className="py-4 whitespace-nowrap text-muted-foreground">
+                                                                {dateFormatter.format(
+                                                                    new Date(
+                                                                        transaction.transacted_at,
+                                                                    ),
+                                                                )}
+                                                            </td>
+                                                            <td className="max-w-60 truncate py-4 font-medium">
+                                                                {transaction.description ||
+                                                                    '—'}
+                                                            </td>
+                                                            <td className="py-4 text-muted-foreground">
+                                                                {
+                                                                    transaction
+                                                                        .wallet
+                                                                        ?.title
                                                                 }
-                                                                aria-label="Ubah transaksi"
+                                                            </td>
+                                                            <td className="py-4">
+                                                                <Badge
+                                                                    variant={
+                                                                        isIncome
+                                                                            ? 'secondary'
+                                                                            : 'outline'
+                                                                    }
+                                                                >
+                                                                    {
+                                                                        transaction
+                                                                            .category
+                                                                            ?.name
+                                                                    }
+                                                                </Badge>
+                                                            </td>
+                                                            <td
+                                                                className={`py-4 text-right font-medium tabular-nums ${isIncome ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'}`}
                                                             >
-                                                                <Pencil />
-                                                            </Button>
-                                                            <Button
-                                                                variant="ghost"
-                                                                size="icon"
-                                                                className="text-destructive hover:text-destructive"
-                                                                onClick={() =>
-                                                                    deleteTransaction(
-                                                                        transaction,
-                                                                    )
-                                                                }
-                                                                aria-label="Hapus transaksi"
-                                                            >
-                                                                <Trash2 />
-                                                            </Button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                    <Pagination
-                                        links={transactions.links}
-                                        from={transactions.from}
-                                        to={transactions.to}
-                                        total={transactions.total}
-                                        itemLabel="transaksi"
-                                    />
-                                </table>
+                                                                {isIncome
+                                                                    ? '+'
+                                                                    : '−'}
+                                                                {formatCurrency(
+                                                                    Number(
+                                                                        transaction.amount,
+                                                                    ),
+                                                                    currency,
+                                                                )}
+                                                            </td>
+                                                            <td className="py-4">
+                                                                <div className="flex justify-end gap-1">
+                                                                    <Button
+                                                                        variant="ghost"
+                                                                        size="icon"
+                                                                        onClick={() =>
+                                                                            openEditDialog(
+                                                                                transaction,
+                                                                            )
+                                                                        }
+                                                                        aria-label="Ubah transaksi"
+                                                                    >
+                                                                        <Pencil />
+                                                                    </Button>
+                                                                    <Button
+                                                                        variant="ghost"
+                                                                        size="icon"
+                                                                        className="text-destructive hover:text-destructive"
+                                                                        onClick={() =>
+                                                                            deleteTransaction(
+                                                                                transaction,
+                                                                            )
+                                                                        }
+                                                                        aria-label="Hapus transaksi"
+                                                                    >
+                                                                        <Trash2 />
+                                                                    </Button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                },
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <Pagination
+                                    links={transactions.links}
+                                    from={transactions.from}
+                                    to={transactions.to}
+                                    total={transactions.total}
+                                    itemLabel="transaksi"
+                                />
                             </div>
                         )}
                     </CardContent>

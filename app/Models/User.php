@@ -18,6 +18,8 @@ class User extends Authenticatable
         'profile',
         'email',
         'password',
+        'google_id',
+        'avatar',
     ];
 
     protected $hidden = [
@@ -64,4 +66,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(RecurringTransaction::class);
     }
+
+    
 }

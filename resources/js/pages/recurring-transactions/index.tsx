@@ -204,7 +204,7 @@ export default function RecurringTransactions({
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                     <div>
                         <h1 className="text-2xl font-semibold tracking-tight">
-                            Transaksi Berulang
+                            Rencanakan Transaksi Rutin Anda
                         </h1>
                         <p className="text-sm text-muted-foreground">
                             Otomatis catat transaksi rutin seperti gaji, sewa,

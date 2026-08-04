@@ -3,6 +3,8 @@ import { useRef } from 'react';
 import SecurityController from '@/actions/App/Http/Controllers/Settings/SecurityController';
 import Heading from '@/components/heading';
 import InputError from '@/components/input-error';
+import ManageGoogleAccount from '@/components/manage-google-account';
+import type { Props as ManageGoogleAccountProps } from '@/components/manage-google-account';
 import type { Props as ManagePasskeysProps } from '@/components/manage-passkeys';
 import ManagePasskeys from '@/components/manage-passkeys';
 import type { Props as ManageTwoFactorProps } from '@/components/manage-two-factor';
@@ -15,7 +17,8 @@ import { edit } from '@/routes/security';
 type Props = {
     passwordRules: string;
 } & ManagePasskeysProps &
-    ManageTwoFactorProps;
+    ManageTwoFactorProps &
+    ManageGoogleAccountProps;
 
 export default function Security(props: Props) {
     const passwordInput = useRef<HTMLInputElement>(null);
@@ -132,6 +135,11 @@ export default function Security(props: Props) {
             <ManagePasskeys
                 canManagePasskeys={props.canManagePasskeys}
                 passkeys={props.passkeys}
+            />
+
+            <ManageGoogleAccount
+                googleConnected={props.googleConnected}
+                hasPassword={props.hasPassword}
             />
         </>
     );

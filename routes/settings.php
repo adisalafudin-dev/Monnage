@@ -4,6 +4,7 @@ use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\SecurityController;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Settings\GoogleLinkController;
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', '/settings/profile');
@@ -24,6 +25,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('user-password.update');
 
     Route::inertia('settings/appearance', 'settings/appearance')->name('appearance.edit');
+
+    Route::get('settings/google/redirect', [GoogleLinkController::class, 'redirect'])->name('google.redirect');
+    Route::get('settings/google/callback', [GoogleLinkController::class, 'callback'])->name('google.callback');
+    Route::delete('settings/google', [GoogleLinkController::class, 'destroy'])->name('google.destroy');
+
 });
 
 Route::get('.well-known/passkey-endpoints', function () {

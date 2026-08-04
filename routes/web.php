@@ -6,7 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WalletTransferController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\Auth\GoogleAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecurringTransactionController;
 use Inertia\Inertia;
@@ -40,6 +40,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('recurring-transactions', RecurringTransactionController::class)
         ->only(['index', 'store', 'update', 'destroy']);
+});
+
+
+
+Route::middleware('guest')->group(function () {
+    Route::get('auth/google/redirect', [GoogleAuthController::class, 'redirect'])->name('auth.google.redirect');
+    Route::get('auth/google/callback', [GoogleAuthController::class, 'callback'])->name('auth.google.callback');
 });
 
 require __DIR__.'/settings.php';

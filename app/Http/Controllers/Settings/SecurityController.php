@@ -21,6 +21,8 @@ class SecurityController extends Controller
         $props = [
             'canManageTwoFactor' => Features::canManageTwoFactorAuthentication(),
             'canManagePasskeys' => Features::canManagePasskeys(),
+            'googleConnected' => (bool) $request->user()->google_id,
+            'hasPassword' => (bool) $request->user()->password,
             'passkeys' => Features::canManagePasskeys()
                 ? $request->user()
                     ->passkeys()

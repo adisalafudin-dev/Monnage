@@ -46,11 +46,6 @@ const mainNavItems: NavItem[] = [
         href: categoriesIndex(),
         icon: Tags,
     },
-    {
-        title: 'Transaksi',
-        href: transactionsIndex(),
-        icon: ReceiptText,
-    },
 
     {
         title: 'Transfer',
